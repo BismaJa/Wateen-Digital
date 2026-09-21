@@ -1,0 +1,51 @@
+<section class="contact-hero">
+  <div
+    class="hero-bg"
+    style="background-image: url('assets/images/contact/w-contact-us.jpg')"
+  ></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1><span>Contact</span> Us</h1>
+  </div>
+</section>
+
+<section class="contact-info">
+  <div class="container info-grid">
+    <div class="info-item">
+      <div class="info-icon email" aria-hidden="true"></div>
+      <h2>Email</h2>
+      <a href="mailto:info&#64;wateendigital.ae">INFO&#64;WATEENDIGITAL.AE</a>
+    </div>
+    <div class="info-item">
+      <div class="info-icon address" aria-hidden="true"></div>
+      <h2>Address</h2>
+      <p>10th Floor, Concord Tower, Media City, PO Box 566468, Dubai, United Arab Emirates.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact-form-section">
+  <div class="container form-wrap">
+    <h2>Request For Services</h2>
+    <form class="contact-form" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="row">
+        <input formControlName="firstName" placeholder="First Name" />
+        <input formControlName="lastName" placeholder="Last Name" />
+      </div>
+      <div class="row">
+        <input formControlName="email" type="email" placeholder="Email" />
+        <input formControlName="phone" type="tel" placeholder="Phone Number" />
+      </div>
+      <div class="row">
+        <input formControlName="country" placeholder="Country" />
+        <input formControlName="city" placeholder="City" />
+      </div>
+      <input formControlName="organization" placeholder="Organization" />
+      <textarea formControlName="help" rows="5" placeholder="How we may help you"></textarea>
+      <button class="btn submit-btn" type="submit">Submit</button>
+      @if (submitted()) {
+        <p class="success">Thank you. Your request has been recorded.</p>
+      }
+    </form>
+  </div>
+</section>

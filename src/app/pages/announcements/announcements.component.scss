@@ -1,0 +1,242 @@
+:host {
+  display: block;
+}
+
+.ann-fullpage {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #050b16;
+}
+
+.ann-fullpage.on-last {
+  height: auto;
+  min-height: 100vh;
+  overflow: visible;
+}
+
+.ann-viewport {
+  height: 100%;
+  overflow: hidden;
+}
+
+.ann-fullpage.on-last .ann-viewport {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.ann-track {
+  height: 100%;
+  transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
+  will-change: transform;
+}
+
+.ann-slide {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 10, 24, 0.72) 0%,
+    rgba(5, 10, 24, 0.55) 45%,
+    rgba(5, 10, 24, 0.78) 100%
+  );
+}
+
+.slide-inner {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s ease 0.15s,
+    transform 0.7s ease 0.15s;
+}
+
+.slide-inner.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-inner.hero {
+  max-width: 860px;
+  padding: 110px 28px 48px;
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 0 0 22px;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  color: #00adef;
+  line-height: 1.15;
+}
+
+.hero p {
+  margin: 0 auto;
+  max-width: 720px;
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.75;
+  color: #fff;
+}
+
+.slide-inner.article {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 110px 56px 48px;
+  box-sizing: border-box;
+}
+
+.article-copy h2 {
+  margin: 0 0 18px;
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 700;
+  line-height: 1.3;
+  color: #00adef;
+}
+
+.article-copy p {
+  margin: 0 0 14px;
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.article-media {
+  display: flex;
+  justify-content: center;
+}
+
+.article-media img {
+  width: min(100%, 420px);
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.ann-dots {
+  position: fixed;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.ann-dots.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ann-dots .fp-dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ann-dots .fp-dot button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(200, 205, 215, 0.55);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.ann-dots .fp-dot.active button {
+  background: #ffffff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  transform: scale(1.15);
+}
+
+.ann-dots .fp-dot:hover button {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.ann-dots .fp-tooltip {
+  position: absolute;
+  right: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  white-space: nowrap;
+  background: #00adef;
+  color: #fff;
+  font-family: var(--font, "Cairo", sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 8px 14px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
+}
+
+.ann-dots .fp-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -6px;
+  transform: translateY(-50%);
+  border-style: solid;
+  border-width: 6px 0 6px 6px;
+  border-color: transparent transparent transparent #00adef;
+}
+
+.ann-dots .fp-dot:hover .fp-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+@media (max-width: 900px) {
+  .slide-inner.article {
+    grid-template-columns: 1fr;
+    padding: 100px 24px 36px;
+    gap: 24px;
+  }
+
+  .article-media {
+    order: -1;
+  }
+
+  .article-media img {
+    width: min(100%, 280px);
+  }
+}

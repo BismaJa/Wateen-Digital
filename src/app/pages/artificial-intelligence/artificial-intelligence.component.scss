@@ -1,0 +1,1394 @@
+:host {
+  display: block;
+}
+
+.ai-fullpage {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #050b16;
+}
+
+/* Last slide: page grows so badges sit under cards (no nested 100vh scroller) */
+.ai-fullpage.on-last {
+  height: auto;
+  min-height: 100vh;
+  overflow: visible;
+}
+
+.ai-viewport {
+  height: 100%;
+  overflow: hidden;
+}
+
+.ai-fullpage.on-last .ai-viewport {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.ai-track {
+  height: 100%;
+  transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
+  will-change: transform;
+}
+
+.ai-slide {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 10, 24, 0.55) 0%,
+    rgba(5, 10, 24, 0.4) 45%,
+    rgba(5, 10, 24, 0.65) 100%
+  );
+}
+
+.slide-overlay.dark {
+  background: rgba(5, 10, 24, 0.85);
+}
+
+.slide-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 860px;
+  padding: 110px 28px 48px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
+}
+
+.slide-inner.center {
+  text-align: center;
+}
+
+.slide-inner.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero h1 {
+  margin: 0 0 22px;
+  font-size: clamp(34px, 5vw, 54px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #00adef;
+}
+
+.hero p {
+  margin: 0 auto;
+  max-width: 760px;
+  font-size: clamp(15px, 1.45vw, 18px);
+  line-height: 1.75;
+  color: #ffffff;
+  font-weight: 400;
+}
+
+.placeholder h2 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 600;
+  color: #00adef;
+}
+
+/* —— Slide 2: Ai Vision Analytics —— */
+.vision {
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+.slide-bg.light-bg {
+  background-color: #eef1f5;
+  filter: saturate(0.85) brightness(1.05);
+}
+
+.slide-wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(245, 247, 250, 0.92) 0%,
+    rgba(245, 247, 250, 0.75) 42%,
+    rgba(245, 247, 250, 0.35) 70%,
+    rgba(245, 247, 250, 0.2) 100%
+  );
+  pointer-events: none;
+}
+
+.vision-inner,
+.object-inner,
+.care-inner,
+.tryon-inner,
+.health-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(36px, 5vw, 80px);
+  align-items: center;
+  max-width: 1400px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 110px 64px 48px;
+  box-sizing: border-box;
+}
+
+.biomech-inner,
+.gesture-inner,
+.chatbot-inner,
+.infra-inner,
+.building-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(36px, 5vw, 80px);
+  align-items: center;
+  max-width: 1400px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 110px 64px 48px;
+  box-sizing: border-box;
+}
+
+.vision-media,
+.object-media,
+.care-media,
+.tryon-media,
+.health-media,
+.biomech-media,
+.gesture-media,
+.chatbot-media,
+.infra-media,
+.building-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+
+.vision-media img,
+.object-media img,
+.care-media img,
+.tryon-media img,
+.health-media img {
+  width: min(100%, 560px);
+  max-height: 72vh;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 18px 40px rgba(0, 22, 76, 0.14));
+}
+
+.biomech-media img,
+.gesture-media img,
+.chatbot-media img,
+.infra-media img,
+.building-media img {
+  width: min(100%, 540px);
+  max-height: 72vh;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 28px rgba(0, 173, 239, 0.28));
+}
+
+.vision-copy h2 {
+  margin: 0 0 18px;
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a1a1a;
+}
+
+.vision-copy h2 span {
+  color: #00adef;
+}
+
+.vision-copy p {
+  margin: 0 0 22px;
+  max-width: none;
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.75;
+  color: #222;
+  font-weight: 400;
+}
+
+.vision-copy ul {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vision-copy li {
+  position: relative;
+  padding-left: 18px;
+  font-size: clamp(14px, 1.15vw, 16px);
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1.4;
+}
+
+.vision-copy li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1a1a1a;
+}
+
+.demo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 168px;
+  padding: 13px 26px;
+  border-radius: 3px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* —— Slide 3: Enterprise Analytics Chatbot —— */
+.chatbot {
+  justify-content: stretch;
+  align-items: stretch;
+  background: #000b29;
+}
+
+.chatbot-overlay {
+  background: linear-gradient(
+    105deg,
+    rgba(0, 11, 41, 0.55) 0%,
+    rgba(0, 11, 41, 0.72) 45%,
+    rgba(0, 11, 41, 0.88) 100%
+  );
+}
+
+.chatbot-copy h2 {
+  margin: 0 0 16px;
+  font-size: clamp(30px, 3.4vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.chatbot-copy h2 span {
+  color: #00adef;
+}
+
+.chatbot-copy p {
+  margin: 0 0 18px;
+  max-width: none;
+  font-size: clamp(14px, 1.15vw, 16px);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 400;
+}
+
+.chatbot-copy ul {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chatbot-copy li {
+  position: relative;
+  padding-left: 16px;
+  font-size: clamp(14px, 1.1vw, 15.5px);
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.chatbot-copy li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.chatbot-copy .demo-btn {
+  display: inline-flex;
+}
+
+/* —— Slide 4: Object Recognition —— */
+.object {
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+.object-copy h2 {
+  margin: 0 0 18px;
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a1a1a;
+}
+
+.object-copy h2 span {
+  color: #00adef;
+}
+
+.object-copy p {
+  margin: 0 0 22px;
+  max-width: none;
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.75;
+  color: #222;
+  font-weight: 400;
+}
+
+.object-copy ul {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.object-copy li {
+  position: relative;
+  padding-left: 18px;
+  font-size: clamp(14px, 1.15vw, 16px);
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1.4;
+}
+
+.object-copy li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1a1a1a;
+}
+
+/* —— Slide 5: AI-Driven Biomechanics —— */
+.biomech {
+  justify-content: stretch;
+  align-items: stretch;
+  background: #2a2d30;
+}
+
+.biomech-overlay {
+  background: linear-gradient(
+    105deg,
+    rgba(42, 45, 48, 0.55) 0%,
+    rgba(42, 45, 48, 0.72) 45%,
+    rgba(42, 45, 48, 0.88) 100%
+  );
+}
+
+.biomech-copy h2 {
+  margin: 0 0 16px;
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.biomech-copy p {
+  margin: 0 0 20px;
+  max-width: none;
+  font-size: clamp(14px, 1.15vw, 16px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 400;
+}
+
+.biomech-copy ul {
+  list-style: none;
+  margin: 0 0 26px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.biomech-copy li {
+  position: relative;
+  padding-left: 16px;
+  font-size: clamp(14px, 1.1vw, 15.5px);
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.biomech-copy li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* —— Slide 6: Automated Customer Care —— */
+.care {
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+.care-copy h2 {
+  margin: 0 0 18px;
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a1a1a;
+}
+
+.care-copy h2 span {
+  color: #00adef;
+}
+
+.care-copy p {
+  margin: 0 0 22px;
+  max-width: none;
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.75;
+  color: #222;
+  font-weight: 400;
+}
+
+.care-copy ul {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.care-copy li {
+  position: relative;
+  padding-left: 18px;
+  font-size: clamp(14px, 1.15vw, 16px);
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1.4;
+}
+
+.care-copy li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1a1a1a;
+}
+
+/* —— Slide 7: Smart Gesture Recognition —— */
+.gesture {
+  justify-content: stretch;
+  align-items: stretch;
+  background: #050b16;
+}
+
+.gesture-overlay {
+  background: linear-gradient(
+    105deg,
+    rgba(5, 11, 22, 0.5) 0%,
+    rgba(5, 11, 22, 0.7) 45%,
+    rgba(5, 11, 22, 0.88) 100%
+  );
+}
+
+.gesture-copy h2 {
+  margin: 0 0 16px;
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.gesture-copy h2 span {
+  color: #00adef;
+}
+
+.gesture-copy p {
+  margin: 0 0 20px;
+  max-width: none;
+  font-size: clamp(14px, 1.15vw, 16px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 400;
+}
+
+.gesture-copy ul {
+  list-style: none;
+  margin: 0 0 26px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.gesture-copy li {
+  position: relative;
+  padding-left: 16px;
+  font-size: clamp(14px, 1.1vw, 15.5px);
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.gesture-copy li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* —— Slide 8: Next-Gen Virtual Try-On —— */
+.tryon {
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+.tryon-copy h2 {
+  margin: 0 0 18px;
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a1a1a;
+}
+
+.tryon-copy h2 span {
+  color: #00adef;
+}
+
+.tryon-copy p {
+  margin: 0 0 22px;
+  max-width: none;
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.75;
+  color: #222;
+  font-weight: 400;
+}
+
+.tryon-copy ul {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tryon-copy li {
+  position: relative;
+  padding-left: 18px;
+  font-size: clamp(14px, 1.15vw, 16px);
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1.4;
+}
+
+.tryon-copy li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1a1a1a;
+}
+
+/* —— Slide 9: AI-Driven Infrastructure Protection —— */
+.infra {
+  justify-content: stretch;
+  align-items: stretch;
+  background: #050b16;
+}
+
+.infra-overlay {
+  background: linear-gradient(
+    105deg,
+    rgba(5, 11, 22, 0.5) 0%,
+    rgba(5, 11, 22, 0.7) 45%,
+    rgba(5, 11, 22, 0.88) 100%
+  );
+}
+
+.infra-copy h2 {
+  margin: 0 0 16px;
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.infra-copy h2 span {
+  color: #00adef;
+}
+
+.infra-copy p {
+  margin: 0 0 20px;
+  max-width: none;
+  font-size: clamp(14px, 1.15vw, 16px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 400;
+}
+
+.infra-copy ul {
+  list-style: none;
+  margin: 0 0 26px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.infra-copy li {
+  position: relative;
+  padding-left: 16px;
+  font-size: clamp(14px, 1.1vw, 15.5px);
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.infra-copy li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* —— Slide 10: Health Management Solution —— */
+.health {
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+.health-copy h2 {
+  margin: 0 0 14px;
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1a1a1a;
+}
+
+.health-copy p {
+  margin: 0 0 16px;
+  max-width: none;
+  font-size: clamp(13px, 1.1vw, 15.5px);
+  line-height: 1.6;
+  color: #222;
+  font-weight: 400;
+}
+
+.health-copy ul {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.health-copy li {
+  position: relative;
+  padding-left: 16px;
+  font-size: clamp(13px, 1.1vw, 15px);
+  font-weight: 500;
+  color: #1a1a1a;
+  line-height: 1.35;
+}
+
+.health-copy li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1a1a1a;
+}
+
+/* —— Slide 11: Smart Building Management Solution —— */
+.building {
+  justify-content: stretch;
+  align-items: stretch;
+  background: #050b16;
+}
+
+.building-overlay {
+  background: linear-gradient(
+    105deg,
+    rgba(5, 11, 22, 0.5) 0%,
+    rgba(5, 11, 22, 0.72) 45%,
+    rgba(5, 11, 22, 0.88) 100%
+  );
+}
+
+.building-copy h2 {
+  margin: 0 0 16px;
+  font-size: clamp(28px, 3.4vw, 42px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+}
+
+.building-copy p {
+  margin: 0 0 20px;
+  max-width: none;
+  font-size: clamp(14px, 1.15vw, 16px);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 400;
+}
+
+.building-copy ul {
+  list-style: none;
+  margin: 0 0 26px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.building-copy li {
+  position: relative;
+  padding-left: 16px;
+  font-size: clamp(14px, 1.1vw, 15.5px);
+  font-weight: 500;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.building-copy li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+/* —— Slide 12: Our Expertise in AI Solutions —— */
+.expertise {
+  justify-content: stretch;
+  align-items: stretch;
+  background: #050b16;
+  overflow: hidden;
+}
+
+.expertise-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 11, 22, 0.72) 0%,
+    rgba(5, 11, 22, 0.85) 100%
+  );
+}
+
+.expertise-cards {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 4vh, 52px);
+  width: min(1080px, 72vw);
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 120px 0 56px;
+  box-sizing: border-box;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s;
+}
+
+.expertise-cards.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.expertise-heading {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.15;
+}
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 2.5vw, 32px);
+  width: 100%;
+}
+
+.expertise-card {
+  background: #f3f4f6;
+  border-radius: 4px;
+  padding: clamp(40px, 6vh, 64px) 28px clamp(32px, 4vh, 44px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  min-height: clamp(200px, 28vh, 260px);
+}
+
+.expertise-card img {
+  width: clamp(72px, 10vh, 100px);
+  height: clamp(72px, 10vh, 100px);
+  object-fit: contain;
+  display: block;
+}
+
+.expertise-card h3 {
+  margin: 0;
+  font-size: clamp(14px, 1.3vw, 17px);
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.35;
+}
+
+/* Tech logos band — appears after scrolling the last slide */
+.expertise-tech {
+  display: none;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 56px 0 96px;
+  background: #050b16;
+  overflow: visible;
+}
+
+.expertise-tech.show {
+  display: block;
+}
+
+.expertise-tech-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(1080px, 72vw);
+  max-width: 1080px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.expertise-rule {
+  width: 100%;
+  height: 1px;
+  margin: 0 0 44px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.tech-track {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(10px, 1.4vw, 18px);
+  width: 100%;
+  animation: expertise-fade 0.35s ease;
+}
+
+.tech-img {
+  flex: 1 1 0;
+  width: auto;
+  max-width: 120px;
+  min-width: 0;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
+  transition: transform 0.25s ease;
+}
+
+.tech-img:hover {
+  transform: translateY(-3px);
+}
+
+.tech-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.tech-dots button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.tech-dots button.active {
+  background: #00adef;
+  transform: scale(1.15);
+}
+
+@keyframes expertise-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ai-dots {
+  position: fixed;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.ai-dots .fp-dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-dots .fp-dot button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(200, 205, 215, 0.55);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.ai-dots .fp-dot.active button {
+  background: #ffffff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  transform: scale(1.15);
+}
+
+.ai-dots .fp-dot:hover button {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.ai-dots .fp-tooltip {
+  position: absolute;
+  right: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  white-space: nowrap;
+  background: #00adef;
+  color: #fff;
+  font-family: var(--font, "Cairo", sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 8px 14px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
+}
+
+.ai-dots .fp-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -6px;
+  transform: translateY(-50%);
+  border-style: solid;
+  border-width: 6px 0 6px 6px;
+  border-color: transparent transparent transparent #00adef;
+}
+
+.ai-dots .fp-dot:hover .fp-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+.ai-dots.on-light .fp-dot button {
+  background: rgba(120, 128, 145, 0.45);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+.ai-dots.on-light .fp-dot.active button {
+  background: #00adef;
+  box-shadow: none;
+}
+
+.ai-dots.on-light .fp-dot:hover button {
+  background: rgba(0, 173, 239, 0.75);
+}
+
+.ai-dots.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 980px) {
+  .vision-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 110px 28px 48px;
+    text-align: left;
+  }
+
+  .vision-media {
+    order: -1;
+  }
+
+  .vision-media img {
+    width: min(100%, 360px);
+  }
+
+  .vision-copy p {
+    max-width: none;
+  }
+
+  .chatbot-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 100px 28px 36px;
+  }
+
+  .chatbot-media img {
+    width: min(100%, 380px);
+    max-height: 42vh;
+  }
+
+  .chatbot-copy p {
+    max-width: none;
+  }
+
+  .chatbot-copy ul {
+    gap: 6px;
+  }
+
+  .object-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 110px 28px 48px;
+  }
+
+  .object-media {
+    order: -1;
+  }
+
+  .object-media img {
+    width: min(100%, 360px);
+  }
+
+  .object-copy p {
+    max-width: none;
+  }
+
+  .biomech-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 110px 28px 40px;
+  }
+
+  .biomech-media img {
+    width: min(100%, 340px);
+  }
+
+  .biomech-copy p {
+    max-width: none;
+  }
+
+  .care-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 110px 28px 48px;
+  }
+
+  .care-media {
+    order: -1;
+  }
+
+  .care-media img {
+    width: min(100%, 360px);
+  }
+
+  .care-copy p {
+    max-width: none;
+  }
+
+  .gesture-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 110px 28px 40px;
+  }
+
+  .gesture-media img {
+    width: min(100%, 340px);
+  }
+
+  .gesture-copy p {
+    max-width: none;
+  }
+
+  .tryon-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 110px 28px 48px;
+  }
+
+  .tryon-media {
+    order: -1;
+  }
+
+  .tryon-media img {
+    width: min(100%, 360px);
+  }
+
+  .tryon-copy p {
+    max-width: none;
+  }
+
+  .infra-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 110px 28px 40px;
+  }
+
+  .infra-media img {
+    width: min(100%, 340px);
+  }
+
+  .infra-copy p {
+    max-width: none;
+  }
+
+  .health-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 100px 28px 36px;
+  }
+
+  .health-media {
+    order: -1;
+  }
+
+  .health-media img {
+    width: min(100%, 340px);
+  }
+
+  .health-copy p {
+    max-width: none;
+  }
+
+  .health-copy ul {
+    gap: 5px;
+  }
+
+  .building-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 110px 28px 40px;
+  }
+
+  .building-media img {
+    width: min(100%, 340px);
+  }
+
+  .building-copy p {
+    max-width: none;
+  }
+
+  .expertise-cards {
+    width: min(100%, 90vw);
+    padding: 110px 0 40px;
+    gap: 22px;
+  }
+
+  .expertise-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .expertise-card {
+    min-height: 160px;
+    padding: 28px 16px 22px;
+    gap: 14px;
+  }
+
+  .expertise-card img {
+    width: 64px;
+    height: 64px;
+  }
+
+  .expertise-tech {
+    padding: 40px 0 64px;
+  }
+
+  .expertise-tech-inner {
+    width: min(100%, 90vw);
+    max-width: none;
+  }
+
+  .tech-img {
+    max-width: 96px;
+  }
+}
+
+@media (max-width: 640px) {
+  .expertise-heading {
+    font-size: 24px;
+  }
+
+  .expertise-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-track {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .ai-dots {
+    right: 12px;
+  }
+
+  .slide-inner {
+    padding-top: 100px;
+  }
+
+  .vision-inner,
+  .object-inner,
+  .care-inner,
+  .tryon-inner,
+  .health-inner,
+  .chatbot-inner,
+  .biomech-inner,
+  .gesture-inner,
+  .infra-inner,
+  .building-inner {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* Short viewports — keep CTA visible without shrinking the whole slide */
+@media (max-height: 820px) {
+  .vision-inner,
+  .object-inner,
+  .care-inner,
+  .tryon-inner,
+  .health-inner,
+  .biomech-inner,
+  .gesture-inner,
+  .infra-inner,
+  .building-inner,
+  .chatbot-inner {
+    padding-top: 96px;
+    padding-bottom: 28px;
+  }
+
+  .chatbot-copy ul {
+    gap: 5px;
+  }
+
+  .chatbot-copy p {
+    margin-bottom: 12px;
+    line-height: 1.55;
+  }
+
+  .chatbot-media img,
+  .biomech-media img,
+  .gesture-media img,
+  .infra-media img,
+  .building-media img {
+    width: min(100%, 460px);
+    max-height: 64vh;
+  }
+}
+
+@media (max-height: 720px) {
+  .chatbot-inner {
+    padding-top: 88px;
+    padding-bottom: 20px;
+    gap: 28px;
+  }
+
+  .chatbot-copy ul {
+    gap: 4px;
+  }
+
+  .chatbot-media img {
+    width: min(100%, 400px);
+    max-height: 58vh;
+  }
+}

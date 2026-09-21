@@ -1,0 +1,83 @@
+<div class="products-fullpage" [class.on-last]="isLast">
+  <div class="products-viewport">
+    <div
+      class="products-track"
+      [style.transform]="'translate3d(0, ' + (-active() * 100) + 'vh, 0)'"
+    >
+      <!-- 1 Our Products -->
+      <section class="prod-slide hero" [class.active]="active() === 0">
+        <div
+          class="slide-bg"
+          [style.background-image]="'url(' + hero.background + ')'"
+        ></div>
+        <div class="slide-overlay hero-overlay"></div>
+        <div class="slide-inner center" [class.in]="active() === 0">
+          <h1>
+            <span class="blue">{{ hero.titleBlue }}</span> {{ hero.titleRest }}
+          </h1>
+          <p>{{ hero.description }}</p>
+        </div>
+      </section>
+
+      @for (product of products; track product.id; let i = $index) {
+        <section
+          class="prod-slide product"
+          [class.dark]="product.dark"
+          [class.light]="!product.dark"
+          [class.active]="active() === i + 1"
+        >
+          <div
+            class="slide-bg"
+            [style.background-image]="'url(' + product.background + ')'"
+          ></div>
+          <div
+            class="slide-overlay"
+            [style.opacity]="product.overlay ?? 0.5"
+          ></div>
+          <div
+            class="product-inner"
+            [class.media-left]="product.mediaLeft"
+            [class.media-right]="!product.mediaLeft"
+            [class.in]="active() === i + 1"
+          >
+            <div class="product-media">
+              <img [src]="product.media" [alt]="product.title" />
+            </div>
+            <div class="product-copy">
+              <h2>{{ product.title }}</h2>
+              <p class="desc">{{ product.description }}</p>
+              <h4>Key Features:</h4>
+              <ul>
+                @for (feature of product.features; track feature) {
+                  <li>{{ feature }}</li>
+                }
+              </ul>
+              <h4>Business Outcome:</h4>
+              <p class="outcome">{{ product.outcome }}</p>
+              <button type="button" class="btn demo-btn" (click)="openDemo(product.title)">Request A Demo</button>
+            </div>
+          </div>
+        </section>
+      }
+    </div>
+  </div>
+
+  <nav
+    class="prod-dots"
+    [class.on-light]="active() === 1 || active() === 3 || active() === 7"
+    [class.hidden]="showingFooter()"
+    aria-label="Products section navigation"
+  >
+    @for (slide of slides; track slide.id; let i = $index) {
+      <div class="fp-dot" [class.active]="active() === i">
+        <span class="fp-tooltip" aria-hidden="true">{{ slide.label }}</span>
+        <button
+          type="button"
+          [attr.aria-label]="slide.label"
+          [attr.aria-current]="active() === i ? 'true' : null"
+          (click)="goTo(i)"
+        ></button>
+      </div>
+    }
+  </nav>
+</div>

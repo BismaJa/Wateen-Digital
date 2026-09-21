@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.site-main {
+  min-height: calc(100vh - 200px);
+}
+
+.site-main.is-home {
+  min-height: 100vh;
+}

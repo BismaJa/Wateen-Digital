@@ -1,0 +1,19 @@
+<section class="page-hero">
+  <div class="container">
+    <h1>{{ page().title }}</h1>
+    @if (page().subtitle) {
+      <p class="subtitle">{{ page().subtitle }}</p>
+    }
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container narrow">
+    @for (p of page().paragraphs; track p) {
+      <p>{{ p }}</p>
+    }
+    @if (page().ctaLabel && page().ctaLink) {
+      <a class="btn" [routerLink]="page().ctaLink">{{ page().ctaLabel }}</a>
+    }
+  </div>
+</section>

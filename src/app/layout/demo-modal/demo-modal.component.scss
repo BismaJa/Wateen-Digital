@@ -1,0 +1,127 @@
+.demo-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(8, 12, 24, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.demo-dialog {
+  position: relative;
+  width: min(100%, 560px);
+  background: #fff;
+  border-radius: 6px;
+  padding: 36px 32px 28px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+}
+
+.demo-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid #00adef;
+  border-radius: 3px;
+  background: #fff;
+  color: #00adef;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.demo-close:hover {
+  background: #e8f7fd;
+}
+
+.demo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 8px;
+}
+
+.demo-form input,
+.demo-form textarea,
+.demo-form select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 2px;
+  background: #eceff3;
+  font: inherit;
+  font-size: 15px;
+  color: #1a1a1a;
+  outline: none;
+}
+
+.demo-form input::placeholder,
+.demo-form textarea::placeholder {
+  color: #8a9099;
+}
+
+.demo-form input:focus,
+.demo-form textarea:focus,
+.demo-form select:focus {
+  box-shadow: 0 0 0 2px rgba(0, 173, 239, 0.35);
+}
+
+.select-wrap {
+  position: relative;
+}
+
+.select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #6a6f78;
+  border-bottom: 2px solid #6a6f78;
+  transform: translateY(-60%) rotate(45deg);
+  pointer-events: none;
+}
+
+.demo-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  color: #6a6f78;
+}
+
+.demo-form select:valid,
+.demo-form select:not([value='']) {
+  color: #1a1a1a;
+}
+
+.demo-form textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.demo-submit {
+  width: 100%;
+  margin-top: 4px;
+  padding: 14px 20px;
+  border-radius: 2px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .demo-dialog {
+    padding: 32px 18px 22px;
+  }
+}

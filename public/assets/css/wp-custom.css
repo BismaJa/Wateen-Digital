@@ -1,0 +1,225 @@
+﻿var el=document.getElementById(e.c);if(el!==null&&el)el.style.height=newh+"px";el=document.getElementById(e.c+"_wrapper");if(el!==null&&el){el.style.height=newh+"px";el.style.display="block"}}catch(e){console.log("Failure at Presize of Slider:"+e)}}</script> <style id="wp-custom-css">.Why-Choose-Wateen.why-choose-wateen-text-left .icon-box-heading{
+	text-align:left !important;
+}
+.Why-Choose-Wateen.why-choose-wateen-text-left .icon-box{
+	text-align:left !important;
+} 
+.text-on-img-custom .single-wrapper{
+	
+}
+.pum-theme-133354 .pum-container, .pum-theme-cutting-edge .pum-container{
+	border-radius:6px !important;
+}
+.form-row {
+  display: flex;
+  gap: 20px; /* spacing between fields */
+  margin-bottom: 0px;
+}
+.vc_row.annoucments{
+	margin-top:25px !important;
+}
+.form-row .form-group {
+  flex: 1; /* equal width */
+}
+.annoucments .announce-heading h2{
+ text-align: center !important;
+ display: block !important;
+}
+.img-padding-with-border-blue img{
+}
+.wateen-filter-1 img{
+	filter:invert(1) !important;
+}
+.pum-theme-133354 .pum-content + .pum-close, .pum-theme-cutting-edge .pum-content + .pum-close {
+	   border-top-right-radius: 6px !important;
+    background-color: black !important;
+    color: #fff !important;
+}
+.pum-content.popmake-content form input, .pum-content.popmake-content form textarea{
+	    padding: 3px 5px 3px 5px !important;
+	border-radius:4px;
+}
+.popup-anchor-link{
+    margin-top: 15px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    width: 100%;
+}
+.pum-content.popmake-content form  .wpcf7-list-item-label{
+	font-size:13px !important;
+}
+.popup-anchor-link:hover{
+	text-underline-offset: 3px;
+}
+.pum-content.popmake-content form input.wpcf7-submit{
+	border-radius:4px !important;
+}
+.pum-content.popmake-content form input.wpcf7-submit:hover{
+	background-color:#000;
+	color:#fff;
+	border-radius:4px !important;
+}
+p.margin-20-p {
+    margin-bottom: 20px !important;
+}
+.pum-content.popmake-content label input{
+	width:100%;
+	color:black;
+	border-radius:4px;
+}
+ input[type=checkbox]{
+	color:black !important;
+	 border-radius:4px;
+}
+.pum-content.popmake-content form p {
+    margin: 0px 0px 0px 0px;
+    font-weight: 600;
+}
+.pum-content.popmake-content form input.wpcf7-submit{
+	  color: black;
+    font-size: 16px;
+    padding: 5px 25px !important;
+}
+.pum-theme-133354, .pum-theme-cutting-edge{
+    background-color: rgb(0 0 0 / 72%) !important;
+}
+.pum-content.popmake-content form textarea{
+	height: 60px;
+	color:black;
+}
+.awsm-job-content .style-light p, .awsm-job-content .style-light li, .awsm-job-form-group label{
+	color:black !important;
+}
+.Why-Choose-Wateen .icon-box h3 {
+    font-size: 28px !important;
+    color: #2a2e3f !important;
+    font-weight: 400 !important;
+    line-height: 32px !important;
+}
+.resource-outsourcing .heading-text{
+	text-align:center !important;
+}
+.Business-Focus-Areas-Heading.resource-outsourcing.text-left .heading-text{
+	text-align:left !important;
+} 
+.resource-outsourcing .btn-container{
+	text-align:left !important;
+}
+.Business-Focus-Areas-Heading.resource-outsourcing .h2{
+	font-size: 44px !important;
+    line-height: 50px !important;
+}
+.dedicates-lower-text p{
+	font-size: 32px;
+  color: #fff;
+  text-transform: uppercase;
+   font-style: italic;
+}
+.heading-in-center .heading-text{
+	text-align:center !important;
+}
+.dedicated-card .uncont {
+    background-color: #ffffff !important;
+    border: unset !important;
+}
+.recourse-teams-card.dedicated-card.resourceoutsource .uncont{
+	padding:0px 0px !important;
+}
+.dedicated-list-spacing{
+	padding:20px 45px;
+	margin-top:0 !important;
+}
+.dedicated-list-spacing h3{
+	margin-bottom:15px;
+}
+.dedicated-list-spacing ul{
+	margin-top:0 !important;
+}
+.text-font-size-white p{
+	font-size:20px;
+	color:#000 !important;
+}
+.bg-white-on-col-1 .style-color-xsdn-bg{
+	background-color:#fff !important;
+}
+.long-term-benefits-main> div{
+	overflow:hidden;
+	border-radius:20px;
+}
+.resourceoutsource .text-lead li, .desc-our-delivery ul li{
+	position:relative;
+		font-size: 20px;
+    color: #000;
+	
+}
+.desc-our-delivery ul li::before{
+	top:5px !important;
+}
+.product-and-solutions-bg img:hover{
+	opacity:0.5 !important;
+}
+.product-and-solutions-bg {
+	 transition: all 0.3s ease-in-out;
+}
+.product-and-solutions-bg  h2{
+	 pointer-events: none;
+}
+.desc-our-delivery ul li {
+	color:#fff !important;
+}
+.resource-outsourcing .icon-box-content li{
+		position:relative;
+	list-style-type:none;
+	font-size: 20px;
+    color: #000;
+}
+.resource-outsourcing .icon-box-content li::before, .desc-our-delivery ul li::before {
+      content: "";
+    background-image: url(https://wateendigital.ae/wp-content/uploads/2025/08/list-style.png);
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-repeat: no-repeat;
+    left: -30px;
+    top: 9px;
+    margin-right: 13px;
+    background-size: contain;
+	
+}
+
+.resourceoutsource ul, .desc-our-delivery ul{
+	list-style-type:none !important;
+}
+.resourceoutsource .text-lead li::before {
+      content: "";
+    background-image: url(https://wateendigital.ae/wp-content/uploads/2025/08/list-style.png);
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background-repeat: no-repeat;
+    left: -30px;
+    top: 9px;
+    margin-right: 13px;
+    background-size: contain;
+}
+.bg-white-on-col .box-list-p strong, .box-list-p p {
+	color:black !important;
+}
+.text-on-img-custom .wpb_heading.wpb_singleimage_heading{
+	  position: absolute;
+    z-index: 7;
+    top: 0;
+    color: white;
+    top: 50%;
+    transform: translate(0%, -50%);
+    font-size: 28px;
+    left: 0%;
+    width: 100%;
+    padding: 0 30px;
+    text-align: center;
+}
+.bg-white-on-col .quad-block-padding.style-color-xsdn-bg{
+	background-color:#fff !important;
+	color:black !important;
+}</style><noscript><style>.wpb_animate_when_almost_visible { opacity: 1; }</style></noscript><style id="rs-plugin-settings-inline-css">#rs-demo-id {}

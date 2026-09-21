@@ -1,0 +1,247 @@
+:host {
+  display: block;
+  background: #fff;
+}
+
+.telecom-hero {
+  position: relative;
+  min-height: 52vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 12, 24, 0.55) 0%,
+    rgba(8, 12, 24, 0.35) 50%,
+    rgba(8, 12, 24, 0.55) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 120px 24px 64px;
+}
+
+.hero-content h1 {
+  margin: 0;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #ffffff;
+}
+
+.hero-content h1 span {
+  color: #00adef;
+}
+
+.telecom-banner {
+  background: #00adef;
+  color: #fff;
+  text-align: center;
+  padding: 22px 28px;
+}
+
+.telecom-banner p {
+  margin: 0 auto;
+  max-width: 980px;
+  font-size: clamp(14px, 1.35vw, 17px);
+  line-height: 1.65;
+  font-weight: 500;
+}
+
+.telecom-body {
+  background: #fff;
+  padding: 64px 0 88px;
+}
+
+.body-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.service-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px 28px;
+}
+
+.service-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2a2e3f;
+  line-height: 1.4;
+}
+
+.service-item img {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.feature-media {
+  display: flex;
+  justify-content: center;
+}
+
+.feature-media img {
+  width: min(100%, 420px);
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .body-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .service-list {
+    order: 2;
+  }
+
+  .feature-media {
+    order: 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .service-list {
+    grid-template-columns: 1fr;
+  }
+
+  .telecom-hero {
+    min-height: 42vh;
+  }
+}
+
+.telecom-hero,
+.telecom-banner,
+.telecom-body {
+  scroll-margin-top: 80px;
+}
+
+.fp-dots {
+  position: fixed;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+.fp-dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fp-dot button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(200, 205, 215, 0.55);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.fp-dot.active button {
+  background: #ffffff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  transform: scale(1.15);
+}
+
+.fp-dot:hover button {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.fp-tooltip {
+  position: absolute;
+  right: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  white-space: nowrap;
+  background: #00adef;
+  color: #fff;
+  font-family: var(--font, "Cairo", sans-serif);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 8px 14px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
+}
+
+.fp-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -6px;
+  transform: translateY(-50%);
+  border-style: solid;
+  border-width: 6px 0 6px 6px;
+  border-color: transparent transparent transparent #00adef;
+}
+
+.fp-dot:hover .fp-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+.fp-dots.on-light .fp-dot button {
+  background: rgba(120, 128, 145, 0.45);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+.fp-dots.on-light .fp-dot.active button {
+  background: #00adef;
+  box-shadow: none;
+}
+
+.fp-dots.on-light .fp-dot:hover button {
+  background: rgba(0, 173, 239, 0.75);
+}
+
+@media (max-width: 980px) {
+  .fp-dots {
+    right: 12px;
+  }
+}

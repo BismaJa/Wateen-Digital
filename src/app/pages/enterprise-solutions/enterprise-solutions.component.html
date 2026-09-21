@@ -1,0 +1,60 @@
+<section class="ent-hero">
+  <div
+    class="hero-bg"
+    style="background-image: url('assets/images/enterprise/Enterprises-Solutions-Services.jpg')"
+  ></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1><span>Enterprises</span> Solutions &amp; Services</h1>
+  </div>
+</section>
+
+<section class="ent-banner">
+  <p>{{ banner }}</p>
+</section>
+
+<section class="ent-section">
+  <div class="container section-grid">
+    <div class="section-copy">
+      <h2>Advanced Technical Services</h2>
+      <ul>
+        @for (item of advancedServices; track item) {
+          <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
+        }
+      </ul>
+    </div>
+    <div class="section-media">
+      <img
+        src="assets/images/enterprise/Solution-Integration-Expertise.png"
+        alt="Advanced Technical Services"
+      />
+    </div>
+  </div>
+</section>
+
+<section class="ent-section alt">
+  <div class="container section-grid reverse">
+    <div class="section-media">
+      <img
+        src="assets/images/enterprise/Infrastructure-Planning-and-Audit-Services.png"
+        alt="IT Infrastructure Solutions and Services"
+      />
+    </div>
+    <div class="section-copy">
+      <h2>IT Infrastructure Solutions &amp; Services</h2>
+      <p>{{ infraCopy }}</p>
+      <div class="two-cols">
+        <ul>
+          @for (item of infraLeft; track item) {
+            <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
+          }
+        </ul>
+        <ul>
+          @for (item of infraRight; track item) {
+            <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

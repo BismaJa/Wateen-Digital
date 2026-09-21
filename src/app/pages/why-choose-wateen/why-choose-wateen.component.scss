@@ -1,0 +1,132 @@
+:host {
+  display: block;
+  background: #fff;
+}
+
+.wcw-hero {
+  position: relative;
+  min-height: 48vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 12, 40, 0.55) 0%,
+    rgba(8, 12, 40, 0.45) 50%,
+    rgba(8, 12, 40, 0.6) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 120px 24px 64px;
+}
+
+.hero-content h1 {
+  margin: 0;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+}
+
+.hero-content h1 span {
+  color: #00adef;
+}
+
+.wcw-cards {
+  padding: 72px 0 96px;
+  background: #fff;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: rgb(100 100 111 / 0.2) 0 7px 29px 0;
+  padding: 36px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+}
+
+.card-icon {
+  margin-bottom: 20px;
+  min-height: 106px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon img {
+  width: 111px;
+  height: auto;
+  max-height: 106px;
+  object-fit: contain;
+  display: block;
+}
+
+.card h3 {
+  margin: 0 0 14px;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 32px;
+  color: #2a2e3f;
+}
+
+.card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #555;
+  flex: 1;
+}
+
+@media (max-width: 1100px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .wcw-cards {
+    padding: 48px 0 64px;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .card {
+    padding: 28px 20px;
+  }
+
+  .card h3 {
+    font-size: 24px;
+    line-height: 1.25;
+  }
+}

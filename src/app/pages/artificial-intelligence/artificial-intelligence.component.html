@@ -1,0 +1,449 @@
+<div class="ai-fullpage" [class.on-last]="isLast">
+  <div class="ai-viewport">
+  <div
+    class="ai-track"
+    [style.transform]="'translate3d(0, ' + (-active() * 100) + 'vh, 0)'"
+  >
+    <!-- 1 Artificial Intelligence -->
+    <section class="ai-slide hero" [class.active]="active() === 0">
+      <div
+        class="slide-bg"
+        style="background-image: url('assets/images/ai/Artificial-intelligence.jpg')"
+      ></div>
+      <div class="slide-overlay"></div>
+      <div class="slide-inner center" [class.in]="active() === 0">
+        <h1>Artificial Intelligence</h1>
+        <p>
+          Explore Wateen Digital Solutions’ innovative products designed to enhance connectivity,
+          optimize energy use, and streamline operations. From AI-driven management tools to
+          intelligent chatbots, our solutions empower businesses to achieve greater efficiency and
+          success. Transform your organization with our cutting-edge technology today!
+        </p>
+      </div>
+    </section>
+
+    <!-- 2 Ai Vision Analytics -->
+    <section class="ai-slide vision" [class.active]="active() === 1">
+      <div
+        class="slide-bg light-bg"
+        style="background-image: url('assets/images/ai/Integrated-Surveillance-Platform.jpg')"
+      ></div>
+      <div class="slide-wash"></div>
+      <div class="slide-inner vision-inner" [class.in]="active() === 1">
+        <div class="vision-copy">
+          <h2>Ai Vision <span>Analytics</span></h2>
+          <p>
+            Managing employee attendance in large organizations can be time-consuming and prone to
+            errors. Additionally, ensuring security by tracking unknown persons within the premises
+            is challenging. We need a system that automatically marks employee attendance through
+            facial recognition, identifies unknown individuals, and detects objects carried by
+            employees as they enter the building.
+          </p>
+          <ul>
+            <li>Automated Attendance</li>
+            <li>Security Monitoring</li>
+            <li>Footfall Analytics</li>
+            <li>Access Control</li>
+            <li>Productivity Analysis</li>
+          </ul>
+          <button type="button" class="btn demo-btn" (click)="openDemo()">Request A Demo</button>
+        </div>
+        <div class="vision-media">
+          <img src="assets/images/ai/Ai-Vision.png" alt="AI Vision Analytics Platform" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 Enterprise Analytics Chatbot -->
+    <section class="ai-slide chatbot" [class.active]="active() === 2">
+      <div
+        class="slide-bg"
+        style="background-image: url('assets/images/ai/Enterprise-Analytics-Chatbot.jpg')"
+      ></div>
+      <div class="slide-overlay chatbot-overlay"></div>
+      <div class="slide-inner chatbot-inner" [class.in]="active() === 2">
+        <div class="chatbot-media">
+          <img
+            src="assets/images/ai/Data-Driven-Chatbot-for-Instant-Business-Insights.png"
+            alt="Data-Driven Chatbot for Instant Business Insights"
+          />
+        </div>
+        <div class="chatbot-copy">
+          <h2>Enterprise <span>Analytics</span> Chatbot</h2>
+          <p>
+            In many organizations, retrieving specific information from structured databases can be
+            challenging for non-technical users. They often rely on IT or data teams to extract and
+            interpret the data, leading to delays and inefficiencies. There is a need for a solution
+            that allows users to query data directly using natural language, making data access
+            easier and faster.
+          </p>
+          <ul>
+            <li>Seamless Tenant Onboarding</li>
+            <li>Personalized Smart Access</li>
+            <li>Integrated Floor Management</li>
+            <li>Real-Time Footfall Analytics</li>
+            <li>Smart Attendance Systems</li>
+            <li>Efficient Workforce Oversight</li>
+            <li>Smart Vehicle Access Control</li>
+            <li>Proactive Anomaly Detection</li>
+            <li>Automated Hygiene Audits</li>
+            <li>Compliance Assurance Systems</li>
+            <li>Dynamic Space Utilization Analytics</li>
+          </ul>
+          <button type="button" class="btn demo-btn" (click)="openDemo()">Request A Demo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Object Recognition -->
+    <section class="ai-slide object" [class.active]="active() === 3">
+      <div
+        class="slide-bg light-bg"
+        style="background-image: url('assets/images/ai/Object-Recognition.jpg')"
+      ></div>
+      <div class="slide-wash"></div>
+      <div class="slide-inner object-inner" [class.in]="active() === 3">
+        <div class="object-copy">
+          <h2>Object <span>Recognition</span></h2>
+          <p>
+            In scenarios like inventory management, crowd counting, and traffic monitoring, it’s
+            crucial not only to detect objects but also to count them accurately. Current solutions
+            either lack precision in counting or struggle in real-time environments with multiple
+            objects. We need a system that can detect and accurately count objects in real-time
+            across different settings.
+          </p>
+          <ul>
+            <li>Inventory Management</li>
+            <li>Traffic Monitoring</li>
+            <li>Crowd Counting</li>
+            <li>Production Line Automation</li>
+            <li>Waste Classification</li>
+          </ul>
+          <button type="button" class="btn demo-btn" (click)="openDemo()">Request A Demo</button>
+        </div>
+        <div class="object-media">
+          <img
+            src="assets/images/ai/Real-Time-Object-Recognition-and-Quantity-Analysis.png"
+            alt="Real-Time Object Recognition and Quantity Analysis"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 AI-Driven Biomechanics -->
+    <section class="ai-slide biomech" [class.active]="active() === 4">
+      <div
+        class="slide-bg"
+        style="background-image: url('assets/images/ai/AI-Driven-Infrastructure.jpg')"
+      ></div>
+      <div class="slide-overlay biomech-overlay"></div>
+      <div class="slide-inner biomech-inner" [class.in]="active() === 4">
+        <div class="biomech-media">
+          <img
+            src="assets/images/ai/Advanced-Human-Pose-Estimation-for-Enhanced-Interaction.png"
+            alt="Advanced Human Pose Estimation for Enhanced Interaction"
+          />
+        </div>
+        <div class="biomech-copy">
+          <h2>AI-Driven Biomechanics</h2>
+          <p>
+            Tracking human body movements accurately is essential in areas like sports, healthcare,
+            and gaming. Existing methods are often costly or lack real-time accuracy. This project
+            aims to create an affordable and accurate pose estimation system using cameras.
+          </p>
+          <ul>
+            <li>Sports and Fitness Training</li>
+            <li>Physical Therapy</li>
+            <li>Gaming and VR</li>
+            <li>Workplace Safety</li>
+            <li>Posture Analysis</li>
+          </ul>
+          <button type="button" class="btn demo-btn" (click)="openDemo()">Request A Demo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 Automated Customer Care -->
+    <section class="ai-slide care" [class.active]="active() === 5">
+      <div
+        class="slide-bg light-bg"
+        style="background-image: url('assets/images/ai/Automated-Customer-Care.jpg')"
+      ></div>
+      <div class="slide-wash"></div>
+      <div class="slide-inner care-inner" [class.in]="active() === 5">
+        <div class="care-copy">
+          <h2>Automated <span>Customer</span> Care</h2>
+          <p>
+            Managing customer queries, complaints, and billing issues efficiently is critical for
+            telecom service providers. Traditional customer support often leads to long wait times,
+            unresolved issues, and a lack of proper follow-up. Customers seek quick resolutions
+            without needing repeated interactions, and support agents require context to provide
+            effective assistance. There is a need for an intelligent solution that can automate
+            query resolution and ensure.
+          </p>
+          <ul>
+            <li>Billing Inquiries</li>
+            <li>Complaint Resolution</li>
+            <li>Reservations and Ticketing</li>
+            <li>Order Tracking</li>
+            <li>Products and Promotions</li>
+          </ul>
+          <button type="button" class="btn demo-btn" (click)="openDemo()">Request A Demo</button>
+        </div>
+        <div class="care-media">
+          <img
+            src="assets/images/ai/Automated-Customer-Support-with-Personalized-Follow-Up.png"
+            alt="Automated Customer Support with Personalized Follow-Up"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 Smart Gesture Recognition -->
+    <section class="ai-slide gesture" [class.active]="active() === 6">
+      <div
+        class="slide-bg"
+        style="background-image: url('assets/images/ai/Smart-Gesture-Recognition.jpg')"
+      ></div>
+      <div class="slide-overlay gesture-overlay"></div>
+      <div class="slide-inner gesture-inner" [class.in]="active() === 6">
+        <div class="gesture-media">
+          <img
+            src="assets/images/ai/Bringing-Hand-Gestures-to-Life-with-Character-Integration.png"
+            alt="Bringing Hand Gestures to Life with Character Integration"
+          />
+        </div>
+        <div class="gesture-copy">
+          <h2>Smart <span>Gesture</span> Recognition</h2>
+          <p>
+            In interactive systems like games, education, and virtual assistants, enabling natural
+            communication through hand gestures can enhance user experience. However, existing
+            systems struggle to accurately recognize gestures and link them to character actions in
+            real time, leading to limited interactivity. We need a solution that precisely maps hand
+            gestures to character behaviors, allowing for more intuitive and engaging interactions.
+          </p>
+          <ul>
+            <li>Motion Play</li>
+            <li>Virtual Assistants</li>
+            <li>Smart Learning</li>
+            <li>Operating System (OS) Control</li>
+            <li>Sign Language Recognition</li>
+          </ul>
+          <button type="button" class="btn demo-btn" (click)="openDemo()">Request A Demo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 Next-Gen Virtual Try-On -->
+    <section class="ai-slide tryon" [class.active]="active() === 7">
+      <div
+        class="slide-bg light-bg"
+        style="background-image: url('assets/images/ai/Next-Gen-Virtual-Try-On.jpg')"
+      ></div>
+      <div class="slide-wash"></div>
+      <div class="slide-inner tryon-inner" [class.in]="active() === 7">
+        <div class="tryon-copy">
+          <h2>Next-Gen <span>Virtual</span> Try-On</h2>
+          <p>
+            In online shopping, customers often face difficulty visualizing how clothing,
+            accessories, or home decor items like furniture and carpets will look before purchasing.
+            This leads to uncertainty, higher return rates, and decreased satisfaction. There is a
+            need for a solution that allows users to virtually try on or place these items in their
+            environment for a more informed purchase decision.
+          </p>
+          <ul>
+            <li>E-Commerce Solutions</li>
+            <li>Furniture and Décor</li>
+            <li>Shopping Experience</li>
+            <li>Eyewear Selection</li>
+            <li>Beauty and Cosmetics</li>
+            <li>Interior Designing</li>
+          </ul>
+          <button type="button" class="btn demo-btn" (click)="openDemo()">Request A Demo</button>
+        </div>
+        <div class="tryon-media">
+          <img
+            src="assets/images/ai/Next-Generation-Virtual-Try-On-for-Apparel-and-Interior-Design.png"
+            alt="Next-Generation Virtual Try-On for Apparel and Interior Design"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- 9 AI-Driven Infrastructure Protection -->
+    <section class="ai-slide infra" [class.active]="active() === 8">
+      <div
+        class="slide-bg"
+        style="background-image: url('assets/images/ai/AI-Driven-Biomechanics.jpg')"
+      ></div>
+      <div class="slide-overlay infra-overlay"></div>
+      <div class="slide-inner infra-inner" [class.in]="active() === 8">
+        <div class="infra-media">
+          <img
+            src="assets/images/ai/Advanced-Infrastructure-Protection-Against-Fiber-Cuts-and-Damage-1.png"
+            alt="Advanced Infrastructure Protection Against Fiber Cuts and Damage"
+          />
+        </div>
+        <div class="infra-copy">
+          <h2>AI-Driven <span>Infrastructure</span> Protection</h2>
+          <p>
+            Accidental fiber cable cuts during construction and digging cause widespread internet
+            and service outages, which are becoming more frequent as the demand for high-speed
+            internet and 5G increases. Despite preventive measures, existing systems struggle to
+            predict and mitigate these incidents effectively. There is a need for a more advanced
+            solution that can analyze large amounts of data, identify high-risk digging sites, and
+            proactively alert teams before damage occurs.
+          </p>
+          <ul>
+            <li>Fiber Optic Monitoring</li>
+            <li>Smart City Planning</li>
+            <li>Pipeline Surveillance</li>
+            <li>Drone Assisted Inspection</li>
+            <li>Emergency Response</li>
+          </ul>
+          <button type="button" class="btn demo-btn" (click)="openDemo()">Request A Demo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 Health Management Solution -->
+    <section class="ai-slide health" [class.active]="active() === 9">
+      <div
+        class="slide-bg light-bg"
+        style="background-image: url('assets/images/ai/Health-Management-Solution-2-1.jpg')"
+      ></div>
+      <div class="slide-wash"></div>
+      <div class="slide-inner health-inner" [class.in]="active() === 9">
+        <div class="health-copy">
+          <h2>Health Management Solution</h2>
+          <p>
+            Wateen Digital Solutions is at the forefront of transforming the healthcare industry
+            through AI- powered innovations. Our advanced solutions are designed to streamline
+            operations, improve patient experiences, and uphold the highest standards of medical
+            care. From managing patient wait times to monitoring clinic hygiene and staff
+            productivity, our platform leverages cutting- edge AI technology to provide actionable
+            insights. By ensuring compliance with data privacy regulations and optimizing resource
+            allocation, our solutions empower healthcare organizations to achieve operational
+            excellence and deliver superior outcomes.
+          </p>
+          <ul>
+            <li>Hospital and Lab Management Systems</li>
+            <li>Patient Wait Time Management</li>
+            <li>SOP Violations Detection and Monitoring</li>
+            <li>Fire and Smoke Detection</li>
+            <li>Premises Hygiene Monitoring</li>
+            <li>Staff Productivity &amp; Efficiency</li>
+            <li>Footfall Analytics</li>
+            <li>Operational Analytics</li>
+            <li>Customer Care Chatbot</li>
+          </ul>
+          <button type="button" class="btn demo-btn" (click)="openDemo()">Request A Demo</button>
+        </div>
+        <div class="health-media">
+          <img
+            src="assets/images/ai/Health-Management-Solution-1-1.png"
+            alt="Health Management Solution"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 Smart Building Management Solution -->
+    <section class="ai-slide building" [class.active]="active() === 10">
+      <div
+        class="slide-bg"
+        style="background-image: url('assets/images/ai/Smart-Building-Management-Solution-2-1-3.jpg')"
+      ></div>
+      <div class="slide-overlay building-overlay"></div>
+      <div class="slide-inner building-inner" [class.in]="active() === 10">
+        <div class="building-media">
+          <img
+            src="assets/images/ai/Smart-Building-Management-Solution-1.png"
+            alt="Smart Building Management Solution"
+          />
+        </div>
+        <div class="building-copy">
+          <h2>Smart Building Management Solution</h2>
+          <p>
+            Wateen Digital Solutions’ Smart Building Management Solution leverages AI, IoT, and
+            automation to optimize building operations, improve resource management, and enhance
+            user experiences. Our platform offers real-time analytics for efficient tracking of
+            attendance, visitor flow, access control, and space utilization. With predictive
+            insights and streamlined operations, organizations can improve security, reduce costs,
+            and boost tenant satisfaction while ensuring compliance and sustainability.
+          </p>
+          <ul>
+            <li>Fiber Optic Monitoring</li>
+            <li>Smart City Planning</li>
+            <li>Pipeline Surveillance</li>
+            <li>Drone Assisted Inspection</li>
+            <li>Emergency Response</li>
+          </ul>
+          <button type="button" class="btn demo-btn" (click)="openDemo()">Request A Demo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 Our Expertise in AI Solutions -->
+    <section class="ai-slide expertise" [class.active]="active() === 11">
+      <div
+        class="slide-bg"
+        style="background-image: url('assets/images/ai/Enterprise-Analytics-Chatbot-1.jpg')"
+      ></div>
+      <div class="slide-overlay expertise-overlay"></div>
+      <div class="expertise-cards" [class.in]="active() === 11">
+        <h2 class="expertise-heading">Our Expertise in AI Solutions.</h2>
+        <div class="expertise-grid">
+          @for (card of expertiseCards; track card.title) {
+            <article class="expertise-card">
+              <img [src]="card.icon" [alt]="card.title" />
+              <h3>{{ card.title }}</h3>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+  </div>
+  </div>
+
+  <!-- Tech logos — below the fold on the last slide, then footer -->
+  <section class="expertise-tech" [class.show]="isLast" aria-label="AI technologies">
+    <div class="expertise-tech-inner">
+      <div class="expertise-rule" aria-hidden="true"></div>
+      <div class="tech-track">
+        @for (logo of visibleTech(); track logo) {
+          <img class="tech-img" [src]="logo" alt="AI technology" />
+        }
+      </div>
+      <div class="tech-dots">
+        @for (dot of techPages; track $index) {
+          <button
+            type="button"
+            [class.active]="techPage() === $index"
+            (click)="techPage.set($index)"
+            [attr.aria-label]="'Technology page ' + ($index + 1)"
+          ></button>
+        }
+      </div>
+    </div>
+  </section>
+
+  <nav
+    class="ai-dots"
+    [class.on-light]="active() === 1 || active() === 3 || active() === 5 || active() === 7 || active() === 9"
+    [class.hidden]="showingFooter()"
+    aria-label="AI section navigation"
+  >
+    @for (slide of slides; track slide.id; let i = $index) {
+      <div class="fp-dot" [class.active]="active() === i">
+        <span class="fp-tooltip" aria-hidden="true">{{ slide.label }}</span>
+        <button
+          type="button"
+          [attr.aria-label]="slide.label"
+          [attr.aria-current]="active() === i ? 'true' : null"
+          (click)="goTo(i)"
+        ></button>
+      </div>
+    }
+  </nav>
+</div>

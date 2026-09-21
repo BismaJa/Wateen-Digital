@@ -1,0 +1,24 @@
+<section class="media-hero">
+  <div
+    class="hero-bg"
+    style="background-image: url('assets/images/media/Media.jpg')"
+  ></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Media</h1>
+  </div>
+</section>
+
+<section class="media-cards">
+  <div class="container cards-grid">
+    @for (card of cards; track card.title) {
+      <article class="media-card" [style.background-image]="'url(' + card.image + ')'">
+        <div class="card-shade"></div>
+        <div class="card-body">
+          <h2>{{ card.title }}</h2>
+          <a class="btn media-btn" [routerLink]="card.link">{{ card.cta }}</a>
+        </div>
+      </article>
+    }
+  </div>
+</section>

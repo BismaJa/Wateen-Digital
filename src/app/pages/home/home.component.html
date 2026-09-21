@@ -1,0 +1,254 @@
+<div
+  class="fullpage"
+  [class.light-slide]="isLightSlide()"
+  [style.--slide-index]="active()"
+>
+  <div class="fullpage-track" [style.transform]="'translate3d(0, ' + (-active() * 100) + 'vh, 0)'">
+    <!-- 0 Welcome -->
+    <section class="fp-section hero" id="welcome" [class.active]="active() === 0">
+      <video
+        #heroVideo
+        class="bg-media"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+      >
+        <source src="assets/videos/homepage-slide-final.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="fp-inner hero-inner" [class.in]="active() === 0">
+        <h1>We Manage Your Technological Needs</h1>
+        <p>Our mission is simple – to manage the technological needs of the UAE.</p>
+        <p>
+          Our tailored solutions empower businesses to thrive in the digital era, driving growth
+          and delivering seamless experiences.
+        </p>
+        <p>Explore limitless possibilities and embark on a transformative tech journey with us.</p>
+        <a routerLink="/who-we-are" class="btn btn-read">READ MORE</a>
+      </div>
+    </section>
+
+    <!-- 1 Services / Business Focus Areas -->
+    <section class="fp-section focus" id="services" [class.active]="active() === 1">
+      <div class="focus-bg" aria-hidden="true"></div>
+      <div class="fp-inner focus-inner" [class.in]="active() === 1">
+        <h2 class="focus-heading">
+          <span>Business</span> Focus Areas
+        </h2>
+        <div class="focus-rules" aria-hidden="true">
+          <span class="rule rule-long"></span>
+          <span class="rule rule-short"></span>
+        </div>
+
+        <div class="focus-viewport">
+          <div class="focus-track">
+            @for (item of visibleFocusCards(); track item.title) {
+              <a class="focus-card" [routerLink]="item.link">
+                <div class="focus-media">
+                  <img [src]="item.image" [alt]="item.title" />
+                </div>
+                <div class="focus-footer">
+                  <h3>{{ item.title }}</h3>
+                </div>
+              </a>
+            }
+          </div>
+        </div>
+
+        <div class="focus-dots">
+          @for (dot of [0, 1]; track dot) {
+            <button
+              type="button"
+              [class.active]="focusIndex() === dot"
+              (click)="focusIndex.set(dot)"
+              [attr.aria-label]="'Focus slide ' + (dot + 1)"
+            ></button>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 Who We Are -->
+    <section
+      class="fp-section who"
+      id="who-we-are"
+      [class.active]="active() === 2"
+      style="background-image: url('assets/images/who-we-are-bg.jpg')"
+    >
+      <div class="shade"></div>
+      <div class="who-shape" style="background-image: url('assets/images/who-we-are-shape.png')"></div>
+      <div class="fp-inner who-inner" [class.in]="active() === 2">
+        <h2 class="section-title light">Who We Are</h2>
+        <p>
+          Wateen Digital Solutions LLC., is a Dhabi Group Company with the objective of transforming
+          the digital landscape of UAE through innovative solutions and services.
+        </p>
+        <p>
+          The Company and its affiliated entities are part of the Dhabi Group, and have been in this
+          business for the past two decades. Our extensive expertise has led to productive
+          partnerships with Global OEMs, delivering significant value to enterprises in Pakistan and
+          international ICT landscape.
+        </p>
+        <a routerLink="/who-we-are" class="btn btn-read">READ MORE</a>
+      </div>
+    </section>
+
+    <!-- 3 Why Choose (4th slide) -->
+    <section class="fp-section why" id="why-choose-wateen" [class.active]="active() === 3">
+      <div class="why-bg" aria-hidden="true"></div>
+      <div class="fp-inner why-inner" [class.in]="active() === 3">
+        <h2 class="why-heading">
+          Why <span>Choose</span> Wateen
+        </h2>
+        <div class="why-rules" aria-hidden="true">
+          <span class="rule rule-long"></span>
+          <span class="rule rule-short"></span>
+        </div>
+        <div class="why-grid">
+          @for (item of whyChoose; track item.title) {
+            <article class="why-card">
+              <img [src]="item.icon" [alt]="item.title" width="64" height="64" />
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.text }}</p>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Announcements (5th slide) -->
+    <section class="fp-section announcements" id="announcements" [class.active]="active() === 4">
+      <div class="announce-bg" aria-hidden="true"></div>
+      <div class="fp-inner announce-inner" [class.in]="active() === 4">
+        <h2 class="announce-heading">Announcements</h2>
+        <div class="announce-rules" aria-hidden="true">
+          <span class="rule rule-short"></span>
+          <span class="rule rule-long"></span>
+        </div>
+        <div class="announce-grid">
+          @for (item of announcements; track item.title) {
+            <article class="announce-card">
+              <h3>{{ item.title }}</h3>
+              <div class="announce-media">
+                <img [src]="item.image" [alt]="item.title" />
+              </div>
+              <a [routerLink]="item.link" class="btn btn-read">READ MORE</a>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 Certifications (6th slide) -->
+    <section class="fp-section certs" id="certifications" [class.active]="active() === 5">
+      <video class="bg-media" autoplay muted loop playsinline>
+        <source src="assets/videos/resources-video-final.mp4" type="video/mp4" />
+      </video>
+      <div class="certs-overlay"></div>
+      <div class="fp-inner certs-inner" [class.in]="active() === 5">
+        <div class="certs-top">
+          <h2 class="certs-heading">Experienced &amp;<br />Certified Resources</h2>
+          <div class="certs-stat">
+            <span class="stat-num">500+</span>
+            <span class="stat-label">Resources</span>
+          </div>
+          <div class="certs-stat">
+            <span class="stat-num">250+</span>
+            <span class="stat-label">Certifications</span>
+          </div>
+        </div>
+        <div class="certs-divider"></div>
+        <div class="certs-badges">
+          @for (badge of visibleCertBadges(); track badge) {
+            <img class="cert-img" [src]="badge" alt="Certification" />
+          }
+        </div>
+        <div class="certs-dots">
+          @for (dot of [0, 1, 2]; track dot) {
+            <button
+              type="button"
+              [class.active]="certPage() === dot"
+              (click)="certPage.set(dot)"
+              [attr.aria-label]="'Certifications page ' + (dot + 1)"
+            ></button>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 Partners -->
+    <section class="fp-section partners" id="partners" [class.active]="active() === 6">
+      <div class="partners-bg" aria-hidden="true"></div>
+      <div class="fp-inner partners-inner" [class.in]="active() === 6">
+        <h2 class="partners-heading">Our Partners</h2>
+        <p class="partners-lead">
+          Explore our world-class partnerships with top global OEMs, empowering us to deliver
+          unparalleled technological solutions for your business. Discover how our collaborative
+          approach drives innovation and excellence to meet your unique business needs.
+        </p>
+        <div class="partner-track">
+          @for (logo of visiblePartners(); track logo) {
+            <img class="partner-img" [src]="logo" alt="Partner logo" />
+          }
+        </div>
+        <div class="partner-dots">
+          @for (dot of [0, 1]; track dot) {
+            <button
+              type="button"
+              [class.active]="partnerIndex() === dot"
+              (click)="partnerIndex.set(dot)"
+              [attr.aria-label]="'Partners page ' + (dot + 1)"
+            ></button>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 Contact / Get In Touch (last slide) -->
+    <section class="fp-section contact-band" id="contact" [class.active]="active() === 7">
+      <div class="contact-bg" aria-hidden="true"></div>
+      <div class="fp-inner contact-inner" [class.in]="active() === 7">
+        <h2 class="contact-heading">Get In <span>Touch</span></h2>
+        <div class="contact-rules" aria-hidden="true">
+          <span class="rule rule-long"></span>
+          <span class="rule rule-short"></span>
+        </div>
+
+        <p class="contact-email">
+          <span class="label">Email:</span>
+          <a href="mailto:info@wateendigital.ae">info&#64;wateendigital.ae</a>
+        </p>
+        <p class="contact-address">
+          10th Floor, Concord Tower, Media City, PO Box 566468,<br />
+          Dubai, <span class="highlight">United Arab Emirates.</span>
+        </p>
+
+        <a routerLink="/contact-us" class="btn btn-read contact-cta">LET'S TALK</a>
+
+        <div class="contact-social">
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+          <a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="X">𝕏</a>
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Right-side fullpage dots with hover tooltips -->
+  <nav class="fp-dots" aria-label="Section navigation">
+    @for (slide of slides; track slide.id; let i = $index) {
+      <div class="fp-dot" [class.active]="active() === i">
+        <span class="fp-tooltip" aria-hidden="true">{{ slide.label }}</span>
+        <button
+          type="button"
+          [attr.aria-label]="slide.label"
+          [attr.aria-current]="active() === i ? 'true' : null"
+          (click)="goTo(i)"
+        ></button>
+      </div>
+    }
+  </nav>
+</div>

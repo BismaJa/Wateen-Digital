@@ -1,0 +1,20 @@
+<section class="cr-hero">
+  <div
+    class="hero-bg"
+    style="background-image: url('assets/images/certified/Certified-Resources.jpg')"
+  ></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1><span>Certified</span> Resources</h1>
+  </div>
+</section>
+
+<section class="cr-grid-section">
+  <div class="container badges-grid">
+    @for (badge of badges; track badge) {
+      <div class="badge">
+        <img [src]="badge" alt="Certification badge" />
+      </div>
+    }
+  </div>
+</section>

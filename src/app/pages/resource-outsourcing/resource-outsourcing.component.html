@@ -1,0 +1,197 @@
+<section class="ro-hero">
+  <div
+    class="hero-bg"
+    style="background-image: url('assets/images/resource/banner.jpg')"
+  ></div>
+  <div
+    class="hero-bg overlay-photo"
+    style="background-image: url('assets/images/resource/Resource-Outsourcing_02.png')"
+  ></div>
+  <div class="hero-shade"></div>
+  <div class="hero-content">
+    <h1><span>Resource</span> Outsourcing</h1>
+  </div>
+</section>
+
+<section class="ro-intro">
+  <div class="container intro-grid">
+    <div class="intro-media">
+      <img
+        src="assets/images/resource/wateern-outsourcing.png"
+        alt="Expert outsourcing services"
+      />
+    </div>
+    <div class="intro-copy">
+      <h2>Expert Outsourcing Services Tailored to Your Business</h2>
+      @for (p of introParagraphs; track $index) {
+        <p>{{ p }}</p>
+      }
+      <a class="btn ro-btn" routerLink="/contact-us">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<section
+  class="ro-roles"
+  style="background-image: url('assets/images/resource/Resource-Outsourcing_04.png')"
+>
+  <div class="container">
+    <h2>Access to Specialized Roles Across the Product Lifecycle</h2>
+    <p class="section-lead">
+      Our Resource Outsourcing service delivers specialists across every stage of full-stack software
+      development, data management, cloud integration, and AI/ML engineering. Whether building an MVP
+      or scaling a platform, teams can be assembled to match project complexity, velocity, and industry
+      compliance standards.
+    </p>
+    <div class="roles-grid">
+      @for (card of roleCards; track card.title) {
+        <article
+          class="role-card"
+          style="background-image: url('assets/images/resource/bg-card-access.png')"
+        >
+          <img class="role-icon" [src]="card.icon" [alt]="card.title" />
+          <h3>{{ card.title }}</h3>
+          <ul>
+            @for (role of card.roles; track role) {
+              <li><span class="check" aria-hidden="true"></span>{{ role }}</li>
+            }
+          </ul>
+          <a class="btn ro-btn sm" routerLink="/contact-us">Contact Us</a>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section
+  class="ro-delivery"
+  style="background-image: url('assets/images/resource/Resource-Outsourcing_06.png')"
+>
+  <div class="container">
+    <h2>Our Delivery Models</h2>
+    <ul class="delivery-intro">
+      @for (item of deliveryIntro; track item) {
+        <li><span class="check light" aria-hidden="true"></span>{{ item }}</li>
+      }
+    </ul>
+    <div class="delivery-grid">
+      @for (model of deliveryModels; track model.title) {
+        <figure class="delivery-card">
+          <img [src]="model.image" [alt]="model.title" />
+          <figcaption>{{ model.title }}</figcaption>
+        </figure>
+      }
+    </div>
+  </div>
+</section>
+
+<section
+  class="ro-gains"
+  style="background-image: url('assets/images/resource/Resource-Outsourcing_08.png')"
+>
+  <div class="container gains-grid">
+    <article
+      class="gain-card"
+      style="background-image: url('assets/images/resource/short-term-gain.png')"
+    >
+      <div class="gain-inner">
+        <h3>Short-Term Gains</h3>
+        @for (item of shortTerm; track item.title) {
+          <div class="gain-item">
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.text }}</p>
+          </div>
+        }
+      </div>
+    </article>
+    <article
+      class="gain-card"
+      style="background-image: url('assets/images/resource/modern-businessman-using-tablet.png')"
+    >
+      <div class="gain-inner dark">
+        <h3>Long-Term Benefits</h3>
+        @for (item of longTerm; track item.title) {
+          <div class="gain-item">
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.text }}</p>
+          </div>
+        }
+      </div>
+    </article>
+  </div>
+</section>
+
+<section
+  class="ro-teams"
+  style="background-image: url('assets/images/resource/Resource-Outsourcing_12.png')"
+>
+  <div class="container">
+    <h2>Dedicated vs Augmented Teams</h2>
+    <div class="teams-grid">
+      <article class="team-card">
+        <img src="assets/images/resource/dedicated-teams.png" alt="Dedicated Teams" />
+        <div class="team-body">
+          <h3>Dedicated Teams</h3>
+          <ul>
+            @for (item of dedicated; track item) {
+              <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
+            }
+          </ul>
+        </div>
+      </article>
+      <article class="team-card">
+        <img src="assets/images/resource/resource-outsource.png" alt="Augmented Teams" />
+        <div class="team-body">
+          <h3>Augmented Teams</h3>
+          <ul>
+            @for (item of augmented; track item) {
+              <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
+            }
+          </ul>
+        </div>
+      </article>
+    </div>
+    <p class="teams-note">Our resource outsourcing services reshape how teams scale.</p>
+  </div>
+</section>
+
+<section
+  class="ro-process"
+  style="background-image: url('assets/images/resource/Resource-Outsourcing_10.png')"
+>
+  <div class="container">
+    <h2>Our Super-Fast Integration Process</h2>
+    <p class="section-lead light">
+      Fast access doesn’t mean low standards. Our onboarding workflow balances speed with precision.
+    </p>
+    <img
+      class="process-diagram"
+      src="assets/images/resource/Resource-Outsourcing_03.png"
+      alt="Integration process steps"
+    />
+    <div class="process-cta">
+      <p>
+        Teams can scale up or down monthly. No rigid contracts. No loss in momentum. When resource
+        constraints delay product launches or innovation, outsourcing adds agility without compromise.
+        It connects business intent with immediate technical execution.
+      </p>
+      <h3>Ready to integrate on-demand talent into your roadmap? Let’s assemble your next team.</h3>
+    </div>
+  </div>
+</section>
+
+<section class="ro-stack">
+  <div class="container">
+    <h2>Technology Stack</h2>
+    <div class="stack-grid">
+      @for (logo of techLogos; track logo) {
+        <img [src]="'assets/images/resource/' + logo" [alt]="logo.replace('.png', '')" />
+      }
+    </div>
+  </div>
+</section>
+
+<section class="ro-cta">
+  <p>Get in touch with us any time</p>
+  <a class="btn ro-btn" routerLink="/contact-us">Contact Us</a>
+</section>

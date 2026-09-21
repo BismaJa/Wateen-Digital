@@ -1,0 +1,88 @@
+<header
+  class="masthead"
+  [class.is-home]="isHome()"
+  [class.menu-open]="mobileOpen()"
+  [class.on-light]="lightSlide()"
+  [class.non-sticky]="nonSticky()"
+>
+  <div class="nav-shell">
+    <div class="nav-glass">
+      <a routerLink="/" class="logo" aria-label="Wateen Digital Solutions" (click)="closeMobile()">
+        <img src="assets/images/wateen-logo-1.png" alt="Wateen Digital Solutions" width="134" height="96" />
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary">
+        <ul>
+          @for (item of nav; track item.path) {
+            <li [class.has-children]="!!item.children" [class.open]="openDropdown() === item.label">
+              @if (item.children) {
+                <a
+                  [routerLink]="item.path"
+                  routerLinkActive="active"
+                  (mouseenter)="openDropdown.set(item.label)"
+                  (mouseleave)="openDropdown.set(null)"
+                >
+                  {{ item.label }}
+                  <span class="caret"></span>
+                </a>
+                <ul
+                  class="submenu"
+                  (mouseenter)="openDropdown.set(item.label)"
+                  (mouseleave)="openDropdown.set(null)"
+                >
+                  @for (child of item.children; track child.path) {
+                    <li>
+                      <a [routerLink]="child.path" routerLinkActive="active">{{ child.label }}</a>
+                    </li>
+                  }
+                </ul>
+              } @else {
+                <a
+                  [routerLink]="item.path"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+                >
+                  {{ item.label }}
+                </a>
+              }
+            </li>
+          }
+        </ul>
+      </nav>
+
+      <button
+        type="button"
+        class="mobile-toggle"
+        aria-label="Toggle menu"
+        [attr.aria-expanded]="mobileOpen()"
+        (click)="toggleMobile()"
+      >
+        <span class="lines" [class.open]="mobileOpen()"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-panel" [class.open]="mobileOpen()">
+    <div class="mobile-contact">
+      <a href="mailto:info@wateendigital.ae">info&#64;wateendigital.ae</a>
+      <a href="tel:+971588149964">+971 58 814 9964</a>
+    </div>
+    <ul>
+      @for (item of nav; track item.path) {
+        <li>
+          <a [routerLink]="item.path" (click)="closeMobile()">{{ item.label }}</a>
+          @if (item.children) {
+            <ul class="mobile-sub">
+              @for (child of item.children; track child.path) {
+                <li>
+                  <a [routerLink]="child.path" (click)="closeMobile()">{{ child.label }}</a>
+                </li>
+              }
+            </ul>
+          }
+        </li>
+      }
+    </ul>
+    <a routerLink="/contact-us" class="btn" (click)="closeMobile()">Let's talk</a>
+  </div>
+</header>

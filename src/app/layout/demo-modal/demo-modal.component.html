@@ -1,0 +1,31 @@
+@if (demoModal.open()) {
+  <div class="demo-backdrop" (click)="onBackdrop($event)" role="presentation">
+    <div
+      class="demo-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Request a Demo"
+      (click)="$event.stopPropagation()"
+    >
+      <button type="button" class="demo-close" (click)="close()" aria-label="Close">
+        ×
+      </button>
+
+      <form class="demo-form" [formGroup]="form" (ngSubmit)="submit()">
+        <input formControlName="fullName" placeholder="Full Name" autocomplete="name" />
+        <input formControlName="email" type="email" placeholder="Email" autocomplete="email" />
+        <input formControlName="phone" type="tel" placeholder="Phone Number" autocomplete="tel" />
+        <div class="select-wrap">
+          <select formControlName="product">
+            <option value="" disabled>Select Product</option>
+            @for (product of products; track product) {
+              <option [value]="product">{{ product }}</option>
+            }
+          </select>
+        </div>
+        <textarea formControlName="message" rows="4" placeholder="Your Message"></textarea>
+        <button class="btn demo-submit" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+}

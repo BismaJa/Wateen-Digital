@@ -1,0 +1,166 @@
+:root {
+  --brand-cyan: #00adef;
+  --brand-cyan-hover: #0099d6;
+  --brand-navy: #00164c;
+  --brand-navy-mid: #0a1f5c;
+  --text-dark: #2a2e3f;
+  --text-body: #303133;
+  --footer-bg: #141618;
+  --white: #ffffff;
+  --nav-glass: rgba(8, 14, 28, 0.72);
+  --max-width: 1280px;
+  --header-h: 90px;
+  --font: "Cairo", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-body);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 4px;
+  background: #00adef;
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  background: #0099d6;
+  box-shadow: 0 8px 24px rgba(0, 173, 239, 0.35);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--white);
+  color: var(--white);
+}
+
+.btn-outline:hover {
+  background: var(--white);
+  color: var(--brand-navy);
+  box-shadow: none;
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-dark);
+}
+
+.section-title.light {
+  color: var(--white);
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-left {
+  opacity: 0;
+  transform: translateX(-36px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fullpage homepage lock (matches Uncode fullpage behavior) */
+html.fullpage-lock,
+body.fullpage-lock {
+  overflow: hidden;
+  height: 100%;
+  overscroll-behavior: none;
+}
+
+body.home-fullpage .site-main.is-home {
+  padding: 0;
+  min-height: 100vh;
+}
+
+body.showing-home-footer {
+  overflow: auto;
+  height: auto;
+}
+
+body.showing-home-footer .fp-dots,
+body.showing-home-footer .ai-dots,
+body.showing-home-footer .ann-dots,
+body.showing-home-footer .prod-dots {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.demo-modal-open {
+  overflow: hidden;
+}

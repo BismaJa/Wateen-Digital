@@ -1,0 +1,88 @@
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.page-loader__spinner {
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+
+.page-loader__spinner span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  background: #00adef;
+  border-radius: 1px;
+  will-change: transform;
+  animation: page-loader-reconnect 1.35s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+}
+
+.page-loader__spinner span:nth-child(1) {
+  --x: -4.5px;
+  --y: -4.5px;
+  --ox: -8.5px;
+  --oy: -8.5px;
+}
+
+.page-loader__spinner span:nth-child(2) {
+  --x: 4.5px;
+  --y: -4.5px;
+  --ox: 8.5px;
+  --oy: -8.5px;
+}
+
+.page-loader__spinner span:nth-child(3) {
+  --x: -4.5px;
+  --y: 4.5px;
+  --ox: -8.5px;
+  --oy: 8.5px;
+}
+
+.page-loader__spinner span:nth-child(4) {
+  --x: 4.5px;
+  --y: 4.5px;
+  --ox: 8.5px;
+  --oy: 8.5px;
+}
+
+/*
+  Connected → ease open to a clear micro-gap (with light overshoot)
+  → settle in the gap → snap back into a seamless tile.
+*/
+@keyframes page-loader-reconnect {
+  0%,
+  8% {
+    transform: translate(var(--x), var(--y));
+  }
+  38% {
+    transform: translate(var(--ox), var(--oy));
+  }
+  52% {
+    transform: translate(
+      calc(var(--ox) * 0.92),
+      calc(var(--oy) * 0.92)
+    );
+  }
+  68%,
+  100% {
+    transform: translate(var(--x), var(--y));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-loader__spinner span {
+    animation: none;
+    transform: translate(var(--x), var(--y));
+    opacity: 0.85;
+  }
+}

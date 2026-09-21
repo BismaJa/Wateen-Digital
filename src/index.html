@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <title>Homepage - Wateen Digital Solutions</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="assets/images/final-logo-1-1.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    #bootstrap-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 100000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
+    #bootstrap-loader .spin {
+      position: relative;
+      width: 28px;
+      height: 28px;
+    }
+    #bootstrap-loader .spin span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 9px;
+      height: 9px;
+      margin: -4.5px 0 0 -4.5px;
+      background: #00adef;
+      border-radius: 1px;
+      will-change: transform;
+      animation: bl-reconnect 1.35s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+    }
+    #bootstrap-loader .spin span:nth-child(1) { --x: -4.5px; --y: -4.5px; --ox: -8.5px; --oy: -8.5px; }
+    #bootstrap-loader .spin span:nth-child(2) { --x: 4.5px; --y: -4.5px; --ox: 8.5px; --oy: -8.5px; }
+    #bootstrap-loader .spin span:nth-child(3) { --x: -4.5px; --y: 4.5px; --ox: -8.5px; --oy: 8.5px; }
+    #bootstrap-loader .spin span:nth-child(4) { --x: 4.5px; --y: 4.5px; --ox: 8.5px; --oy: 8.5px; }
+    @keyframes bl-reconnect {
+      0%, 8% { transform: translate(var(--x), var(--y)); }
+      38% { transform: translate(var(--ox), var(--oy)); }
+      52% { transform: translate(calc(var(--ox) * 0.92), calc(var(--oy) * 0.92)); }
+      68%, 100% { transform: translate(var(--x), var(--y)); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #bootstrap-loader .spin span {
+        animation: none;
+        transform: translate(var(--x), var(--y));
+        opacity: 0.85;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="bootstrap-loader" aria-busy="true">
+    <div class="spin" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+  <app-root></app-root>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<div class="ann-fullpage" [class.on-last]="isLast">
+  <div class="ann-viewport">
+    <div
+      class="ann-track"
+      [style.transform]="'translate3d(0, ' + (-active() * 100) + 'vh, 0)'"
+    >
+      @for (slide of slides; track slide.id; let i = $index) {
+        <section class="ann-slide" [class.active]="active() === i">
+          <div
+            class="slide-bg"
+            [style.background-image]="'url(' + slide.background + ')'"
+          ></div>
+          <div class="slide-overlay"></div>
+
+          @if (slide.type === 'hero') {
+            <div class="slide-inner hero" [class.in]="active() === i">
+              <h1>{{ slide.title }}</h1>
+              <p>{{ slide.body }}</p>
+            </div>
+          } @else {
+            <div class="slide-inner article" [class.in]="active() === i">
+              <div class="article-copy">
+                <h2>{{ slide.title }}</h2>
+                @for (p of slide.paragraphs; track $index) {
+                  <p>{{ p }}</p>
+                }
+              </div>
+              <div class="article-media">
+                <img [src]="slide.media" [alt]="slide.label" />
+              </div>
+            </div>
+          }
+        </section>
+      }
+    </div>
+  </div>
+
+  <nav class="ann-dots" [class.hidden]="showingFooter()" aria-label="Announcements navigation">
+    @for (slide of slides; track slide.id; let i = $index) {
+      <div class="fp-dot" [class.active]="active() === i">
+        <span class="fp-tooltip" aria-hidden="true">{{ slide.label }}</span>
+        <button
+          type="button"
+          [attr.aria-label]="slide.label"
+          [attr.aria-current]="active() === i ? 'true' : null"
+          (click)="goTo(i)"
+        ></button>
+      </div>
+    }
+  </nav>
+</div>

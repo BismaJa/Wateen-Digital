@@ -1,0 +1,42 @@
+<section class="wwa-hero">
+  <div
+    class="hero-bg"
+    style="background-image: url('assets/images/who-we-are/About-Us.jpg')"
+  ></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1><span>Who</span> We Are</h1>
+  </div>
+</section>
+
+<section class="wwa-about">
+  <div class="container about-grid">
+    <div class="about-copy">
+      @for (p of paragraphs; track $index) {
+        <p>{{ p }}</p>
+      }
+    </div>
+    <div class="about-media">
+      <img
+        src="assets/images/who-we-are/who-we-are-shape.png"
+        alt="Wateen Digital Solutions team"
+      />
+    </div>
+  </div>
+</section>
+
+<section class="wwa-how">
+  <div class="container how-grid">
+    <div class="how-copy">
+      <p class="eyebrow">HOW WE WORK</p>
+      <h2>Embark on a seamless journey with Wateen Digital Solutions:</h2>
+      <p>{{ howWeWork }}</p>
+    </div>
+    <div class="how-media">
+      <img
+        src="assets/images/who-we-are/line-art.png"
+        alt="How we work illustration"
+      />
+    </div>
+  </div>
+</section>

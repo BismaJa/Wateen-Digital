@@ -1,0 +1,109 @@
+<section class="cyber-hero">
+  <div
+    class="hero-bg"
+    style="background-image: url('assets/images/cyber/Cyber-Security.jpg')"
+  ></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1><span>Managed</span> Cyber Security</h1>
+  </div>
+</section>
+
+<section class="cyber-banner">
+  <p>{{ banner }}</p>
+</section>
+
+<section class="cyber-nist">
+  <div class="container">
+    @for (p of nistParagraphs; track $index) {
+      <p>{{ p }}</p>
+    }
+  </div>
+</section>
+
+<section class="cyber-cards">
+  <div class="container cards-grid">
+    @for (card of cards; track card.title) {
+      <article class="cyber-card">
+        <header class="card-head">
+          <span class="card-icon" [attr.data-icon]="card.icon" aria-hidden="true"></span>
+          <h3>{{ card.title }}</h3>
+        </header>
+        <ul>
+          @for (item of card.items; track item.label) {
+            <li>
+              <span class="check" aria-hidden="true"></span>
+              <span><strong>{{ item.label }}:</strong> {{ item.value }}</span>
+            </li>
+          }
+        </ul>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="cyber-diagrams">
+  <div class="container">
+    <img
+      src="assets/images/cyber/wateen-group-image.jpg"
+      alt="Attacker approach and defending protection approach"
+    />
+  </div>
+</section>
+
+<section class="cyber-split capabilities">
+  <div class="split-panel cyan">
+    <div class="panel-inner">
+      <h2>Major Capabilities</h2>
+      <div class="cap-cols">
+        <ul>
+          @for (item of capabilitiesLeft; track item) {
+            <li><span class="check light" aria-hidden="true"></span>{{ item }}</li>
+          }
+        </ul>
+        <ul>
+          @for (item of capabilitiesRight; track item) {
+            <li><span class="check light" aria-hidden="true"></span>{{ item }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div
+    class="split-media"
+    style="background-image: url('assets/images/cyber/Major-Capabilities_.webp')"
+  ></div>
+</section>
+
+<section class="cyber-split solutions">
+  <div
+    class="split-media"
+    style="background-image: url('assets/images/cyber/Technology-Solutions.webp')"
+  ></div>
+  <div class="split-panel cyan">
+    <div class="panel-inner">
+      <h2>Technology Solutions</h2>
+      <ul class="solutions-list">
+        @for (item of solutions; track item) {
+          <li><span class="check light" aria-hidden="true"></span>{{ item }}</li>
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cyber-partners">
+  <div class="container">
+    <h2>Technology Partners</h2>
+    <div class="partners-row">
+      @for (logo of partners; track logo) {
+        <img [src]="'assets/images/cyber/' + logo" alt="Technology partner" />
+      }
+    </div>
+  </div>
+</section>
+
+<section class="cyber-cta">
+  <p>Get in touch with us any time</p>
+  <a class="btn cta-btn" routerLink="/contact-us">Contact Us</a>
+</section>

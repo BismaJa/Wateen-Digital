@@ -1,0 +1,60 @@
+<section class="ps-hero">
+  <div
+    class="hero-bg"
+    style="background-image: url('assets/images/professional/Professional-Services-w.jpg')"
+  ></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Professional Services</h1>
+  </div>
+</section>
+
+<section class="ps-banner">
+  <p>{{ banner }}</p>
+</section>
+
+@for (section of sections; track section.title) {
+  <section class="ps-section">
+    <div class="container section-grid" [class.media-left]="section.mediaLeft">
+      <div class="section-copy">
+        <h2>{{ section.title }}</h2>
+        <p>{{ section.description }}</p>
+
+        @if (section.subgroups?.length) {
+          <div class="subgroups">
+            @for (group of section.subgroups; track group.title) {
+              <div class="subgroup">
+                <h3>{{ group.title }}</h3>
+                <ul>
+                  @for (item of group.items; track item) {
+                    <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
+                  }
+                </ul>
+              </div>
+            }
+          </div>
+        } @else if (section.columns.length > 1) {
+          <div class="two-cols">
+            @for (col of section.columns; track $index) {
+              <ul>
+                @for (item of col; track item) {
+                  <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
+                }
+              </ul>
+            }
+          </div>
+        } @else if (section.columns.length === 1) {
+          <ul>
+            @for (item of section.columns[0]; track item) {
+              <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
+            }
+          </ul>
+        }
+      </div>
+
+      <div class="section-media">
+        <img [src]="section.image" [alt]="section.title" />
+      </div>
+    </div>
+  </section>
+}
