@@ -7,8 +7,8 @@
   <div
     class="hero-content"
     [appAnim]="'left-t-right'"
-    [animDelay]="600"
-    [animSpeed]="500"
+    [animDelay]="200"
+    [animSpeed]="600"
   >
     <h1>Media</h1>
   </div>
@@ -21,8 +21,8 @@
         class="media-card"
         [style.background-image]="'url(' + card.image + ')'"
         [appAnim]="'bottom-t-top'"
-        [animDelay]="i * 150"
-        [animSpeed]="500"
+        [animDelay]="200 + i * 150"
+        [animSpeed]="600"
       >
         <div class="card-shade"></div>
         <div class="card-body">

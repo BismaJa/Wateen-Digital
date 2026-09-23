@@ -247,3 +247,116 @@
     gap: 16px;
   }
 }
+
+/* ---- Sizing to the live page at 1920px ----
+   Desktop: content spans the floating navbar's inner edge (tokens in styles.scss)
+   and clears its height; sizes take the smaller of a width- and height-based value
+   so every slide fits one screen. Article images ~690px, on alternating sides. */
+@media (min-width: 960px) {
+  .slide-inner.hero {
+    max-width: none;
+    padding: calc(var(--nav-offset) + 24px) calc(var(--nav-gutter) + clamp(14px, 2.1vw, 40px)) 48px;
+  }
+
+  .hero h1 {
+    margin-bottom: clamp(24px, 4vh, 56px);
+    font-size: clamp(32px, min(2.7vw, 5.4vh), 52px);
+    font-weight: 500;
+  }
+
+  .hero p {
+    max-width: 1800px;
+    font-size: clamp(16px, min(1.35vw, 2.7vh), 26px);
+    line-height: 1.4;
+  }
+
+  .slide-inner.article {
+    max-width: none;
+    height: 100%;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: clamp(36px, 5vw, 110px);
+    padding: calc(var(--nav-offset) + clamp(12px, 2.4vh, 26px))
+      calc(var(--nav-gutter) + clamp(14px, 2.1vw, 40px)) clamp(20px, 3vh, 40px);
+  }
+
+  .slide-inner.article.media-left {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  }
+
+  .slide-inner.article.media-left .article-media {
+    order: -1;
+    justify-content: flex-start;
+  }
+
+  .slide-inner.article:not(.media-left) .article-media {
+    justify-content: flex-end;
+  }
+
+  .article-media img {
+    width: min(100%, clamp(300px, 36vw, 700px));
+    max-height: calc(100vh - var(--nav-offset) - 60px);
+  }
+
+  .article-copy h2 {
+    margin-bottom: clamp(16px, 3.2vh, 40px);
+    font-size: clamp(24px, min(2.3vw, 4.6vh), 46px);
+    font-weight: 500;
+    line-height: 1.22;
+    color: #ffffff;
+  }
+
+  .article-copy p {
+    margin-bottom: clamp(12px, 2.4vh, 26px);
+    font-size: clamp(15px, min(1.2vw, 2.4vh), 23px);
+    line-height: 1.4;
+    color: #ffffff;
+  }
+}
+
+/* Phones/tablets: image on top, full copy below at natural height; the slide
+   scrolls inside itself (component wheel/touch handlers scroll the content first,
+   then move to the next slide). */
+@media (max-width: 959px) {
+  .slide-inner.hero {
+    padding-top: calc(var(--nav-offset) + 20px);
+  }
+
+  .slide-inner.article {
+    height: 100%;
+    max-height: 100vh;
+    max-height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: max-content;
+    align-content: start;
+    gap: 28px;
+    padding: calc(var(--nav-offset) + 20px) max(var(--nav-gutter), 16px) 48px;
+  }
+
+  .slide-inner.article::-webkit-scrollbar {
+    display: none;
+  }
+
+  .article-media {
+    order: -1;
+    min-height: auto;
+  }
+
+  .article-media img {
+    width: min(70vw, 320px);
+  }
+
+  .article-copy h2 {
+    font-size: clamp(22px, 5.6vw, 30px);
+    line-height: 1.25;
+    color: #ffffff;
+  }
+
+  .article-copy p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}

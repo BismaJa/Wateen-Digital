@@ -1,0 +1,36 @@
+<section class="dvcs-hero">
+  <div class="hero-bg" style="background-image: url('assets/images/media/Media.jpg')"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content" appAnim="left-t-right" [animDelay]="200" [animSpeed]="600">
+    <h1>DVCS</h1>
+  </div>
+</section>
+
+<section class="dvcs-list">
+  <div class="videos-grid">
+    @for (video of videos; track video.src; let i = $index) {
+      <figure class="video-card" appAnim="bottom-t-top" [animDelay]="200 + i * 150" [animSpeed]="600">
+        @if (missing().has(i)) {
+          <div class="video-missing" role="img" [attr.aria-label]="video.title + ' (video coming soon)'">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <circle cx="24" cy="24" r="21" />
+              <path d="M20 16.5v15l12-7.5z" />
+            </svg>
+            <span>Video coming soon</span>
+          </div>
+        } @else {
+          <video
+            controls
+            preload="metadata"
+            playsinline
+            [attr.poster]="video.poster || null"
+            [attr.aria-label]="video.title"
+            (error)="onError(i)"
+          >
+            <source [src]="video.src" type="video/mp4" (error)="onError(i)" />
+          </video>
+        }
+      </figure>
+    }
+  </div>
+</section>

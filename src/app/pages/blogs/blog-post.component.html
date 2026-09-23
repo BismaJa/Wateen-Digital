@@ -1,0 +1,53 @@
+@if (post(); as p) {
+  <section class="blogs-hero">
+    <div class="hero-bg" style="background-image: url('assets/images/media/Media.jpg')"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content" appAnim="left-t-right" [animDelay]="200" [animSpeed]="600">
+      <h1 class="post-title">{{ p.title }}</h1>
+      <time class="post-date" [attr.datetime]="p.date">{{ p.date | date: 'MMMM d, y' }}</time>
+    </div>
+  </section>
+
+  <article class="post-article">
+    <div class="article-image" appAnim="bottom-t-top" [animDelay]="150" [animSpeed]="600">
+      <span [style.background-image]="imageStyle()"></span>
+    </div>
+
+    <div class="article-body" appAnim="bottom-t-top" [animDelay]="250" [animSpeed]="600">
+      @if (p.body.length) {
+        @for (para of p.body; track $index) {
+          <p>{{ para }}</p>
+        }
+      } @else {
+        <p class="lead">{{ p.excerpt }}</p>
+        <p class="pending">The full article will be published here soon.</p>
+      }
+      <a class="btn read-btn" routerLink="/media/blog">Back to Blogs</a>
+    </div>
+  </article>
+
+  <nav class="post-nav" aria-label="More articles">
+    @if (newer(); as n) {
+      <a [routerLink]="['/media/blog', n.slug]" class="post-nav-link">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" /></svg>
+        Prev
+      </a>
+    } @else {
+      <span class="post-nav-link disabled" aria-disabled="true">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" /></svg>
+        Prev
+      </span>
+    }
+    @if (older(); as o) {
+      <a [routerLink]="['/media/blog', o.slug]" class="post-nav-link">
+        Next
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" /></svg>
+      </a>
+    } @else {
+      <span class="post-nav-link disabled" aria-disabled="true">
+        Next
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" /></svg>
+      </span>
+    }
+  </nav>
+}

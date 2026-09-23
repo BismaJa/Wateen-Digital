@@ -1,0 +1,27 @@
+<section class="blogs-hero">
+  <div class="hero-bg" style="background-image: url('assets/images/media/Media.jpg')"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content" appAnim="left-t-right" [animDelay]="200" [animSpeed]="600">
+    <h1>Blogs</h1>
+  </div>
+</section>
+
+<section class="blogs-list">
+  <div class="posts-grid">
+    @for (post of posts; track post.slug; let i = $index) {
+      <article class="post-card" appAnim="bottom-t-top" [animDelay]="200 + (i % 3) * 150" [animSpeed]="600">
+        <a class="post-media" [routerLink]="['/media/blog', post.slug]" tabindex="-1" aria-hidden="true">
+          <span class="post-image" [style.background-image]="imageStyle(post)"></span>
+        </a>
+        <div class="post-body">
+          <h2>
+            <a [routerLink]="['/media/blog', post.slug]">{{ post.title }}</a>
+          </h2>
+          <time [attr.datetime]="post.date">{{ post.date | date: 'MMMM d, y' }}</time>
+          <p>{{ post.excerpt }}</p>
+          <a class="btn read-btn" [routerLink]="['/media/blog', post.slug]">Read More</a>
+        </div>
+      </article>
+    }
+  </div>
+</section>

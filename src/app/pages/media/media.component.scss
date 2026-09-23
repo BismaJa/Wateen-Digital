@@ -133,3 +133,96 @@
     gap: 16px;
   }
 }
+
+/* Sizing to the live page at 1920px, scaled with the viewport: tall navy-tinted
+   hero with an ~86px title; cards on a 4-column grid spanning the navbar's width
+   (three cards, fourth slot empty), ~230px tall, light image wash, 28px title and
+   a bold spaced-out button. */
+.media-hero {
+  min-height: clamp(320px, 30vw, 580px);
+}
+
+.hero-overlay {
+  background: rgba(34, 42, 98, 0.62);
+}
+
+.hero-content {
+  padding: calc(var(--nav-offset) + 16px) var(--nav-gutter) 40px;
+}
+
+.hero-content h1 {
+  font-size: clamp(36px, 4.5vw, 86px);
+  line-height: 1.15;
+}
+
+.media-cards {
+  padding: clamp(72px, 8.5vw, 164px) 0 clamp(80px, 8.5vw, 164px);
+}
+
+.container.cards-grid {
+  max-width: none;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(20px, 2.9vw, 56px);
+  padding-left: max(var(--nav-gutter), 16px);
+  padding-right: max(var(--nav-gutter), 16px);
+}
+
+.media-card {
+  min-height: clamp(190px, 12vw, 232px);
+  border: 1px solid #dcdfe4;
+  border-radius: 3px;
+}
+
+.card-shade {
+  background: rgba(238, 240, 243, 0.78);
+}
+
+.card-body {
+  gap: clamp(20px, 1.9vw, 36px);
+  padding: clamp(22px, 1.8vw, 34px) 20px;
+}
+
+.card-body h2 {
+  font-size: clamp(22px, 1.45vw, 28px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: #2a2e3f;
+}
+
+.btn.media-btn {
+  min-width: 0;
+  min-height: clamp(46px, 3.05vw, 58px);
+  padding: 0 clamp(20px, 1.5vw, 28px);
+  border-radius: 6px;
+  font-size: clamp(14px, 0.9vw, 17px);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 1100px) {
+  .container.cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .container.cards-grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: none;
+  }
+}
+
+/* Keep button labels on one line ("VIEW ANNOUNCEMENTS" wrapped in narrower cards):
+   no wrapping, slightly tighter tracking/padding, never wider than the card. */
+.btn.media-btn {
+  max-width: 100%;
+  padding: 0 clamp(16px, 1.3vw, 26px);
+  letter-spacing: 0.07em;
+  white-space: nowrap;
+}
+
+.card-body {
+  max-width: 100%;
+  padding-left: clamp(12px, 1vw, 20px);
+  padding-right: clamp(12px, 1vw, 20px);
+}

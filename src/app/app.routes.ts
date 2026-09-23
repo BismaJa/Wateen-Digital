@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { ContentPageComponent, PageData } from './pages/content-page/content-page.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { TelecomExpertiseComponent } from './pages/telecom-expertise/telecom-expertise.component';
 import { ArtificialIntelligenceComponent } from './pages/artificial-intelligence/artificial-intelligence.component';
@@ -16,10 +15,9 @@ import { AnnouncementsComponent } from './pages/announcements/announcements.comp
 import { MediaComponent } from './pages/media/media.component';
 import { CareersComponent } from './pages/careers/careers.component';
 import { CareerDetailComponent } from './pages/careers/career-detail.component';
-
-function page(data: PageData) {
-  return { page: data };
-}
+import { BlogsComponent } from './pages/blogs/blogs.component';
+import { BlogPostComponent } from './pages/blogs/blog-post.component';
+import { DvcsComponent } from './pages/dvcs/dvcs.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, title: 'Homepage - Wateen Digital Solutions' },
@@ -90,29 +88,18 @@ export const routes: Routes = [
   },
   {
     path: 'media/blog',
-    component: ContentPageComponent,
-    title: 'Blogs - Wateen Digital Solutions',
-    data: page({
-      title: 'Blogs',
-      paragraphs: [
-        'Insights and updates from Wateen Digital Solutions on digital transformation, cybersecurity, and enterprise technology.'
-      ],
-      ctaLabel: 'Back to Media',
-      ctaLink: '/media'
-    })
+    component: BlogsComponent,
+    title: 'Blogs - Wateen Digital Solutions'
+  },
+  {
+    path: 'media/blog/:slug',
+    component: BlogPostComponent,
+    title: 'Blogs - Wateen Digital Solutions'
   },
   {
     path: 'dvcs',
-    component: ContentPageComponent,
-    title: 'DVCS - Wateen Digital Solutions',
-    data: page({
-      title: 'DVCS',
-      paragraphs: [
-        'Explore DVCS media and coverage featuring Wateen Digital Solutions.'
-      ],
-      ctaLabel: 'Back to Media',
-      ctaLink: '/media'
-    })
+    component: DvcsComponent,
+    title: 'DVCS - Wateen Digital Solutions'
   },
   {
     path: 'announcements',

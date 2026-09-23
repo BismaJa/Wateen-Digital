@@ -16,15 +16,15 @@
             <div class="slide-inner hero">
               <h1
                 [appAnim]="'left-t-right'"
-                [animDelay]="600"
-                [animSpeed]="500"
+                [animDelay]="200"
+                [animSpeed]="600"
                 [animActive]="active() === i"
               >
                 {{ slide.title }}
               </h1>
               <p
                 [appAnim]="'right-t-left'"
-                [animDelay]="1200"
+                [animDelay]="450"
                 [animSpeed]="600"
                 [animActive]="active() === i"
               >
@@ -32,24 +32,23 @@
               </p>
             </div>
           } @else {
-            <div class="slide-inner article">
-              <div
-                class="article-copy"
-                [appAnim]="'alpha-anim'"
-                [animSpeed]="1000"
-                [animActive]="active() === i"
-              >
+            <!-- Copy slides in from its own side; animations start once the slide has arrived. -->
+            @let copyAnim = slide.mediaLeft ? 'right-t-left' : 'left-t-right';
+            <div class="slide-inner article" [class.media-left]="slide.mediaLeft">
+              <div class="article-copy">
                 <h2
-                  [appAnim]="'zoom-in'"
-                  [animDelay]="200"
+                  [appAnim]="copyAnim"
+                  [animDelay]="700"
+                  [animSpeed]="600"
                   [animActive]="active() === i"
                 >
                   {{ slide.title }}
                 </h2>
                 @for (p of slide.paragraphs; track $index; let pi = $index) {
                   <p
-                    [appAnim]="'right-t-left'"
-                    [animDelay]="600 + pi * 150"
+                    [appAnim]="copyAnim"
+                    [animDelay]="850 + pi * 150"
+                    [animSpeed]="600"
                     [animActive]="active() === i"
                   >
                     {{ p }}
@@ -58,8 +57,9 @@
               </div>
               <div
                 class="article-media"
-                [appAnim]="'right-t-left'"
-                [animSpeed]="500"
+                [appAnim]="slide.mediaLeft ? 'left-t-right' : 'right-t-left'"
+                [animDelay]="700"
+                [animSpeed]="800"
                 [animActive]="active() === i"
               >
                 <img [src]="slide.media" [alt]="slide.label" />
