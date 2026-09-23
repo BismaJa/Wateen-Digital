@@ -226,3 +226,14 @@
   padding-left: clamp(12px, 1vw, 20px);
   padding-right: clamp(12px, 1vw, 20px);
 }
+
+/* The card images (Blog, DVCS, Announcements-Media) already carry a pale wash,
+   so no extra shade on top — the old 78% layer hid them almost completely. */
+.card-shade {
+  background: rgba(238, 240, 243, 0.12);
+}
+
+.media-card {
+  background-size: cover;
+  background-position: center;
+}
