@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UncodeAnimDirective } from '../../shared/uncode-anim.directive';
 
 export interface ProfessionalSection {
   title: string;
@@ -12,7 +13,7 @@ export interface ProfessionalSection {
 @Component({
   selector: 'app-professional-services',
   standalone: true,
-  imports: [],
+  imports: [UncodeAnimDirective],
   templateUrl: './professional-services.component.html',
   styleUrl: './professional-services.component.scss'
 })

@@ -9,6 +9,7 @@ import {
 import { DOCUMENT } from '@angular/common';
 import { FullpageStateService } from '../../shared/fullpage-state.service';
 import { DemoModalService } from '../../shared/demo-modal.service';
+import { UncodeAnimDirective } from '../../shared/uncode-anim.directive';
 
 export interface ProductSlide {
   id: string;
@@ -29,7 +30,7 @@ export interface ProductSlide {
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [],
+  imports: [UncodeAnimDirective],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })

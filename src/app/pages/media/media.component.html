@@ -4,15 +4,26 @@
     style="background-image: url('assets/images/media/Media.jpg')"
   ></div>
   <div class="hero-overlay"></div>
-  <div class="hero-content">
+  <div
+    class="hero-content"
+    [appAnim]="'left-t-right'"
+    [animDelay]="600"
+    [animSpeed]="500"
+  >
     <h1>Media</h1>
   </div>
 </section>
 
 <section class="media-cards">
   <div class="container cards-grid">
-    @for (card of cards; track card.title) {
-      <article class="media-card" [style.background-image]="'url(' + card.image + ')'">
+    @for (card of cards; track card.title; let i = $index) {
+      <article
+        class="media-card"
+        [style.background-image]="'url(' + card.image + ')'"
+        [appAnim]="'bottom-t-top'"
+        [animDelay]="i * 150"
+        [animSpeed]="500"
+      >
         <div class="card-shade"></div>
         <div class="card-body">
           <h2>{{ card.title }}</h2>

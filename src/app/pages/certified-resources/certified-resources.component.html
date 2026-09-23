@@ -4,15 +4,25 @@
     style="background-image: url('assets/images/certified/Certified-Resources.jpg')"
   ></div>
   <div class="hero-overlay"></div>
-  <div class="hero-content">
+  <div
+    class="hero-content"
+    [appAnim]="'left-t-right'"
+    [animDelay]="1000"
+    [animSpeed]="600"
+  >
     <h1><span>Certified</span> Resources</h1>
   </div>
 </section>
 
 <section class="cr-grid-section">
   <div class="container badges-grid">
-    @for (badge of badges; track badge) {
-      <div class="badge">
+    @for (badge of badges; track badge; let i = $index) {
+      <div
+        class="badge"
+        [appAnim]="'bottom-t-top'"
+        [animDelay]="i * 60"
+        [animSpeed]="500"
+      >
         <img [src]="badge" alt="Certification badge" />
       </div>
     }

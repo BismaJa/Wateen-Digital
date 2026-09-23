@@ -4,26 +4,37 @@
     style="background-image: url('assets/images/professional/Professional-Services-w.jpg')"
   ></div>
   <div class="hero-overlay"></div>
-  <div class="hero-content">
+  <div
+    class="hero-content"
+    [appAnim]="'left-t-right'"
+    [animDelay]="600"
+    [animSpeed]="500"
+  >
     <h1>Professional Services</h1>
   </div>
 </section>
 
 <section class="ps-banner">
-  <p>{{ banner }}</p>
+  <p [appAnim]="'right-t-left'" [animDelay]="1200" [animSpeed]="600">
+    {{ banner }}
+  </p>
 </section>
 
 @for (section of sections; track section.title) {
   <section class="ps-section">
     <div class="container section-grid" [class.media-left]="section.mediaLeft">
-      <div class="section-copy">
-        <h2>{{ section.title }}</h2>
-        <p>{{ section.description }}</p>
+      <div class="section-copy" [appAnim]="'alpha-anim'" [animSpeed]="1000">
+        <h2 [appAnim]="'zoom-in'" [animDelay]="200">{{ section.title }}</h2>
+        <p [appAnim]="'right-t-left'" [animDelay]="400">{{ section.description }}</p>
 
         @if (section.subgroups?.length) {
           <div class="subgroups">
-            @for (group of section.subgroups; track group.title) {
-              <div class="subgroup">
+            @for (group of section.subgroups; track group.title; let gi = $index) {
+              <div
+                class="subgroup"
+                [appAnim]="'right-t-left'"
+                [animDelay]="600 + gi * 150"
+              >
                 <h3>{{ group.title }}</h3>
                 <ul>
                   @for (item of group.items; track item) {
@@ -35,8 +46,8 @@
           </div>
         } @else if (section.columns.length > 1) {
           <div class="two-cols">
-            @for (col of section.columns; track $index) {
-              <ul>
+            @for (col of section.columns; track $index; let ci = $index) {
+              <ul [appAnim]="'right-t-left'" [animDelay]="600 + ci * 150">
                 @for (item of col; track item) {
                   <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
                 }
@@ -44,7 +55,7 @@
             }
           </div>
         } @else if (section.columns.length === 1) {
-          <ul>
+          <ul [appAnim]="'right-t-left'" [animDelay]="600">
             @for (item of section.columns[0]; track item) {
               <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
             }
@@ -52,7 +63,11 @@
         }
       </div>
 
-      <div class="section-media">
+      <div
+        class="section-media"
+        [appAnim]="section.mediaLeft ? 'left-t-right' : 'right-t-left'"
+        [animSpeed]="500"
+      >
         <img [src]="section.image" [alt]="section.title" />
       </div>
     </div>

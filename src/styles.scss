@@ -8,9 +8,25 @@
   --footer-bg: #141618;
   --white: #ffffff;
   --nav-glass: rgba(8, 14, 28, 0.72);
-  --max-width: 1280px;
+  --max-width: 1284px;
+  --grid-unit: 36px;
   --header-h: 90px;
   --font: "Cairo", sans-serif;
+
+  /* Floating navbar geometry — shared by the header and every slide so page
+     content lines up with the navbar's left/right edges and clears its height. */
+  --nav-top: clamp(14px, 2.5vw, 48px);
+  --nav-height: clamp(74px, 6.2vw, 118px);
+  --nav-gutter: clamp(28px, calc(24vw - 228px), 240px);
+  --nav-offset: calc(var(--nav-top) + var(--nav-height));
+}
+
+@media (max-width: 1100px) {
+  :root {
+    --nav-top: 12px;
+    --nav-height: 74px;
+    --nav-gutter: 14px;
+  }
 }
 
 *,
@@ -61,11 +77,25 @@ select {
   font-family: inherit;
 }
 
+/* Mirrors the Uncode .limit-width / .row-parent pair: a 1284px column whose
+   36px inner padding supplies the gutter (16px once the layout stacks). */
 .container {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--grid-unit);
+}
+
+@media (max-width: 959px) {
+  .container {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 0 16px;
+  }
 }
 
 .btn {
@@ -113,6 +143,84 @@ select {
   color: var(--white);
 }
 
+/* ------------------------------------------------------------------
+   Layout parity with wateendigital.ae (Uncode theme base layer)
+
+   Measured on the live portal: body copy is 15px with an 18px top
+   margin and 1.75 leading, headings run a stepped 35/29/24/20/17/14
+   scale at weight 600 with 1.2 leading and a 27px top margin, the
+   content column is 1284px (95% below 960px) and buttons use 12px
+   labels on a 2px radius.
+   ------------------------------------------------------------------ */
+
+.site-main {
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.site-main p,
+.site-main li,
+.site-main dt,
+.site-main dd,
+.site-main dl,
+.site-main address,
+.site-main label,
+.site-main pre,
+.site-main code {
+  line-height: 1.75;
+}
+
+.site-main h1,
+.site-main .h1 {
+  font-size: 35px;
+}
+
+.site-main h2,
+.site-main .h2 {
+  font-size: 29px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.site-main h3,
+.site-main .h3 {
+  font-size: 24px;
+}
+
+.site-main h4,
+.site-main .h4 {
+  font-size: 20px;
+}
+
+.site-main h5,
+.site-main .h5 {
+  font-size: 17px;
+}
+
+.site-main h6,
+.site-main .h6 {
+  font-size: 14px;
+}
+
+@media (max-width: 576px) {
+  .site-main h1,
+  .site-main .h1 {
+    font-size: 24px;
+  }
+}
+
+.site-main .btn {
+  padding: 13px 31px;
+  border-radius: 2px;
+  font-size: 12px;
+  margin-top: 1px;
+}
+
+.site-main .btn-lg {
+  font-size: 15px;
+  padding: 16px 39px;
+}
+
 .fade-up {
   opacity: 0;
   transform: translateY(36px);
@@ -135,6 +243,179 @@ select {
   transform: translateX(0);
 }
 
+/* ------------------------------------------------------------------
+   Content animations — mirrors the Uncode theme on wateendigital.ae
+   Direction classes are paired with data-delay / data-speed attributes
+   and driven by adding the .start_animation class.
+   ------------------------------------------------------------------ */
+
+@keyframes anim_ttb {
+  0% {
+    transform: translate3d(0, -100px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes anim_btt {
+  0% {
+    transform: translate3d(0, 100px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes anim_ltr {
+  0% {
+    transform: translate3d(-100px, 0, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes anim_rtl {
+  0% {
+    transform: translate3d(100px, 0, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes slight_anim {
+  0% {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoom-in {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes zoom-out {
+  0% {
+    transform: scale(1.5);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes alpha-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate_when_almost_visible {
+  opacity: 0;
+  animation-duration: 0.6s;
+  backface-visibility: hidden;
+}
+
+.animate_when_almost_visible:not(.start_animation) {
+  pointer-events: none !important;
+}
+
+.animate_when_almost_visible.start_animation.top-t-bottom {
+  animation-name: anim_ttb;
+  opacity: 1;
+}
+
+.animate_when_almost_visible.start_animation.bottom-t-top {
+  animation-name: anim_btt;
+  opacity: 1;
+}
+
+.animate_when_almost_visible.start_animation.left-t-right {
+  animation-name: anim_ltr;
+  opacity: 1;
+}
+
+.animate_when_almost_visible.start_animation.right-t-left {
+  animation-name: anim_rtl;
+  opacity: 1;
+}
+
+.animate_when_almost_visible.start_animation.zoom-in {
+  animation-name: zoom-in;
+  transform: none;
+  opacity: 1;
+}
+
+.animate_when_almost_visible.start_animation.zoom-out {
+  animation-name: zoom-out;
+  transform: none;
+  opacity: 1;
+}
+
+.animate_when_almost_visible.start_animation.alpha-anim {
+  animation-name: alpha-in;
+  opacity: 1;
+}
+
+.animate_when_almost_visible.start_animation.slight-anim {
+  animation-name: slight_anim;
+  animation-timing-function: cubic-bezier(0.35, 0.81, 0.41, 1);
+  opacity: 1;
+}
+
+.animate_when_almost_visible[data-speed='100'] { animation-duration: 0.1s; }
+.animate_when_almost_visible[data-speed='200'] { animation-duration: 0.2s; }
+.animate_when_almost_visible[data-speed='300'] { animation-duration: 0.3s; }
+.animate_when_almost_visible[data-speed='500'] { animation-duration: 0.5s; }
+.animate_when_almost_visible[data-speed='600'] { animation-duration: 0.6s; }
+.animate_when_almost_visible[data-speed='700'] { animation-duration: 0.7s; }
+.animate_when_almost_visible[data-speed='800'] { animation-duration: 0.8s; }
+.animate_when_almost_visible[data-speed='900'] { animation-duration: 0.9s; }
+.animate_when_almost_visible[data-speed='1000'] { animation-duration: 1s; }
+.animate_when_almost_visible[data-speed='1100'] { animation-duration: 1.1s; }
+.animate_when_almost_visible[data-speed='1200'] { animation-duration: 1.2s; }
+.animate_when_almost_visible[data-speed='1300'] { animation-duration: 1.3s; }
+.animate_when_almost_visible[data-speed='1400'] { animation-duration: 1.4s; }
+.animate_when_almost_visible[data-speed='1500'] { animation-duration: 1.5s; }
+.animate_when_almost_visible[data-speed='1600'] { animation-duration: 1.6s; }
+.animate_when_almost_visible[data-speed='1700'] { animation-duration: 1.7s; }
+.animate_when_almost_visible[data-speed='1800'] { animation-duration: 1.8s; }
+.animate_when_almost_visible[data-speed='1900'] { animation-duration: 1.9s; }
+.animate_when_almost_visible[data-speed='2000'] { animation-duration: 2s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate_when_almost_visible {
+    opacity: 1;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
 /* Fullpage homepage lock (matches Uncode fullpage behavior) */
 html.fullpage-lock,
 body.fullpage-lock {
@@ -153,6 +434,27 @@ body.showing-home-footer {
   height: auto;
 }
 
+/* Home: after the last slide the footer slides up like one more slide — the page
+   and footer move up together by the footer's height (set in home.component.ts),
+   with the same easing/duration as the slide track, while scrolling stays locked. */
+body.home-fullpage .site-main.is-home,
+body.home-fullpage app-footer {
+  display: block;
+  transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+body.home-footer-reveal .site-main.is-home,
+body.home-footer-reveal app-footer {
+  transform: translate3d(0, calc(-1 * var(--home-footer-shift, 0px)), 0);
+}
+
+/* The page is shifted up while the footer shows; the fixed back-to-top button
+   lives inside it, so counter-shift it to stay pinned to the viewport corner. */
+body.home-footer-reveal .fp-top {
+  transform: translate3d(0, var(--home-footer-shift, 0px), 0);
+}
+
+body.home-footer-reveal .fp-dots,
 body.showing-home-footer .fp-dots,
 body.showing-home-footer .ai-dots,
 body.showing-home-footer .ann-dots,

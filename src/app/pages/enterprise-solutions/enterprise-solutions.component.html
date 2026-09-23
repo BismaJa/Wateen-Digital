@@ -4,26 +4,35 @@
     style="background-image: url('assets/images/enterprise/Enterprises-Solutions-Services.jpg')"
   ></div>
   <div class="hero-overlay"></div>
-  <div class="hero-content">
+  <div
+    class="hero-content"
+    [appAnim]="'left-t-right'"
+    [animDelay]="600"
+    [animSpeed]="500"
+  >
     <h1><span>Enterprises</span> Solutions &amp; Services</h1>
   </div>
 </section>
 
 <section class="ent-banner">
-  <p>{{ banner }}</p>
+  <p [appAnim]="'right-t-left'" [animDelay]="1200" [animSpeed]="600">
+    {{ banner }}
+  </p>
 </section>
 
 <section class="ent-section">
   <div class="container section-grid">
-    <div class="section-copy">
-      <h2>Advanced Technical Services</h2>
-      <ul>
+    <div class="section-copy" [appAnim]="'alpha-anim'" [animSpeed]="1000">
+      <h2 [appAnim]="'zoom-in'" [animDelay]="200">
+        Advanced Technical Services
+      </h2>
+      <ul [appAnim]="'right-t-left'" [animDelay]="600">
         @for (item of advancedServices; track item) {
           <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
         }
       </ul>
     </div>
-    <div class="section-media">
+    <div class="section-media" [appAnim]="'right-t-left'" [animSpeed]="500">
       <img
         src="assets/images/enterprise/Solution-Integration-Expertise.png"
         alt="Advanced Technical Services"
@@ -34,22 +43,24 @@
 
 <section class="ent-section alt">
   <div class="container section-grid reverse">
-    <div class="section-media">
+    <div class="section-media" [appAnim]="'left-t-right'" [animSpeed]="500">
       <img
         src="assets/images/enterprise/Infrastructure-Planning-and-Audit-Services.png"
         alt="IT Infrastructure Solutions and Services"
       />
     </div>
-    <div class="section-copy">
-      <h2>IT Infrastructure Solutions &amp; Services</h2>
-      <p>{{ infraCopy }}</p>
+    <div class="section-copy" [appAnim]="'alpha-anim'" [animSpeed]="1000">
+      <h2 [appAnim]="'zoom-in'" [animDelay]="200">
+        IT Infrastructure Solutions &amp; Services
+      </h2>
+      <p [appAnim]="'right-t-left'" [animDelay]="400">{{ infraCopy }}</p>
       <div class="two-cols">
-        <ul>
+        <ul [appAnim]="'right-t-left'" [animDelay]="600">
           @for (item of infraLeft; track item) {
             <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
           }
         </ul>
-        <ul>
+        <ul [appAnim]="'right-t-left'" [animDelay]="750">
           @for (item of infraRight; track item) {
             <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
           }

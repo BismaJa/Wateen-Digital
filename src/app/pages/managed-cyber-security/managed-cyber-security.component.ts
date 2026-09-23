@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { UncodeAnimDirective } from '../../shared/uncode-anim.directive';
 
 interface CyberCard {
   title: string;
@@ -10,7 +11,7 @@ interface CyberCard {
 @Component({
   selector: 'app-managed-cyber-security',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, UncodeAnimDirective],
   templateUrl: './managed-cyber-security.component.html',
   styleUrl: './managed-cyber-security.component.scss'
 })

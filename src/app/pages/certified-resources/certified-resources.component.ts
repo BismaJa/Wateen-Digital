@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { UncodeAnimDirective } from '../../shared/uncode-anim.directive';
 
 @Component({
   selector: 'app-certified-resources',
   standalone: true,
-  imports: [],
+  imports: [UncodeAnimDirective],
   templateUrl: './certified-resources.component.html',
   styleUrl: './certified-resources.component.scss'
 })

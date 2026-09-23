@@ -13,19 +13,55 @@
           <div class="slide-overlay"></div>
 
           @if (slide.type === 'hero') {
-            <div class="slide-inner hero" [class.in]="active() === i">
-              <h1>{{ slide.title }}</h1>
-              <p>{{ slide.body }}</p>
+            <div class="slide-inner hero">
+              <h1
+                [appAnim]="'left-t-right'"
+                [animDelay]="600"
+                [animSpeed]="500"
+                [animActive]="active() === i"
+              >
+                {{ slide.title }}
+              </h1>
+              <p
+                [appAnim]="'right-t-left'"
+                [animDelay]="1200"
+                [animSpeed]="600"
+                [animActive]="active() === i"
+              >
+                {{ slide.body }}
+              </p>
             </div>
           } @else {
-            <div class="slide-inner article" [class.in]="active() === i">
-              <div class="article-copy">
-                <h2>{{ slide.title }}</h2>
-                @for (p of slide.paragraphs; track $index) {
-                  <p>{{ p }}</p>
+            <div class="slide-inner article">
+              <div
+                class="article-copy"
+                [appAnim]="'alpha-anim'"
+                [animSpeed]="1000"
+                [animActive]="active() === i"
+              >
+                <h2
+                  [appAnim]="'zoom-in'"
+                  [animDelay]="200"
+                  [animActive]="active() === i"
+                >
+                  {{ slide.title }}
+                </h2>
+                @for (p of slide.paragraphs; track $index; let pi = $index) {
+                  <p
+                    [appAnim]="'right-t-left'"
+                    [animDelay]="600 + pi * 150"
+                    [animActive]="active() === i"
+                  >
+                    {{ p }}
+                  </p>
                 }
               </div>
-              <div class="article-media">
+              <div
+                class="article-media"
+                [appAnim]="'right-t-left'"
+                [animSpeed]="500"
+                [animActive]="active() === i"
+              >
                 <img [src]="slide.media" [alt]="slide.label" />
               </div>
             </div>

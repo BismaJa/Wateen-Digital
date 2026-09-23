@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
+import { UncodeAnimDirective } from '../../shared/uncode-anim.directive';
 
 export interface PageData {
   title: string;
@@ -14,7 +15,7 @@ export interface PageData {
 @Component({
   selector: 'app-content-page',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, UncodeAnimDirective],
   templateUrl: './content-page.component.html',
   styleUrl: './content-page.component.scss'
 })

@@ -68,41 +68,33 @@
   position: relative;
   z-index: 2;
   max-width: 860px;
-  padding: 110px 28px 48px;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
+  padding: 144px 36px 48px;
 }
 
 .slide-inner.center {
   text-align: center;
 }
 
-.slide-inner.in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .hero h1 {
-  margin: 0 0 22px;
-  font-size: clamp(34px, 5vw, 54px);
-  font-weight: 700;
-  line-height: 1.15;
+  margin: 0;
+  padding-bottom: 20px;
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 1.2;
   color: #00adef;
 }
 
 .hero p {
-  margin: 0 auto;
+  margin: 9px auto 0;
   max-width: 760px;
-  font-size: clamp(15px, 1.45vw, 18px);
-  line-height: 1.75;
+  font-size: 18px;
+  line-height: 1.3;
   color: #ffffff;
   font-weight: 400;
 }
 
 .placeholder h2 {
   margin: 0;
-  font-size: clamp(28px, 4vw, 42px);
   font-weight: 600;
   color: #00adef;
 }
@@ -138,13 +130,13 @@
 .health-inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(36px, 5vw, 80px);
+  gap: 36px;
   align-items: center;
   max-width: 1400px;
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  padding: 110px 64px 48px;
+  padding: 144px 36px 48px;
   box-sizing: border-box;
 }
 
@@ -155,13 +147,13 @@
 .building-inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-  gap: clamp(36px, 5vw, 80px);
+  gap: 36px;
   align-items: center;
   max-width: 1400px;
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  padding: 110px 64px 48px;
+  padding: 144px 36px 48px;
   box-sizing: border-box;
 }
 
@@ -209,8 +201,8 @@
 
 .vision-copy h2 {
   margin: 0 0 18px;
-  font-size: clamp(30px, 3.6vw, 44px);
-  font-weight: 700;
+  font-size: 29px;
+  font-weight: 600;
   line-height: 1.2;
   color: #1a1a1a;
 }
@@ -222,8 +214,8 @@
 .vision-copy p {
   margin: 0 0 22px;
   max-width: none;
-  font-size: clamp(14px, 1.2vw, 16px);
-  line-height: 1.75;
+  font-size: 18px;
+  line-height: 1.3;
   color: #222;
   font-weight: 400;
 }
@@ -240,7 +232,7 @@
 .vision-copy li {
   position: relative;
   padding-left: 18px;
-  font-size: clamp(14px, 1.15vw, 16px);
+  font-size: 15px;
   font-weight: 500;
   color: #1a1a1a;
   line-height: 1.4;
@@ -257,16 +249,17 @@
   background: #1a1a1a;
 }
 
-.demo-btn {
+.btn.demo-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-width: 168px;
-  padding: 13px 26px;
-  border-radius: 3px;
+  padding: 10px 30px;
+  border-radius: 8px;
   border: none;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 400;
+  text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
   font-family: inherit;
@@ -290,8 +283,8 @@
 
 .chatbot-copy h2 {
   margin: 0 0 16px;
-  font-size: clamp(30px, 3.4vw, 44px);
-  font-weight: 700;
+  font-size: 29px;
+  font-weight: 600;
   line-height: 1.2;
   color: #fff;
 }
@@ -303,8 +296,8 @@
 .chatbot-copy p {
   margin: 0 0 18px;
   max-width: none;
-  font-size: clamp(14px, 1.15vw, 16px);
-  line-height: 1.65;
+  font-size: 18px;
+  line-height: 1.3;
   color: rgba(255, 255, 255, 0.92);
   font-weight: 400;
 }
@@ -321,7 +314,7 @@
 .chatbot-copy li {
   position: relative;
   padding-left: 16px;
-  font-size: clamp(14px, 1.1vw, 15.5px);
+  font-size: 15px;
   font-weight: 500;
   color: #fff;
   line-height: 1.4;
@@ -350,8 +343,8 @@
 
 .object-copy h2 {
   margin: 0 0 18px;
-  font-size: clamp(30px, 3.6vw, 44px);
-  font-weight: 700;
+  font-size: 29px;
+  font-weight: 600;
   line-height: 1.2;
   color: #1a1a1a;
 }
@@ -363,8 +356,8 @@
 .object-copy p {
   margin: 0 0 22px;
   max-width: none;
-  font-size: clamp(14px, 1.2vw, 16px);
-  line-height: 1.75;
+  font-size: 18px;
+  line-height: 1.3;
   color: #222;
   font-weight: 400;
 }
@@ -381,7 +374,7 @@
 .object-copy li {
   position: relative;
   padding-left: 18px;
-  font-size: clamp(14px, 1.15vw, 16px);
+  font-size: 15px;
   font-weight: 500;
   color: #1a1a1a;
   line-height: 1.4;
@@ -416,8 +409,8 @@
 
 .biomech-copy h2 {
   margin: 0 0 16px;
-  font-size: clamp(28px, 3.4vw, 42px);
-  font-weight: 700;
+  font-size: 29px;
+  font-weight: 600;
   line-height: 1.2;
   color: #fff;
 }
@@ -425,8 +418,8 @@
 .biomech-copy p {
   margin: 0 0 20px;
   max-width: none;
-  font-size: clamp(14px, 1.15vw, 16px);
-  line-height: 1.7;
+  font-size: 18px;
+  line-height: 1.3;
   color: rgba(255, 255, 255, 0.92);
   font-weight: 400;
 }
@@ -443,7 +436,7 @@
 .biomech-copy li {
   position: relative;
   padding-left: 16px;
-  font-size: clamp(14px, 1.1vw, 15.5px);
+  font-size: 15px;
   font-weight: 500;
   color: #fff;
   line-height: 1.4;
@@ -468,8 +461,8 @@
 
 .care-copy h2 {
   margin: 0 0 18px;
-  font-size: clamp(30px, 3.6vw, 44px);
-  font-weight: 700;
+  font-size: 29px;
+  font-weight: 600;
   line-height: 1.2;
   color: #1a1a1a;
 }
@@ -481,8 +474,8 @@
 .care-copy p {
   margin: 0 0 22px;
   max-width: none;
-  font-size: clamp(14px, 1.2vw, 16px);
-  line-height: 1.75;
+  font-size: 18px;
+  line-height: 1.3;
   color: #222;
   font-weight: 400;
 }
@@ -499,7 +492,7 @@
 .care-copy li {
   position: relative;
   padding-left: 18px;
-  font-size: clamp(14px, 1.15vw, 16px);
+  font-size: 15px;
   font-weight: 500;
   color: #1a1a1a;
   line-height: 1.4;
@@ -534,8 +527,8 @@
 
 .gesture-copy h2 {
   margin: 0 0 16px;
-  font-size: clamp(28px, 3.4vw, 42px);
-  font-weight: 700;
+  font-size: 29px;
+  font-weight: 600;
   line-height: 1.2;
   color: #fff;
 }
@@ -547,8 +540,8 @@
 .gesture-copy p {
   margin: 0 0 20px;
   max-width: none;
-  font-size: clamp(14px, 1.15vw, 16px);
-  line-height: 1.7;
+  font-size: 18px;
+  line-height: 1.3;
   color: rgba(255, 255, 255, 0.92);
   font-weight: 400;
 }
@@ -565,7 +558,7 @@
 .gesture-copy li {
   position: relative;
   padding-left: 16px;
-  font-size: clamp(14px, 1.1vw, 15.5px);
+  font-size: 15px;
   font-weight: 500;
   color: #fff;
   line-height: 1.4;
@@ -590,8 +583,8 @@
 
 .tryon-copy h2 {
   margin: 0 0 18px;
-  font-size: clamp(30px, 3.6vw, 44px);
-  font-weight: 700;
+  font-size: 29px;
+  font-weight: 600;
   line-height: 1.2;
   color: #1a1a1a;
 }
@@ -603,8 +596,8 @@
 .tryon-copy p {
   margin: 0 0 22px;
   max-width: none;
-  font-size: clamp(14px, 1.2vw, 16px);
-  line-height: 1.75;
+  font-size: 18px;
+  line-height: 1.3;
   color: #222;
   font-weight: 400;
 }
@@ -621,7 +614,7 @@
 .tryon-copy li {
   position: relative;
   padding-left: 18px;
-  font-size: clamp(14px, 1.15vw, 16px);
+  font-size: 15px;
   font-weight: 500;
   color: #1a1a1a;
   line-height: 1.4;
@@ -656,8 +649,8 @@
 
 .infra-copy h2 {
   margin: 0 0 16px;
-  font-size: clamp(28px, 3.4vw, 42px);
-  font-weight: 700;
+  font-size: 29px;
+  font-weight: 600;
   line-height: 1.2;
   color: #fff;
 }
@@ -669,8 +662,8 @@
 .infra-copy p {
   margin: 0 0 20px;
   max-width: none;
-  font-size: clamp(14px, 1.15vw, 16px);
-  line-height: 1.7;
+  font-size: 18px;
+  line-height: 1.3;
   color: rgba(255, 255, 255, 0.92);
   font-weight: 400;
 }
@@ -687,7 +680,7 @@
 .infra-copy li {
   position: relative;
   padding-left: 16px;
-  font-size: clamp(14px, 1.1vw, 15.5px);
+  font-size: 15px;
   font-weight: 500;
   color: #fff;
   line-height: 1.4;
@@ -712,8 +705,8 @@
 
 .health-copy h2 {
   margin: 0 0 14px;
-  font-size: clamp(28px, 3.4vw, 42px);
-  font-weight: 700;
+  font-size: 29px;
+  font-weight: 600;
   line-height: 1.2;
   color: #1a1a1a;
 }
@@ -721,8 +714,8 @@
 .health-copy p {
   margin: 0 0 16px;
   max-width: none;
-  font-size: clamp(13px, 1.1vw, 15.5px);
-  line-height: 1.6;
+  font-size: 18px;
+  line-height: 1.3;
   color: #222;
   font-weight: 400;
 }
@@ -739,7 +732,7 @@
 .health-copy li {
   position: relative;
   padding-left: 16px;
-  font-size: clamp(13px, 1.1vw, 15px);
+  font-size: 15px;
   font-weight: 500;
   color: #1a1a1a;
   line-height: 1.35;
@@ -774,8 +767,8 @@
 
 .building-copy h2 {
   margin: 0 0 16px;
-  font-size: clamp(28px, 3.4vw, 42px);
-  font-weight: 700;
+  font-size: 29px;
+  font-weight: 600;
   line-height: 1.2;
   color: #fff;
 }
@@ -783,8 +776,8 @@
 .building-copy p {
   margin: 0 0 20px;
   max-width: none;
-  font-size: clamp(14px, 1.15vw, 16px);
-  line-height: 1.7;
+  font-size: 18px;
+  line-height: 1.3;
   color: rgba(255, 255, 255, 0.92);
   font-weight: 400;
 }
@@ -801,7 +794,7 @@
 .building-copy li {
   position: relative;
   padding-left: 16px;
-  font-size: clamp(14px, 1.1vw, 15.5px);
+  font-size: 15px;
   font-weight: 500;
   color: #fff;
   line-height: 1.4;
@@ -842,63 +835,55 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(28px, 4vh, 52px);
+  gap: 36px;
   width: min(1080px, 72vw);
   max-width: 1080px;
   margin: 0 auto;
-  padding: 120px 0 56px;
+  padding: 144px 0 48px;
   box-sizing: border-box;
   text-align: center;
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s;
-}
-
-.expertise-cards.in {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .expertise-heading {
   margin: 0;
-  font-size: clamp(30px, 4vw, 48px);
-  font-weight: 700;
+  font-size: 29px;
+  font-weight: 600;
   color: #fff;
-  line-height: 1.15;
+  line-height: 1.2;
 }
 
 .expertise-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(20px, 2.5vw, 32px);
+  gap: 36px;
   width: 100%;
 }
 
 .expertise-card {
   background: #f3f4f6;
   border-radius: 4px;
-  padding: clamp(40px, 6vh, 64px) 28px clamp(32px, 4vh, 44px);
+  padding: 36px 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 24px;
-  min-height: clamp(200px, 28vh, 260px);
+  min-height: 260px;
 }
 
 .expertise-card img {
-  width: clamp(72px, 10vh, 100px);
-  height: clamp(72px, 10vh, 100px);
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   display: block;
 }
 
 .expertise-card h3 {
   margin: 0;
-  font-size: clamp(14px, 1.3vw, 17px);
+  font-size: 18px;
   font-weight: 600;
   color: #1a1a1a;
-  line-height: 1.35;
+  line-height: 1.2;
 }
 
 /* Tech logos band — appears after scrolling the last slide */
@@ -906,7 +891,7 @@
   display: none;
   width: 100%;
   box-sizing: border-box;
-  padding: 56px 0 96px;
+  padding: 144px 0;
   background: #050b16;
   overflow: visible;
 }
@@ -937,7 +922,7 @@
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  gap: clamp(10px, 1.4vw, 18px);
+  gap: 36px;
   width: 100%;
   animation: expertise-fade 0.35s ease;
 }
@@ -1047,7 +1032,7 @@
   background: #00adef;
   color: #fff;
   font-family: var(--font, "Cairo", sans-serif);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.2;
   padding: 8px 14px;
@@ -1096,11 +1081,43 @@
   pointer-events: none;
 }
 
-@media (max-width: 980px) {
+/* Vertical rhythm ladder (measured): 144px (base) → 108px @≤1600 → 72px @≤959 */
+@media (max-width: 1600px) {
+  .slide-inner,
+  .vision-inner,
+  .object-inner,
+  .care-inner,
+  .tryon-inner,
+  .health-inner,
+  .biomech-inner,
+  .gesture-inner,
+  .chatbot-inner,
+  .infra-inner,
+  .building-inner,
+  .expertise-cards {
+    padding-top: 108px;
+  }
+
+  .expertise-tech {
+    padding: 108px 0;
+  }
+}
+
+/* In-page nav-link size (measured): 17px ≥1280 */
+@media (min-width: 1280px) {
+  .ai-dots .fp-tooltip {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 959px) {
+  .slide-inner {
+    padding-top: 72px;
+  }
+
   .vision-inner {
     grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 110px 28px 48px;
+    padding: 72px 36px 48px;
     text-align: left;
   }
 
@@ -1118,8 +1135,7 @@
 
   .chatbot-inner {
     grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 100px 28px 36px;
+    padding: 72px 36px 36px;
   }
 
   .chatbot-media img {
@@ -1137,8 +1153,7 @@
 
   .object-inner {
     grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 110px 28px 48px;
+    padding: 72px 36px 48px;
   }
 
   .object-media {
@@ -1155,8 +1170,7 @@
 
   .biomech-inner {
     grid-template-columns: 1fr;
-    gap: 28px;
-    padding: 110px 28px 40px;
+    padding: 72px 36px 40px;
   }
 
   .biomech-media img {
@@ -1169,8 +1183,7 @@
 
   .care-inner {
     grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 110px 28px 48px;
+    padding: 72px 36px 48px;
   }
 
   .care-media {
@@ -1187,8 +1200,7 @@
 
   .gesture-inner {
     grid-template-columns: 1fr;
-    gap: 28px;
-    padding: 110px 28px 40px;
+    padding: 72px 36px 40px;
   }
 
   .gesture-media img {
@@ -1201,8 +1213,7 @@
 
   .tryon-inner {
     grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 110px 28px 48px;
+    padding: 72px 36px 48px;
   }
 
   .tryon-media {
@@ -1219,8 +1230,7 @@
 
   .infra-inner {
     grid-template-columns: 1fr;
-    gap: 28px;
-    padding: 110px 28px 40px;
+    padding: 72px 36px 40px;
   }
 
   .infra-media img {
@@ -1233,8 +1243,7 @@
 
   .health-inner {
     grid-template-columns: 1fr;
-    gap: 28px;
-    padding: 100px 28px 36px;
+    padding: 72px 36px 36px;
   }
 
   .health-media {
@@ -1255,8 +1264,7 @@
 
   .building-inner {
     grid-template-columns: 1fr;
-    gap: 28px;
-    padding: 110px 28px 40px;
+    padding: 72px 36px 40px;
   }
 
   .building-media img {
@@ -1269,13 +1277,12 @@
 
   .expertise-cards {
     width: min(100%, 90vw);
-    padding: 110px 0 40px;
-    gap: 22px;
+    padding: 72px 0 40px;
+    gap: 36px;
   }
 
   .expertise-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
   }
 
   .expertise-card {
@@ -1284,13 +1291,8 @@
     gap: 14px;
   }
 
-  .expertise-card img {
-    width: 64px;
-    height: 64px;
-  }
-
   .expertise-tech {
-    padding: 40px 0 64px;
+    padding: 72px 0;
   }
 
   .expertise-tech-inner {
@@ -1303,29 +1305,30 @@
   }
 }
 
-@media (max-width: 640px) {
-  .expertise-heading {
-    font-size: 24px;
+@media (max-width: 576px) {
+  .hero h1 {
+    font-size: 32px;
   }
 
-  .expertise-grid {
-    grid-template-columns: 1fr;
+  .hero p {
+    font-size: 16px;
   }
 
-  .tech-track {
-    flex-wrap: wrap;
+  .vision-copy p,
+  .chatbot-copy p,
+  .object-copy p,
+  .biomech-copy p,
+  .care-copy p,
+  .gesture-copy p,
+  .tryon-copy p,
+  .infra-copy p,
+  .health-copy p,
+  .building-copy p {
+    font-size: 16px;
   }
-}
 
-@media (max-width: 640px) {
-  .ai-dots {
-    right: 12px;
-  }
-
-  .slide-inner {
-    padding-top: 100px;
-  }
-
+  /* Phone gutter 16px, stacking gutter 16px */
+  .slide-inner,
   .vision-inner,
   .object-inner,
   .care-inner,
@@ -1336,8 +1339,95 @@
   .gesture-inner,
   .infra-inner,
   .building-inner {
-    padding-left: 20px;
-    padding-right: 20px;
+    gap: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /*
+   * Stacked slides still occupy one viewport for the full-page navigator.
+   * Without an explicit row flow, an over-height grid shrinks its tracks and
+   * the media row visually overlaps the copy row on phones.
+   */
+  .vision-inner,
+  .object-inner,
+  .care-inner,
+  .tryon-inner,
+  .health-inner,
+  .chatbot-inner,
+  .biomech-inner,
+  .gesture-inner,
+  .infra-inner,
+  .building-inner {
+    align-content: start;
+    grid-template-rows: auto auto;
+    padding-top: 64px;
+    padding-bottom: 16px;
+  }
+
+  .vision-media img,
+  .object-media img,
+  .care-media img,
+  .tryon-media img,
+  .health-media img,
+  .biomech-media img,
+  .gesture-media img,
+  .chatbot-media img,
+  .infra-media img,
+  .building-media img {
+    width: min(100%, 300px);
+    max-height: 30vh;
+  }
+
+  .vision-copy p,
+  .chatbot-copy p,
+  .object-copy p,
+  .biomech-copy p,
+  .care-copy p,
+  .gesture-copy p,
+  .tryon-copy p,
+  .infra-copy p,
+  .health-copy p,
+  .building-copy p {
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .vision-copy ul,
+  .chatbot-copy ul,
+  .object-copy ul,
+  .biomech-copy ul,
+  .care-copy ul,
+  .gesture-copy ul,
+  .tryon-copy ul,
+  .infra-copy ul,
+  .health-copy ul,
+  .building-copy ul {
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .expertise-cards {
+    gap: 16px;
+  }
+
+  .expertise-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .expertise-card img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .tech-track {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .ai-dots {
+    right: 12px;
   }
 }
 

@@ -4,7 +4,12 @@
     style="background-image: url('assets/images/why-choose/Why-Choose-Wateen.jpg')"
   ></div>
   <div class="hero-overlay"></div>
-  <div class="hero-content">
+  <div
+    class="hero-content"
+    [appAnim]="'left-t-right'"
+    [animDelay]="600"
+    [animSpeed]="500"
+  >
     <h1>Why <span>Choose</span> Wateen</h1>
   </div>
 </section>
@@ -12,7 +17,12 @@
 <section class="wcw-cards">
   <div class="container cards-grid">
     @for (card of cards; track card.title) {
-      <article class="card">
+      <article
+        class="card"
+        [appAnim]="card.anim"
+        [animDelay]="card.delay"
+        [animSpeed]="500"
+      >
         <div class="card-icon">
           <img [src]="card.icon" [alt]="card.title" />
         </div>

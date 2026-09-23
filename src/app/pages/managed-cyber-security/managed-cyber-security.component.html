@@ -4,27 +4,41 @@
     style="background-image: url('assets/images/cyber/Cyber-Security.jpg')"
   ></div>
   <div class="hero-overlay"></div>
-  <div class="hero-content">
+  <div
+    class="hero-content"
+    [appAnim]="'left-t-right'"
+    [animDelay]="600"
+    [animSpeed]="500"
+  >
     <h1><span>Managed</span> Cyber Security</h1>
   </div>
 </section>
 
 <section class="cyber-banner">
-  <p>{{ banner }}</p>
+  <p [appAnim]="'right-t-left'" [animDelay]="1200" [animSpeed]="600">
+    {{ banner }}
+  </p>
 </section>
 
 <section class="cyber-nist">
   <div class="container">
-    @for (p of nistParagraphs; track $index) {
-      <p>{{ p }}</p>
+    @for (p of nistParagraphs; track $index; let i = $index) {
+      <p [appAnim]="'right-t-left'" [animDelay]="i * 150" [animSpeed]="600">
+        {{ p }}
+      </p>
     }
   </div>
 </section>
 
 <section class="cyber-cards">
   <div class="container cards-grid">
-    @for (card of cards; track card.title) {
-      <article class="cyber-card">
+    @for (card of cards; track card.title; let i = $index) {
+      <article
+        class="cyber-card"
+        [appAnim]="'bottom-t-top'"
+        [animDelay]="i * 150"
+        [animSpeed]="500"
+      >
         <header class="card-head">
           <span class="card-icon" [attr.data-icon]="card.icon" aria-hidden="true"></span>
           <h3>{{ card.title }}</h3>
@@ -47,21 +61,23 @@
     <img
       src="assets/images/cyber/wateen-group-image.jpg"
       alt="Attacker approach and defending protection approach"
+      [appAnim]="'zoom-in'"
+      [animSpeed]="500"
     />
   </div>
 </section>
 
 <section class="cyber-split capabilities">
   <div class="split-panel cyan">
-    <div class="panel-inner">
-      <h2>Major Capabilities</h2>
+    <div class="panel-inner" [appAnim]="'alpha-anim'" [animSpeed]="1000">
+      <h2 [appAnim]="'zoom-in'" [animDelay]="200">Major Capabilities</h2>
       <div class="cap-cols">
-        <ul>
+        <ul [appAnim]="'right-t-left'" [animDelay]="400">
           @for (item of capabilitiesLeft; track item) {
             <li><span class="check light" aria-hidden="true"></span>{{ item }}</li>
           }
         </ul>
-        <ul>
+        <ul [appAnim]="'right-t-left'" [animDelay]="550">
           @for (item of capabilitiesRight; track item) {
             <li><span class="check light" aria-hidden="true"></span>{{ item }}</li>
           }
@@ -72,6 +88,8 @@
   <div
     class="split-media"
     style="background-image: url('assets/images/cyber/Major-Capabilities_.webp')"
+    [appAnim]="'right-t-left'"
+    [animSpeed]="500"
   ></div>
 </section>
 
@@ -79,11 +97,13 @@
   <div
     class="split-media"
     style="background-image: url('assets/images/cyber/Technology-Solutions.webp')"
+    [appAnim]="'left-t-right'"
+    [animSpeed]="500"
   ></div>
   <div class="split-panel cyan">
-    <div class="panel-inner">
-      <h2>Technology Solutions</h2>
-      <ul class="solutions-list">
+    <div class="panel-inner" [appAnim]="'alpha-anim'" [animSpeed]="1000">
+      <h2 [appAnim]="'zoom-in'" [animDelay]="200">Technology Solutions</h2>
+      <ul class="solutions-list" [appAnim]="'right-t-left'" [animDelay]="400">
         @for (item of solutions; track item) {
           <li><span class="check light" aria-hidden="true"></span>{{ item }}</li>
         }
@@ -94,16 +114,34 @@
 
 <section class="cyber-partners">
   <div class="container">
-    <h2>Technology Partners</h2>
+    <h2 [appAnim]="'left-t-right'" [animDelay]="600" [animSpeed]="500">
+      Technology Partners
+    </h2>
     <div class="partners-row">
-      @for (logo of partners; track logo) {
-        <img [src]="'assets/images/cyber/' + logo" alt="Technology partner" />
+      @for (logo of partners; track logo; let i = $index) {
+        <img
+          [src]="'assets/images/cyber/' + logo"
+          alt="Technology partner"
+          [appAnim]="'bottom-t-top'"
+          [animDelay]="i * 100"
+          [animSpeed]="500"
+        />
       }
     </div>
   </div>
 </section>
 
 <section class="cyber-cta">
-  <p>Get in touch with us any time</p>
-  <a class="btn cta-btn" routerLink="/contact-us">Contact Us</a>
+  <p [appAnim]="'left-t-right'" [animDelay]="600" [animSpeed]="500">
+    Get in touch with us any time
+  </p>
+  <a
+    class="btn cta-btn"
+    routerLink="/contact-us"
+    [appAnim]="'bottom-t-top'"
+    [animDelay]="750"
+    [animSpeed]="500"
+  >
+    Contact Us
+  </a>
 </section>

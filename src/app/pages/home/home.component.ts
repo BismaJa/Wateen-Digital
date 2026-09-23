@@ -12,11 +12,14 @@ import {
 import { RouterLink } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { FullpageStateService } from '../../shared/fullpage-state.service';
+import { UncodeAnimDirective, UncodeAnimType } from '../../shared/uncode-anim.directive';
+import { CountUpDirective } from '../../shared/count-up.directive';
+import { BadgeCarousel } from '../../shared/badge-carousel';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, UncodeAnimDirective, CountUpDirective],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -27,16 +30,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private readonly fullpageState = inject(FullpageStateService);
   private animating = false;
   private touchStartY = 0;
+  private touchStartScrollTop = 0;
+  /** True while the footer is shown by sliding the locked page up (vs. native scroll). */
+  private footerReveal = false;
   private timers: ReturnType<typeof setInterval>[] = [];
   private readonly onWheelBound = (e: WheelEvent) => this.handleWheel(e);
   readonly showingFooter = signal(false);
 
   readonly active = signal(0);
   readonly focusIndex = signal(0);
-  /** Original shows ~3 cards; with 4 items we get 2 carousel positions (dots). */
-  readonly focusDotCount = 2;
-  readonly partnerIndex = signal(0);
-  readonly certPage = signal(0);
 
   readonly certBadges = [
     [
@@ -102,27 +104,56 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   ];
 
-  readonly whyChoose = [
+  get focusDotCount(): number {
+    return window.innerWidth <= 576 ? this.focusAreas.length : 2;
+  }
+
+  focusDotIndices(): number[] {
+    return Array.from({ length: this.focusDotCount }, (_, index) => index);
+  }
+
+  readonly whyChoose: {
+    title: string;
+    text: string;
+    icon: string;
+    anim: UncodeAnimType;
+    delay: number;
+  }[] = [
     {
       title: 'Experience',
       text: 'Certified and trained resources in Gartner leading platforms and solutions.',
-      icon: 'assets/images/Experience-icon.png'
+      icon: 'assets/images/Experience-icon.png',
+      anim: 'left-t-right',
+      delay: 700
     },
     {
       title: 'Partnerships',
       text: 'Strong partnerships with leading Global OEMs.',
-      icon: 'assets/images/Partnerships-icon.png'
+      icon: 'assets/images/Partnerships-icon.png',
+      anim: 'bottom-t-top',
+      delay: 1000
     },
     {
       title: 'Skill Readiness',
       text: 'Wateen already has 500+ Advanced Technical, IT, and telecom resources for Telecom Deployment Services, enterprise solutions and Professional Services Projects in UAE.',
-      icon: 'assets/images/Skill-Readiness-icon.png'
+      icon: 'assets/images/Skill-Readiness-icon.png',
+      anim: 'top-t-bottom',
+      delay: 1300
     },
     {
       title: 'Operating Model',
       text: 'Sales & Technical Sales resource presence in UAE to be supported by a strong Pakistan based team to be used for project delivery.',
-      icon: 'assets/images/operating-icon.png'
+      icon: 'assets/images/operating-icon.png',
+      anim: 'right-t-left',
+      delay: 1600
     }
+  ];
+
+  readonly socials = [
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/', delay: 0 },
+    { label: 'X', href: 'https://twitter.com/', delay: 50 },
+    { label: 'Facebook', href: 'https://www.facebook.com/', delay: 100 },
+    { label: 'Instagram', href: 'https://www.instagram.com/', delay: 150 }
   ];
 
   readonly announcements = [
@@ -177,13 +208,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     );
     this.timers.push(
       setInterval(() => {
-        this.partnerIndex.update((i) => (i + 1) % this.partners.length);
-      }, 3200)
-    );
-    this.timers.push(
-      setInterval(() => {
-        this.certPage.update((i) => (i + 1) % this.certBadges.length);
-      }, 4000)
+        // Logo carousels advance one item at a time, only while their slide is visible.
+        if (this.active() === 5) this.certs.autoStep();
+        if (this.active() === 6) this.partnerCarousel.autoStep();
+      }, 1800)
     );
   }
 
@@ -207,8 +235,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       'fullpage-lock',
       'home-fullpage',
       'nav-on-light',
-      'showing-home-footer'
+      'showing-home-footer',
+      'home-footer-reveal'
     );
+    this.document.body.style.removeProperty('--home-footer-shift');
     this.document.documentElement.classList.remove('fullpage-lock');
     window.removeEventListener('wheel', this.onWheelBound);
     this.fullpageState.lightSlide.set(false);
@@ -224,6 +254,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     if (index < 0 || index >= this.slides.length) return;
     if (index === this.active()) return;
     this.animating = true;
+    // Entering from above starts at the top of a tall slide; coming back up starts at its end.
+    const inner = this.slideInner(index);
+    if (inner) inner.scrollTop = index > this.active() ? 0 : inner.scrollHeight;
     this.active.set(index);
     this.syncNavTheme(index);
     window.setTimeout(() => {
@@ -272,6 +305,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
     event.preventDefault();
     if (this.animating) return;
+
+    // Slides taller than the screen (stacked cards on small screens) scroll through
+    // their own content first; only at the edge does the wheel change slides.
+    const inner = this.slideInner();
+    if (inner && event.deltaY !== 0 && this.canScrollInner(inner, event.deltaY > 0)) {
+      inner.scrollBy({ top: event.deltaY });
+      return;
+    }
+
     if (event.deltaY > 30) this.next();
     else if (event.deltaY < -30) this.prev();
   }
@@ -280,6 +322,21 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.showingFooter() || this.animating) return;
     this.animating = true;
     this.showingFooter.set(true);
+
+    // Footer fits on screen: slide the page up by the footer's height like one more
+    // slide (styles.scss: body.home-footer-reveal), keeping the page scroll-locked.
+    const footerHeight = this.footerHeight();
+    if (footerHeight > 0 && footerHeight <= window.innerHeight) {
+      this.footerReveal = true;
+      this.document.body.style.setProperty('--home-footer-shift', `${footerHeight}px`);
+      this.document.body.classList.add('home-footer-reveal');
+      window.setTimeout(() => {
+        this.animating = false;
+      }, 900);
+      return;
+    }
+
+    // Footer taller than the screen (stacked on phones): fall back to native scrolling.
     this.document.body.classList.remove('fullpage-lock');
     this.document.documentElement.classList.remove('fullpage-lock');
     this.document.body.classList.add('showing-home-footer');
@@ -293,6 +350,21 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private exitFooter(slideIndex = this.slides.length - 1): void {
     if (!this.showingFooter() || this.animating) return;
     this.animating = true;
+
+    if (this.footerReveal) {
+      this.footerReveal = false;
+      this.document.body.classList.remove('home-footer-reveal');
+      this.showingFooter.set(false);
+      if (slideIndex !== this.active()) {
+        this.active.set(slideIndex);
+        this.syncNavTheme(slideIndex);
+      }
+      window.setTimeout(() => {
+        this.animating = false;
+      }, 900);
+      return;
+    }
+
     window.scrollTo({ top: 0, behavior: 'auto' });
     this.showingFooter.set(false);
     this.document.body.classList.remove('showing-home-footer');
@@ -308,6 +380,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   @HostListener('window:touchstart', ['$event'])
   onTouchStart(event: TouchEvent): void {
     this.touchStartY = event.touches[0]?.clientY ?? 0;
+    this.touchStartScrollTop = this.slideInner()?.scrollTop ?? 0;
   }
 
   @HostListener('window:touchend', ['$event'])
@@ -315,8 +388,32 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     const endY = event.changedTouches[0]?.clientY ?? 0;
     const diff = this.touchStartY - endY;
     if (Math.abs(diff) < 50) return;
+    // The swipe natively scrolled the slide's own content; only change slides when
+    // the swipe started at that content's top/bottom edge.
+    const inner = this.slideInner();
+    if (!this.showingFooter() && this.canScrollInner(inner, diff > 0, this.touchStartScrollTop)) return;
     if (diff > 0) this.next();
     else this.prev();
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    if (!this.footerReveal) return;
+    this.document.body.style.setProperty('--home-footer-shift', `${this.footerHeight()}px`);
+  }
+
+  private footerHeight(): number {
+    return this.document.querySelector<HTMLElement>('app-footer')?.offsetHeight ?? 0;
+  }
+
+  private slideInner(index = this.active()): HTMLElement | null {
+    const section = this.document.querySelectorAll<HTMLElement>('.fullpage-track > .fp-section')[index];
+    return section?.querySelector<HTMLElement>('.fp-inner') ?? null;
+  }
+
+  private canScrollInner(inner: HTMLElement | null, down: boolean, scrollTop = inner?.scrollTop ?? 0): boolean {
+    if (!inner || inner.scrollHeight <= inner.clientHeight + 2) return false;
+    return down ? scrollTop + inner.clientHeight < inner.scrollHeight - 2 : scrollTop > 2;
   }
 
   visibleFocusCards() {
@@ -324,13 +421,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.focusAreas.slice(start, start + 3);
   }
 
-  visibleCertBadges(): string[] {
-    return this.certBadges[this.certPage()] ?? this.certBadges[0];
-  }
-
-  visiblePartners(): string[] {
-    return this.partners[this.partnerIndex()] ?? this.partners[0];
-  }
+  readonly certs = new BadgeCarousel(this.certBadges);
+  readonly partnerCarousel = new BadgeCarousel(this.partners);
 
   isLightSlide(): boolean {
     // slides with white/light backgrounds need dark header treatment

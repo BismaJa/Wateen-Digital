@@ -37,12 +37,13 @@
   padding: 120px 24px 56px;
 }
 
+/* Portal contact hero title: 60px / 400 / 1.3, stepping to 32px at <=576. */
 .hero-content h1 {
   margin: 0;
-  font-size: clamp(36px, 5vw, 56px);
-  font-weight: 700;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 1.3;
   color: #ffffff;
-  line-height: 1.15;
 }
 
 .hero-content h1 span {
@@ -50,15 +51,15 @@
 }
 
 .contact-info {
-  padding: 64px 0 40px;
+  padding: 144px 0 0;
   background: #fff;
 }
 
 .info-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
-  max-width: 900px;
+  gap: 36px;
+  max-width: 1284px;
   text-align: center;
 }
 
@@ -123,10 +124,12 @@
   transform: translateX(-50%);
 }
 
+/* Portal contact labels use the h3.h3.font-weight-500 step: 24px / 500 / 36px. */
 .info-item h2 {
   margin: 4px 0 0;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 36px;
   color: #2a2a2a;
 }
 
@@ -134,12 +137,16 @@
 .info-item p {
   margin: 0;
   max-width: 340px;
-  font-size: 13px;
-  line-height: 1.6;
-  letter-spacing: 0.04em;
+  font-size: 15px;
+  line-height: 1.75;
   color: #6a6f78;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+/* Portal email link: 15px / 1.75 (26.25px) / 600 at every viewport. */
+.info-item a {
+  font-weight: 600;
 }
 
 .info-item a:hover {
@@ -147,32 +154,34 @@
 }
 
 .contact-form-section {
-  padding: 24px 0 88px;
+  padding: 72px 0 144px;
   background: #fff;
 }
 
 .form-wrap {
-  max-width: 900px;
+  max-width: 1284px;
 }
 
+/* Portal "Request For Services" is the h3.h1 variant: 35px / 500 / 1.2 -> 24px at <=576. */
 .form-wrap h2 {
   margin: 0 0 28px;
   text-align: center;
-  font-size: clamp(26px, 3vw, 34px);
-  font-weight: 600;
+  font-size: 35px;
+  font-weight: 500;
+  line-height: 1.2;
   color: #2a2a2a;
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 36px;
 }
 
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 36px;
 }
 
 input,
@@ -222,7 +231,34 @@ textarea {
   font-weight: 600;
 }
 
-@media (max-width: 800px) {
+/* Portal row-parent vertical rhythm: 144 -> 108 (<=1600) -> 72 (<=959). */
+@media (max-width: 1600px) {
+  .contact-info {
+    padding-top: 108px;
+  }
+
+  .contact-form-section {
+    padding: 54px 0 108px;
+  }
+}
+
+@media (max-width: 959px) {
+  .contact-info {
+    padding-top: 72px;
+  }
+
+  .contact-form-section {
+    padding: 36px 0 72px;
+  }
+
+  /* Track the portal .limit-width: 95% of the viewport below 960px. */
+  .info-grid,
+  .form-wrap {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
   .info-grid,
   .row {
     grid-template-columns: 1fr;
@@ -230,5 +266,25 @@ textarea {
 
   .contact-hero {
     min-height: 42vh;
+  }
+
+  .info-item p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-content h1 {
+    font-size: 32px;
+  }
+
+  .form-wrap h2 {
+    font-size: 24px;
+  }
+
+  .info-grid,
+  .contact-form,
+  .row {
+    gap: 16px;
   }
 }

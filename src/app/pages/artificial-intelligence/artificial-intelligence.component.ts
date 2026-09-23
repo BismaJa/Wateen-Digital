@@ -9,11 +9,12 @@ import {
 import { DOCUMENT } from '@angular/common';
 import { FullpageStateService } from '../../shared/fullpage-state.service';
 import { DemoModalService } from '../../shared/demo-modal.service';
+import { UncodeAnimDirective } from '../../shared/uncode-anim.directive';
 
 @Component({
   selector: 'app-artificial-intelligence',
   standalone: true,
-  imports: [],
+  imports: [UncodeAnimDirective],
   templateUrl: './artificial-intelligence.component.html',
   styleUrl: './artificial-intelligence.component.scss'
 })

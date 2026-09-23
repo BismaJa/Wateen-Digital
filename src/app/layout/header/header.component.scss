@@ -17,28 +17,28 @@
   pointer-events: none;
 }
 
+/* Geometry tokens (--nav-top/-height/-gutter) live in styles.scss so slides can align to them. */
 .nav-shell {
   pointer-events: none;
-  padding: 14px 28px 0;
-  max-width: 1480px;
+  padding: var(--nav-top) var(--nav-gutter) 0;
   margin: 0 auto;
 }
 
-/* Floating navbar — solid dark (matches original dark slides) */
+/* Floating navbar — frosted translucent glass over dark slides */
 .nav-glass {
   pointer-events: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  min-height: 74px;
-  padding: 8px 28px 8px 20px;
-  border-radius: 20px;
-  background: rgba(12, 18, 34, 0.94);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.35);
+  min-height: var(--nav-height);
+  padding: 8px clamp(20px, 2.1vw, 40px);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.18);
   animation: nav-slide-in 0.5s ease both;
   transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
@@ -67,7 +67,7 @@
 }
 
 .logo img {
-  height: 56px;
+  height: clamp(56px, 4.4vw, 84px);
   width: auto;
   display: block;
 }
@@ -95,10 +95,10 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 12px 13px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.2;
+  padding: 12px clamp(8px, 0.6vw, 11px);
+  font-size: clamp(15px, 1vw, 19px);
+  font-weight: 300;
+  line-height: 1;
   color: #ffffff;
   white-space: nowrap;
   transition: color 0.22s ease;
@@ -146,8 +146,9 @@
   display: block;
   padding: 11px 18px;
   color: #ffffff;
-  font-weight: 500;
-  font-size: 14px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1;
 }
 
 .submenu a:hover,
@@ -283,11 +284,7 @@
     display: block;
   }
 
-  .nav-shell {
-    padding: 12px 14px 0;
-  }
-
   .mobile-panel {
-    margin-inline: 14px;
+    margin-inline: var(--nav-gutter);
   }
 }

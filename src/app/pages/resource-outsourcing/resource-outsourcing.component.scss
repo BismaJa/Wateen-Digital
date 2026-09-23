@@ -6,7 +6,7 @@
 
 .ro-hero {
   position: relative;
-  min-height: 48vh;
+  min-height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,13 +34,14 @@
   position: relative;
   z-index: 1;
   text-align: center;
-  padding: 120px 24px 56px;
+  padding: 144px 36px;
 }
 
 .hero-content h1 {
   margin: 0;
-  font-size: clamp(34px, 5vw, 56px);
-  font-weight: 700;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 1.3;
   color: #fff;
 }
 
@@ -50,7 +51,7 @@
 
 .ro-intro {
   background: #0a0f1a;
-  padding: 64px 0 72px;
+  padding: 81px 0;
 }
 
 .intro-grid {
@@ -70,32 +71,42 @@
 
 .intro-copy h2 {
   margin: 0 0 18px;
-  font-size: clamp(24px, 2.8vw, 34px);
-  font-weight: 700;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 50px;
   color: #00adef;
-  line-height: 1.25;
 }
 
 .intro-copy p {
-  margin: 0 0 14px;
-  font-size: 15px;
-  line-height: 1.7;
+  margin: 18px 0 14px;
+  font-size: 18px;
+  line-height: 1.3;
   color: rgba(255, 255, 255, 0.88);
 }
 
-.ro-btn {
+.btn.ro-btn {
   display: inline-flex;
-  margin-top: 10px;
-  padding: 12px 26px;
-  border-radius: 4px;
-  font-weight: 600;
+  margin-top: 36px;
+  padding: 10px 30px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: uppercase;
   text-decoration: none;
+}
+
+@media (max-width: 400px) {
+  .btn.ro-btn {
+    margin-top: 20px;
+  }
 }
 
 .ro-btn.sm {
   margin-top: auto;
-  padding: 10px 18px;
-  font-size: 13px;
+  padding: 8px 18px;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .ro-roles,
@@ -106,7 +117,26 @@
   position: relative;
   background-size: cover;
   background-position: center;
-  padding: 72px 0;
+}
+
+.ro-roles {
+  padding: 71px 0;
+}
+
+.ro-delivery {
+  padding: 81px 0;
+}
+
+.ro-gains {
+  padding: 80px 0;
+}
+
+.ro-teams {
+  padding: 81px 0;
+}
+
+.ro-process {
+  padding: 71px 0 0;
 }
 
 .ro-roles::before,
@@ -137,8 +167,9 @@
 .ro-stack h2 {
   margin: 0 0 18px;
   text-align: center;
-  font-size: clamp(26px, 3vw, 36px);
-  font-weight: 700;
+  font-size: 44px;
+  font-weight: 600;
+  line-height: 50px;
   color: #00adef;
 }
 
@@ -146,12 +177,12 @@
   margin: 0 auto 36px;
   max-width: 900px;
   text-align: center;
-  font-size: 15px;
-  line-height: 1.7;
   color: rgba(255, 255, 255, 0.88);
 }
 
 .section-lead.light {
+  font-size: 18px;
+  line-height: 1.75;
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -175,22 +206,23 @@
 }
 
 .role-icon {
-  width: 48px;
-  height: 48px;
+  width: 65px;
+  height: 70px;
   object-fit: contain;
   margin-bottom: 12px;
 }
 
 .role-card h3 {
-  margin: 0 0 14px;
-  font-size: 17px;
-  font-weight: 700;
-  color: #0b0d10;
+  margin: 27px 0 0;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #2a2e3f;
 }
 
 .role-card ul {
   list-style: none;
-  margin: 0 0 18px;
+  margin: 14px 0 18px;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -202,8 +234,7 @@
   display: flex;
   gap: 8px;
   align-items: flex-start;
-  font-size: 13px;
-  line-height: 1.4;
+  font-size: 20px;
   color: #222;
 }
 
@@ -251,8 +282,7 @@
 .delivery-intro li {
   display: flex;
   gap: 10px;
-  font-size: 15px;
-  line-height: 1.5;
+  font-size: 20px;
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -276,8 +306,9 @@
 }
 
 .delivery-card figcaption {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 600;
   color: #fff;
 }
 
@@ -288,7 +319,7 @@
 }
 
 .gain-card {
-  border-radius: 12px;
+  border-radius: 20px;
   overflow: hidden;
   background-size: cover;
   background-position: center;
@@ -309,8 +340,9 @@
 
 .gain-inner h3 {
   margin: 0 0 22px;
-  font-size: 26px;
-  font-weight: 700;
+  font-size: 35px;
+  font-weight: 600;
+  line-height: 1.2;
   color: #00adef;
 }
 
@@ -320,14 +352,10 @@
 
 .gain-item h4 {
   margin: 0 0 6px;
-  font-size: 16px;
-  font-weight: 700;
 }
 
 .gain-item p {
   margin: 0;
-  font-size: 14px;
-  line-height: 1.55;
   opacity: 0.9;
 }
 
@@ -354,19 +382,19 @@
 }
 
 .team-body {
-  padding: 22px 22px 26px;
+  padding: 20px 45px;
 }
 
 .team-body h3 {
-  margin: 0 0 14px;
-  font-size: 22px;
-  font-weight: 700;
+  margin: 27px 0 15px;
+  font-weight: 600;
+  line-height: 1.2;
   color: #0b0d10;
 }
 
 .team-body ul {
   list-style: none;
-  margin: 0;
+  margin-top: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -376,48 +404,47 @@
 .team-body li {
   display: flex;
   gap: 10px;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 20px;
 }
 
 .teams-note {
   margin: 28px 0 0;
   text-align: center;
-  font-size: 16px;
+  font-size: 32px;
+  line-height: 1.75;
   color: rgba(255, 255, 255, 0.9);
 }
 
 .process-diagram {
   display: block;
-  width: min(100%, 980px);
+  width: 100%;
   margin: 28px auto 36px;
   height: auto;
 }
 
 .process-cta {
-  max-width: 860px;
-  margin: 0 auto;
   text-align: center;
 }
 
 .process-cta p {
   margin: 0 0 18px;
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 20px;
+  line-height: 1.75;
   color: rgba(255, 255, 255, 0.9);
 }
 
 .process-cta h3 {
-  margin: 0;
-  font-size: clamp(20px, 2.4vw, 28px);
-  font-weight: 700;
+  max-width: 848px;
+  margin: 0 auto;
+  font-size: 35px;
+  font-weight: 600;
   color: #00adef;
-  line-height: 1.35;
+  line-height: 1.2;
 }
 
 .ro-stack {
   background: #fff;
-  padding: 64px 0 48px;
+  padding: 36px 0 71px;
   color: #1a1a1a;
 }
 
@@ -442,24 +469,35 @@
 .ro-cta {
   background: #fff;
   text-align: center;
-  padding: 40px 24px 72px;
+  padding: 72px 36px;
 }
 
 .ro-cta p {
   margin: 0 0 18px;
-  font-size: clamp(22px, 2.4vw, 30px);
+  font-size: 35px;
   font-weight: 600;
+  line-height: 1.2;
   color: #1a1a1a;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1499px) {
+  .hero-content {
+    padding: 108px 36px;
+  }
+}
+
+@media (max-width: 1080px) {
   .roles-grid,
   .delivery-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 959px) {
+  .hero-content {
+    padding: 72px 36px;
+  }
+
   .intro-grid,
   .gains-grid,
   .teams-grid {
@@ -471,7 +509,74 @@
     grid-template-columns: 1fr;
   }
 
+  .intro-grid,
+  .roles-grid,
+  .delivery-grid,
+  .gains-grid,
+  .teams-grid {
+    gap: 36px;
+  }
+
   .intro-media {
     order: -1;
+  }
+
+  .ro-cta p {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 767px) {
+  .ro-cta p {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 569px) {
+  .ro-cta p {
+    font-size: 24px;
+  }
+
+  .teams-note {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-content h1 {
+    font-size: 32px;
+  }
+
+  .intro-copy p {
+    font-size: 16px;
+  }
+
+  .gain-inner h3,
+  .process-cta h3 {
+    font-size: 24px;
+  }
+
+  .ro-cta {
+    padding: 72px 16px;
+  }
+
+  .intro-grid,
+  .roles-grid,
+  .delivery-grid,
+  .gains-grid,
+  .teams-grid {
+    gap: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .intro-copy p {
+    margin-top: 9px;
+  }
+}
+
+@media (max-width: 1366px) {
+  .role-card h3 {
+    margin-top: 16px;
   }
 }

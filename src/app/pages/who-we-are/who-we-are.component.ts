@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { UncodeAnimDirective } from '../../shared/uncode-anim.directive';
 
 @Component({
   selector: 'app-who-we-are',
   standalone: true,
-  imports: [],
+  imports: [UncodeAnimDirective],
   templateUrl: './who-we-are.component.html',
   styleUrl: './who-we-are.component.scss'
 })

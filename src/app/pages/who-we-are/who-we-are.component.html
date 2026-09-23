@@ -4,19 +4,29 @@
     style="background-image: url('assets/images/who-we-are/About-Us.jpg')"
   ></div>
   <div class="hero-overlay"></div>
-  <div class="hero-content">
+  <div
+    class="hero-content"
+    [appAnim]="'left-t-right'"
+    [animDelay]="1000"
+    [animSpeed]="600"
+  >
     <h1><span>Who</span> We Are</h1>
   </div>
 </section>
 
 <section class="wwa-about">
   <div class="container about-grid">
-    <div class="about-copy">
+    <div
+      class="about-copy"
+      [appAnim]="'right-t-left'"
+      [animDelay]="1200"
+      [animSpeed]="600"
+    >
       @for (p of paragraphs; track $index) {
         <p>{{ p }}</p>
       }
     </div>
-    <div class="about-media">
+    <div class="about-media" [appAnim]="'right-t-left'" [animSpeed]="500">
       <img
         src="assets/images/who-we-are/who-we-are-shape.png"
         alt="Wateen Digital Solutions team"
@@ -27,12 +37,16 @@
 
 <section class="wwa-how">
   <div class="container how-grid">
-    <div class="how-copy">
+    <div class="how-copy" [appAnim]="'alpha-anim'" [animSpeed]="1000">
       <p class="eyebrow">HOW WE WORK</p>
-      <h2>Embark on a seamless journey with Wateen Digital Solutions:</h2>
-      <p>{{ howWeWork }}</p>
+      <h2 [appAnim]="'zoom-in'" [animDelay]="200">
+        Embark on a seamless journey with Wateen Digital Solutions:
+      </h2>
+      <p [appAnim]="'right-t-left'" [animDelay]="600" [animSpeed]="500">
+        {{ howWeWork }}
+      </p>
     </div>
-    <div class="how-media">
+    <div class="how-media" [appAnim]="'right-t-left'" [animSpeed]="500">
       <img
         src="assets/images/who-we-are/line-art.png"
         alt="How we work illustration"

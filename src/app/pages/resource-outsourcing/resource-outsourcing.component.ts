@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { UncodeAnimDirective } from '../../shared/uncode-anim.directive';
 
 @Component({
   selector: 'app-resource-outsourcing',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, UncodeAnimDirective],
   templateUrl: './resource-outsourcing.component.html',
   styleUrl: './resource-outsourcing.component.scss'
 })

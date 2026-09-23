@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { UncodeAnimDirective } from '../../shared/uncode-anim.directive';
 
 @Component({
   selector: 'app-media',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, UncodeAnimDirective],
   templateUrl: './media.component.html',
   styleUrl: './media.component.scss'
 })

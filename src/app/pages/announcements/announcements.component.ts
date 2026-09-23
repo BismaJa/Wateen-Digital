@@ -8,11 +8,12 @@ import {
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { FullpageStateService } from '../../shared/fullpage-state.service';
+import { UncodeAnimDirective } from '../../shared/uncode-anim.directive';
 
 @Component({
   selector: 'app-announcements',
   standalone: true,
-  imports: [],
+  imports: [UncodeAnimDirective],
   templateUrl: './announcements.component.html',
   styleUrl: './announcements.component.scss'
 })

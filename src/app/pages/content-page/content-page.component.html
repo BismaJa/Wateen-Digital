@@ -1,19 +1,38 @@
 <section class="page-hero">
   <div class="container">
-    <h1>{{ page().title }}</h1>
+    <h1 [appAnim]="'left-t-right'" [animDelay]="600" [animSpeed]="500">
+      {{ page().title }}
+    </h1>
     @if (page().subtitle) {
-      <p class="subtitle">{{ page().subtitle }}</p>
+      <p
+        class="subtitle"
+        [appAnim]="'right-t-left'"
+        [animDelay]="1200"
+        [animSpeed]="600"
+      >
+        {{ page().subtitle }}
+      </p>
     }
   </div>
 </section>
 
 <section class="page-body">
   <div class="container narrow">
-    @for (p of page().paragraphs; track p) {
-      <p>{{ p }}</p>
+    @for (p of page().paragraphs; track p; let i = $index) {
+      <p [appAnim]="'right-t-left'" [animDelay]="i * 150" [animSpeed]="600">
+        {{ p }}
+      </p>
     }
     @if (page().ctaLabel && page().ctaLink) {
-      <a class="btn" [routerLink]="page().ctaLink">{{ page().ctaLabel }}</a>
+      <a
+        class="btn"
+        [routerLink]="page().ctaLink"
+        [appAnim]="'left-t-right'"
+        [animDelay]="600"
+        [animSpeed]="500"
+      >
+        {{ page().ctaLabel }}
+      </a>
     }
   </div>
 </section>

@@ -1,9 +1,10 @@
 import { Component, HostListener, OnInit, signal } from '@angular/core';
+import { UncodeAnimDirective } from '../../shared/uncode-anim.directive';
 
 @Component({
   selector: 'app-telecom-expertise',
   standalone: true,
-  imports: [],
+  imports: [UncodeAnimDirective],
   templateUrl: './telecom-expertise.component.html',
   styleUrl: './telecom-expertise.component.scss'
 })
