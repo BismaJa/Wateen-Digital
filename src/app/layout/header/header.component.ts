@@ -16,7 +16,13 @@ const NON_STICKY_PREFIXES = [
   '/services/professional-services',
   '/services/managed-cyber-security',
   '/services/enterprise-solutions-services',
-  '/services/energy-solutions'
+  '/services/energy-solutions',
+  '/who-we-are',
+  '/careers',
+  '/why-choose-wateen',
+  '/certified-resources',
+  '/contact-us',
+  '/media'
 ];
 
 @Component({
