@@ -20,25 +20,28 @@
   </p>
 </section>
 
-@for (section of sections; track section.title) {
-  <section class="ps-section">
+@for (section of sections; track section.title; let si = $index) {
+  <!-- Copy slides in from its own side (toward the image); sections alternate grey/white. -->
+  @let copyAnim = section.mediaLeft ? 'right-t-left' : 'left-t-right';
+  <section class="ps-section" [class.grey]="si % 2 === 0">
     <div class="container section-grid" [class.media-left]="section.mediaLeft">
-      <div class="section-copy" [appAnim]="'alpha-anim'" [animSpeed]="1000">
-        <h2 [appAnim]="'zoom-in'" [animDelay]="200">{{ section.title }}</h2>
-        <p [appAnim]="'right-t-left'" [animDelay]="400">{{ section.description }}</p>
+      <div class="section-copy">
+        <h2 [appAnim]="copyAnim" [animDelay]="200" [animSpeed]="600">{{ section.title }}</h2>
+        <p [appAnim]="copyAnim" [animDelay]="350" [animSpeed]="600">{{ section.description }}</p>
 
         @if (section.subgroups?.length) {
           <div class="subgroups">
             @for (group of section.subgroups; track group.title; let gi = $index) {
               <div
                 class="subgroup"
-                [appAnim]="'right-t-left'"
-                [animDelay]="600 + gi * 150"
+                [appAnim]="copyAnim"
+                [animDelay]="500 + gi * 150"
+                [animSpeed]="600"
               >
                 <h3>{{ group.title }}</h3>
                 <ul>
                   @for (item of group.items; track item) {
-                    <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
+                    <li><svg class="tick" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.6 3.4L13.5 4.5" /></svg>{{ item }}</li>
                   }
                 </ul>
               </div>
@@ -47,17 +50,17 @@
         } @else if (section.columns.length > 1) {
           <div class="two-cols">
             @for (col of section.columns; track $index; let ci = $index) {
-              <ul [appAnim]="'right-t-left'" [animDelay]="600 + ci * 150">
+              <ul [appAnim]="copyAnim" [animDelay]="500 + ci * 150" [animSpeed]="600">
                 @for (item of col; track item) {
-                  <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
+                  <li><svg class="tick" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.6 3.4L13.5 4.5" /></svg>{{ item }}</li>
                 }
               </ul>
             }
           </div>
         } @else if (section.columns.length === 1) {
-          <ul [appAnim]="'right-t-left'" [animDelay]="600">
+          <ul [appAnim]="copyAnim" [animDelay]="500" [animSpeed]="600">
             @for (item of section.columns[0]; track item) {
-              <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
+              <li><svg class="tick" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.6 3.4L13.5 4.5" /></svg>{{ item }}</li>
             }
           </ul>
         }
@@ -66,7 +69,8 @@
       <div
         class="section-media"
         [appAnim]="section.mediaLeft ? 'left-t-right' : 'right-t-left'"
-        [animSpeed]="500"
+        [animDelay]="200"
+        [animSpeed]="800"
       >
         <img [src]="section.image" [alt]="section.title" />
       </div>

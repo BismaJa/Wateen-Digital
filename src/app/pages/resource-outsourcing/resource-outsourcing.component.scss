@@ -1,15 +1,99 @@
+/* Resource Outsourcing — follows the live page. Sizes are the 1920px values
+   scaled with the viewport; wide rows span the floating navbar (--nav-gutter,
+   styles.scss). Sections are separated by thin white rules. */
 :host {
   display: block;
-  background: #0a0f1a;
-  color: #fff;
+  background: #ffffff;
+  --ro-gap: 8px;
 }
 
-.ro-hero {
+section {
   position: relative;
-  min-height: 60vh;
+  background-size: cover;
+  background-position: center;
+  background-color: #1b1d22;
+  color: #ffffff;
+}
+
+section + section {
+  margin-top: var(--ro-gap);
+}
+
+.wide {
+  position: relative;
+  z-index: 1;
+  padding-left: max(var(--nav-gutter), 16px);
+  padding-right: max(var(--nav-gutter), 16px);
+}
+
+.section-title {
+  margin: 0 0 clamp(14px, 1.3vw, 24px);
+  font-size: clamp(26px, 2.4vw, 46px);
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.section-title.cyan {
+  color: #00adef;
+}
+
+.section-lead {
+  max-width: 1400px;
+  margin: 0 auto;
+  font-size: clamp(14px, 0.95vw, 18px);
+  line-height: 1.7;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Outlined cyan check used in the lists */
+.ccheck {
+  flex-shrink: 0;
+  width: 1.1em;
+  height: 1.1em;
+  fill: none;
+  stroke: #00adef;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.btn.ro-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: clamp(130px, 8.5vw, 162px);
+  padding: clamp(10px, 0.8vw, 15px) clamp(20px, 1.5vw, 30px);
+  border: 0;
+  border-radius: 4px;
+  background: #00adef;
+  color: #ffffff;
+  font-size: clamp(13px, 0.8vw, 15px);
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn.ro-btn:hover {
+  background: #0099d6;
+}
+
+.btn.ro-btn.sm {
+  min-width: 0;
+  padding: clamp(9px, 0.65vw, 12px) clamp(18px, 1.2vw, 24px);
+  font-size: clamp(12px, 0.7vw, 13px);
+}
+
+/* ---------- Hero ---------- */
+.ro-hero {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: clamp(320px, 30vw, 580px);
   overflow: hidden;
 }
 
@@ -17,476 +101,471 @@
   position: absolute;
   inset: 0;
   background-size: cover;
-  background-position: center;
-}
-
-.hero-bg.overlay-photo {
-  opacity: 0.85;
+  background-position: center top;
 }
 
 .hero-shade {
   position: absolute;
   inset: 0;
-  background: rgba(5, 10, 24, 0.55);
+  background: rgba(14, 18, 42, 0.62);
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
+  padding: calc(var(--nav-offset) + 16px) var(--nav-gutter) 40px;
   text-align: center;
-  padding: 144px 36px;
 }
 
 .hero-content h1 {
   margin: 0;
-  font-size: 60px;
+  font-size: clamp(32px, 3.65vw, 70px);
   font-weight: 400;
-  line-height: 1.3;
-  color: #fff;
+  line-height: 1.2;
+  color: #ffffff;
 }
 
 .hero-content h1 span {
   color: #00adef;
 }
 
+/* ---------- Intro ---------- */
 .ro-intro {
-  background: #0a0f1a;
-  padding: 81px 0;
+  padding: clamp(72px, 7.5vw, 144px) max(var(--nav-gutter), 16px);
 }
 
 .intro-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(28px, 3vw, 56px);
   align-items: center;
+  max-width: 1284px;
+  margin: 0 auto;
+}
+
+.intro-media {
+  position: relative;
+  padding: clamp(10px, 1vw, 20px) 0 0 clamp(10px, 1vw, 20px);
+}
+
+/* Dashed frame peeking out behind the photo's top-left corner */
+.intro-media::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 32%;
+  border: 1.5px dashed rgba(255, 255, 255, 0.55);
+  border-radius: 14px;
 }
 
 .intro-media img {
-  width: min(100%, 520px);
-  height: auto;
+  position: relative;
   display: block;
-  margin: 0 auto;
-  object-fit: contain;
+  width: clamp(240px, 28.5vw, 548px);
+  max-width: 100%;
+  height: auto;
 }
 
 .intro-copy h2 {
-  margin: 0 0 18px;
-  font-size: 44px;
-  font-weight: 600;
-  line-height: 50px;
-  color: #00adef;
+  margin: 0 0 clamp(16px, 1.6vw, 30px);
+  font-size: clamp(26px, 2.45vw, 47px);
+  font-weight: 400;
+  line-height: 1.22;
+  color: #ffffff;
 }
 
 .intro-copy p {
-  margin: 18px 0 14px;
-  font-size: 18px;
-  line-height: 1.3;
-  color: rgba(255, 255, 255, 0.88);
+  margin: 0 0 clamp(12px, 1vw, 20px);
+  font-size: clamp(14px, 0.95vw, 18px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.95);
 }
 
-.btn.ro-btn {
-  display: inline-flex;
-  margin-top: 36px;
-  padding: 10px 30px;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: normal;
-  text-transform: uppercase;
-  text-decoration: none;
+.intro-copy .ro-btn {
+  margin-top: clamp(10px, 1vw, 20px);
 }
 
-@media (max-width: 400px) {
-  .btn.ro-btn {
-    margin-top: 20px;
-  }
-}
-
-.ro-btn.sm {
-  margin-top: auto;
-  padding: 8px 18px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.ro-roles,
-.ro-delivery,
-.ro-gains,
-.ro-teams,
-.ro-process {
-  position: relative;
-  background-size: cover;
-  background-position: center;
-}
-
+/* ---------- Specialized roles ---------- */
 .ro-roles {
-  padding: 71px 0;
-}
-
-.ro-delivery {
-  padding: 81px 0;
-}
-
-.ro-gains {
-  padding: 80px 0;
-}
-
-.ro-teams {
-  padding: 81px 0;
-}
-
-.ro-process {
-  padding: 71px 0 0;
-}
-
-.ro-roles::before,
-.ro-delivery::before,
-.ro-gains::before,
-.ro-teams::before,
-.ro-process::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(5, 10, 24, 0.72);
-  pointer-events: none;
-}
-
-.ro-roles > .container,
-.ro-delivery > .container,
-.ro-gains > .container,
-.ro-teams > .container,
-.ro-process > .container {
-  position: relative;
-  z-index: 1;
-}
-
-.ro-roles h2,
-.ro-delivery h2,
-.ro-teams h2,
-.ro-process h2,
-.ro-stack h2 {
-  margin: 0 0 18px;
-  text-align: center;
-  font-size: 44px;
-  font-weight: 600;
-  line-height: 50px;
-  color: #00adef;
-}
-
-.section-lead {
-  margin: 0 auto 36px;
-  max-width: 900px;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.88);
-}
-
-.section-lead.light {
-  font-size: 18px;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.9);
+  padding: clamp(64px, 5.5vw, 108px) 0;
 }
 
 .roles-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 22px;
+  gap: clamp(18px, 2.2vw, 42px);
+  align-items: stretch;
+  margin-top: clamp(28px, 3vw, 56px);
 }
 
 .role-card {
-  background-color: #fff;
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px;
-  padding: 24px 18px 20px;
-  color: #1a1a1a;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  align-items: flex-start;
+  padding: clamp(22px, 2.2vw, 42px) clamp(18px, 1.6vw, 32px);
+  border-radius: 6px;
+  background-color: #ffffff;
+  background-size: cover;
+  background-position: center;
+  color: #2a2e3f;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
 }
 
 .role-icon {
-  width: 65px;
-  height: 70px;
+  width: clamp(44px, 3.5vw, 68px);
+  height: clamp(44px, 3.5vw, 68px);
   object-fit: contain;
-  margin-bottom: 12px;
+  margin-bottom: clamp(16px, 1.4vw, 26px);
 }
 
 .role-card h3 {
-  margin: 27px 0 0;
-  font-size: 28px;
+  margin: 0 0 clamp(14px, 1.2vw, 22px);
+  font-size: clamp(19px, 1.5vw, 29px);
   font-weight: 400;
-  line-height: 32px;
+  line-height: 1.2;
   color: #2a2e3f;
 }
 
 .role-card ul {
-  list-style: none;
-  margin: 14px 0 18px;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: clamp(6px, 0.5vw, 10px);
+  margin: 0 0 clamp(20px, 1.8vw, 34px);
+  padding: 0;
+  list-style: none;
   flex: 1;
 }
 
 .role-card li {
   display: flex;
-  gap: 8px;
   align-items: flex-start;
-  font-size: 20px;
-  color: #222;
+  gap: 10px;
+  font-size: clamp(14px, 0.95vw, 18px);
+  line-height: 1.5;
+  color: #2a2e3f;
 }
 
-.check {
-  flex-shrink: 0;
-  width: 14px;
-  height: 14px;
-  margin-top: 2px;
-  border-radius: 50%;
-  background: #00adef;
-  position: relative;
+.role-card li .ccheck {
+  margin-top: 0.2em;
 }
 
-.check::after {
-  content: '';
-  position: absolute;
-  left: 4px;
-  top: 2px;
-  width: 4px;
-  height: 7px;
-  border: solid #fff;
-  border-width: 0 1.5px 1.5px 0;
-  transform: rotate(45deg);
-}
-
-.check.light {
-  background: transparent;
-  border: 1.5px solid #00adef;
-}
-
-.check.light::after {
-  border-color: #00adef;
+/* ---------- Delivery models ---------- */
+.ro-delivery {
+  padding: clamp(72px, 7vw, 136px) 0;
 }
 
 .delivery-intro {
-  list-style: none;
-  margin: 0 auto 36px;
-  padding: 0;
-  max-width: 820px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: clamp(8px, 0.6vw, 12px);
+  max-width: 1284px;
+  margin: 0 auto clamp(48px, 5vw, 96px);
+  padding: 0 clamp(0px, 2vw, 40px);
+  list-style: none;
 }
 
 .delivery-intro li {
   display: flex;
+  align-items: center;
   gap: 10px;
-  font-size: 20px;
-  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(14px, 0.95vw, 18px);
+  line-height: 1.5;
+  color: #ffffff;
 }
 
 .delivery-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 24px;
+  gap: clamp(20px, 2.4vw, 46px);
 }
 
 .delivery-card {
+  position: relative;
   margin: 0;
-  text-align: center;
+  padding: clamp(10px, 0.8vw, 16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  border-radius: clamp(22px, 1.8vw, 34px);
 }
 
-.delivery-card img {
-  width: min(100%, 220px);
-  height: auto;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto 14px;
+/* Dashed quarter-frames on the top-left and bottom-right corners */
+.delivery-card::before,
+.delivery-card::after {
+  content: '';
+  position: absolute;
+  width: 45%;
+  height: 45%;
+  border: 1.5px dashed rgba(255, 255, 255, 0.55);
+  pointer-events: none;
 }
 
-.delivery-card figcaption {
-  font-size: 28px;
-  line-height: 1.2;
-  font-weight: 600;
-  color: #fff;
+.delivery-card::before {
+  top: -9px;
+  left: -9px;
+  border-right: 0;
+  border-bottom: 0;
+  border-top-left-radius: clamp(28px, 2.2vw, 42px);
 }
 
-.gains-grid {
+.delivery-card::after {
+  right: -9px;
+  bottom: -9px;
+  border-left: 0;
+  border-top: 0;
+  border-bottom-right-radius: clamp(28px, 2.2vw, 42px);
+}
+
+.delivery-tile {
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
+  place-items: center;
 }
 
-.gain-card {
-  border-radius: 20px;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  min-height: 420px;
+.delivery-tile img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-.gain-inner {
-  height: 100%;
-  padding: 36px 28px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.72) 70%, rgba(255, 255, 255, 0.2) 100%);
-  color: #1a1a1a;
-}
-
-.gain-inner.dark {
-  background: linear-gradient(90deg, rgba(8, 14, 28, 0.88) 0%, rgba(8, 14, 28, 0.55) 70%, rgba(8, 14, 28, 0.15) 100%);
-  color: #fff;
-}
-
-.gain-inner h3 {
-  margin: 0 0 22px;
-  font-size: 35px;
-  font-weight: 600;
+.delivery-tile figcaption {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 0 12%;
+  font-size: clamp(16px, 1.5vw, 29px);
+  font-weight: 400;
   line-height: 1.2;
-  color: #00adef;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 }
 
-.gain-item {
-  margin-bottom: 18px;
+/* ---------- Short / long-term gains ---------- */
+.ro-gains {
+  padding: clamp(72px, 5.5vw, 108px) 0;
+}
+
+.gains-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 2.5vw, 48px);
+}
+
+/* Only the copy panel is white: the photos carry their own cyan frame with
+   rounded transparent corners, so they sit straight on the section background
+   (a white card behind them showed through those corners). */
+.gain-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(220px, 25vw, 480px);
+  align-items: center;
+  color: #2a2e3f;
+}
+
+.gain-copy {
+  align-self: stretch;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: clamp(24px, 2.6vw, 50px) clamp(22px, 2.6vw, 56px);
+}
+
+.gain-copy h3 {
+  margin: 0 0 clamp(16px, 1.6vw, 30px);
+  font-size: clamp(22px, 1.8vw, 34px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.gain-item + .gain-item {
+  margin-top: clamp(14px, 1.3vw, 24px);
 }
 
 .gain-item h4 {
-  margin: 0 0 6px;
+  margin: 0 0 4px;
+  font-size: clamp(15px, 1.05vw, 20px);
+  font-weight: 500;
+  line-height: 1.3;
 }
 
 .gain-item p {
   margin: 0;
-  opacity: 0.9;
+  font-size: clamp(13px, 0.9vw, 17px);
+  line-height: 1.55;
+  color: #444a54;
+}
+
+.gain-media {
+  display: flex;
+}
+
+/* Shown whole (never cropped) so the built-in cyan frame stays intact. */
+.gain-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- Dedicated vs augmented teams ---------- */
+.ro-teams {
+  padding: clamp(72px, 5.5vw, 108px) max(var(--nav-gutter), 16px);
 }
 
 .teams-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  margin-top: 28px;
+  grid-template-columns: repeat(2, minmax(0, 620px));
+  justify-content: center;
+  gap: clamp(28px, 5vw, 100px);
 }
 
 .team-card {
-  background: #fff;
-  border-radius: 12px;
   overflow: hidden;
-  color: #1a1a1a;
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.22);
+  border-radius: 8px;
+  background: #ffffff;
+  color: #2a2e3f;
 }
 
 .team-card > img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
   display: block;
+  width: 100%;
+  height: auto;
 }
 
 .team-body {
-  padding: 20px 45px;
+  padding: clamp(18px, 1.6vw, 30px) clamp(18px, 2vw, 40px) clamp(22px, 2vw, 38px);
 }
 
 .team-body h3 {
-  margin: 27px 0 15px;
-  font-weight: 600;
-  line-height: 1.2;
-  color: #0b0d10;
+  margin: 0 0 clamp(10px, 0.9vw, 16px);
+  font-size: clamp(18px, 1.25vw, 24px);
+  font-weight: 400;
 }
 
 .team-body ul {
-  list-style: none;
-  margin-top: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: clamp(6px, 0.5vw, 10px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .team-body li {
   display: flex;
+  align-items: flex-start;
   gap: 10px;
-  font-size: 20px;
+  font-size: clamp(14px, 0.95vw, 18px);
+  line-height: 1.55;
+  color: #2a2e3f;
 }
 
-.teams-note {
-  margin: 28px 0 0;
-  text-align: center;
-  font-size: 32px;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.9);
+.team-body li .ccheck {
+  margin-top: 0.2em;
+}
+
+/* ---------- Integration process + technology stack ---------- */
+.ro-process {
+  padding: clamp(64px, 5vw, 96px) 0 clamp(48px, 3.7vw, 72px);
+  overflow: hidden;
 }
 
 .process-diagram {
   display: block;
   width: 100%;
-  margin: 28px auto 36px;
   height: auto;
+  margin: clamp(20px, 2vw, 40px) 0;
 }
 
 .process-cta {
+  padding: clamp(22px, 2vw, 40px) clamp(20px, 3vw, 60px);
+  border-radius: 8px;
+  background: #ffffff;
+  color: #2a2e3f;
   text-align: center;
 }
 
 .process-cta p {
-  margin: 0 0 18px;
-  font-size: 20px;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.9);
+  margin: 0 auto clamp(14px, 1.4vw, 26px);
+  max-width: 1200px;
+  font-size: clamp(13px, 0.95vw, 18px);
+  line-height: 1.7;
+  color: #2a2e3f;
 }
 
 .process-cta h3 {
-  max-width: 848px;
-  margin: 0 auto;
-  font-size: 35px;
-  font-weight: 600;
-  color: #00adef;
-  line-height: 1.2;
+  margin: 0;
+  font-size: clamp(20px, 1.8vw, 34px);
+  font-weight: 400;
+  line-height: 1.3;
 }
 
-.ro-stack {
-  background: #fff;
-  padding: 36px 0 71px;
-  color: #1a1a1a;
+.stack-marquee {
+  margin-top: clamp(40px, 4vw, 76px);
+  overflow: hidden;
 }
 
-.ro-stack h2 {
-  color: #1a1a1a;
+.stack-track {
+  --logo-w: clamp(140px, 10.6vw, 204px);
+  --logo-gap: clamp(28px, 4.3vw, 83px);
+  display: flex;
+  gap: var(--logo-gap);
+  width: max-content;
+  animation: stack-scroll 70s linear infinite;
 }
 
-.stack-grid {
+.stack-marquee:hover .stack-track {
+  animation-play-state: paused;
+}
+
+.stack-logo {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
-  gap: 20px 16px;
-  align-items: center;
-  justify-items: center;
+  place-items: center;
+  flex: 0 0 var(--logo-w);
+  height: calc(var(--logo-w) * 0.45);
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: #ffffff;
 }
 
-.stack-grid img {
-  width: 72px;
-  height: 72px;
+.stack-logo img {
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 
-.ro-cta {
-  background: #fff;
-  text-align: center;
-  padding: 72px 36px;
-}
-
-.ro-cta p {
-  margin: 0 0 18px;
-  font-size: 35px;
-  font-weight: 600;
-  line-height: 1.2;
-  color: #1a1a1a;
-}
-
-@media (max-width: 1499px) {
-  .hero-content {
-    padding: 108px 36px;
+/* The track holds the logo list twice: moving it by exactly half (one list +
+   its trailing gap) lands on an identical frame, so the loop never jumps. */
+@keyframes stack-scroll {
+  to {
+    transform: translate3d(calc(-50% - var(--logo-gap) / 2), 0, 0);
   }
 }
 
-@media (max-width: 1080px) {
+@media (prefers-reduced-motion: reduce) {
+  .stack-track {
+    animation: none;
+  }
+}
+
+/* ---------- Get in touch ---------- */
+.ro-cta {
+  padding: clamp(56px, 3.7vw, 72px) 24px;
+  background: #f5f5f5;
+  color: #2a2e3f;
+  text-align: center;
+}
+
+.ro-cta p.cta-title {
+  min-height: 1.3em;
+  margin: 0 0 clamp(18px, 1.6vw, 30px);
+  font-size: clamp(24px, 1.8vw, 34px);
+  font-weight: 400;
+  line-height: 1.3;
+  color: #2a2e3f;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
   .roles-grid,
   .delivery-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -494,89 +573,125 @@
 }
 
 @media (max-width: 959px) {
-  .hero-content {
-    padding: 72px 36px;
+  .intro-grid {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
   }
 
-  .intro-grid,
-  .gains-grid,
-  .teams-grid {
-    grid-template-columns: 1fr;
+  .intro-media img {
+    width: min(78vw, 420px);
   }
 
-  .roles-grid,
-  .delivery-grid {
-    grid-template-columns: 1fr;
+  .gain-card {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .intro-grid,
-  .roles-grid,
-  .delivery-grid,
-  .gains-grid,
-  .teams-grid {
-    gap: 36px;
-  }
-
-  .intro-media {
+  .gain-media {
     order: -1;
   }
 
-  .ro-cta p {
-    font-size: 28px;
-  }
-}
-
-@media (max-width: 767px) {
-  .ro-cta p {
-    font-size: 26px;
-  }
-}
-
-@media (max-width: 569px) {
-  .ro-cta p {
-    font-size: 24px;
+  .gain-media {
+    justify-content: center;
   }
 
-  .teams-note {
-    font-size: 18px;
-  }
-}
-
-@media (max-width: 576px) {
-  .hero-content h1 {
-    font-size: 32px;
+  .gain-media img {
+    width: min(100%, 420px);
   }
 
-  .intro-copy p {
-    font-size: 16px;
-  }
-
-  .gain-inner h3,
-  .process-cta h3 {
-    font-size: 24px;
-  }
-
-  .ro-cta {
-    padding: 72px 16px;
-  }
-
-  .intro-grid,
-  .roles-grid,
-  .delivery-grid,
-  .gains-grid,
   .teams-grid {
-    gap: 16px;
+    grid-template-columns: minmax(0, 560px);
   }
 }
 
-@media (min-width: 768px) {
-  .intro-copy p {
-    margin-top: 9px;
+@media (max-width: 640px) {
+  .roles-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .delivery-grid {
+    gap: 28px 20px;
   }
 }
 
-@media (max-width: 1366px) {
-  .role-card h3 {
-    margin-top: 16px;
+/* Section titles restored (live page): space below before the section content. */
+.ro-delivery .section-title,
+.ro-teams .section-title,
+.ro-process .section-title {
+  margin-bottom: clamp(28px, 3vw, 56px);
+}
+
+.ro-process .section-title + .section-lead {
+  margin-top: calc(-1 * clamp(10px, 1.6vw, 30px));
+}
+
+.stack-marquee {
+  margin-top: 0;
+}
+
+.stack-head .section-title {
+  margin-top: clamp(48px, 4.5vw, 86px);
+}
+
+/* Closing line under the team cards: italic caps, "Resource Outsourcing" in cyan. */
+.teams-note {
+  margin: clamp(40px, 3.6vw, 70px) 0 0;
+  font-size: clamp(18px, 1.35vw, 26px);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.3;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.teams-note span {
+  color: #00adef;
+}
+
+/* Join the white copy panel and the photo into one card (live page): the panel
+   runs ~a corner-radius under the photo's left edge, so there is no dark gap
+   between them, while the photo's outer (right) corners stay on the section
+   background and show no white. */
+.gain-card {
+  --gain-overlap: clamp(18px, 1.6vw, 32px);
+}
+
+.gain-copy {
+  position: relative;
+  margin-right: calc(-1 * var(--gain-overlap));
+  padding-right: calc(clamp(22px, 2.6vw, 56px) + var(--gain-overlap));
+}
+
+.gain-media {
+  position: relative;
+  z-index: 1;
+  align-self: stretch;
+  align-items: center;
+}
+
+@media (max-width: 959px) {
+  /* Stacked: photo on top, panel tucked under its bottom edge instead. */
+  .gain-copy {
+    margin-right: 0;
+    margin-top: calc(-1 * var(--gain-overlap));
+    padding-right: clamp(22px, 2.6vw, 56px);
+    padding-top: calc(clamp(24px, 2.6vw, 50px) + var(--gain-overlap));
   }
+}
+
+/* Logos fill the tile's padded box and scale down to fit, centred both ways
+   (a %-max-height inside the grid tile didn't resolve, so tall logos overflowed). */
+.stack-logo {
+  position: relative;
+  display: block;
+}
+
+.stack-logo img {
+  position: absolute;
+  inset: clamp(8px, 0.7vw, 14px) clamp(12px, 1vw, 20px);
+  width: calc(100% - 2 * clamp(12px, 1vw, 20px));
+  height: calc(100% - 2 * clamp(8px, 0.7vw, 14px));
+  max-width: none;
+  object-fit: contain;
+  object-position: center;
 }

@@ -1,52 +1,43 @@
+<ng-template #circleCheck>
+  <svg class="ccheck" viewBox="0 0 20 20" aria-hidden="true">
+    <circle cx="10" cy="10" r="8.2" />
+    <path d="M6.2 10.3l2.6 2.5 5-5.4" />
+  </svg>
+</ng-template>
+
 <section class="ro-hero">
-  <div
-    class="hero-bg"
-    style="background-image: url('assets/images/resource/banner.jpg')"
-  ></div>
-  <div
-    class="hero-bg overlay-photo"
-    style="background-image: url('assets/images/resource/Resource-Outsourcing_02.png')"
-  ></div>
+  <div class="hero-bg" style="background-image: url('assets/images/resource/banner.jpg')"></div>
   <div class="hero-shade"></div>
-  <div class="hero-content" appAnim="left-t-right" [animDelay]="600" [animSpeed]="500">
+  <div class="hero-content" appAnim="left-t-right" [animDelay]="200" [animSpeed]="600">
     <h1><span>Resource</span> Outsourcing</h1>
   </div>
 </section>
 
-<section class="ro-intro">
-  <div class="container intro-grid">
-    <div class="intro-media" appAnim="left-t-right" [animSpeed]="500">
-      <img
-        src="assets/images/resource/wateern-outsourcing.png"
-        alt="Expert outsourcing services"
-      />
+<section class="ro-intro" style="background-image: url('assets/images/resource/Resource-Outsourcing_02.png')">
+  <div class="intro-grid">
+    <div class="intro-media" appAnim="left-t-right" [animDelay]="200" [animSpeed]="800">
+      <img src="assets/images/resource/wateern-outsourcing.png" alt="Expert outsourcing services" />
     </div>
-    <div class="intro-copy" appAnim="alpha-anim" [animSpeed]="1000">
-      <h2 appAnim="zoom-in" [animDelay]="200">Expert Outsourcing Services Tailored to Your Business</h2>
+    <div class="intro-copy">
+      <h2 appAnim="right-t-left" [animDelay]="200" [animSpeed]="600">
+        Expert Outsourcing Services Tailored to Your Business
+      </h2>
       @for (p of introParagraphs; track $index) {
-        <p appAnim="right-t-left" [animDelay]="400 + $index * 150">{{ p }}</p>
+        <p appAnim="right-t-left" [animDelay]="350 + $index * 150" [animSpeed]="600">{{ p }}</p>
       }
-      <a
-        class="btn ro-btn"
-        routerLink="/contact-us"
-        appAnim="left-t-right"
-        [animDelay]="900"
-        [animSpeed]="500"
-        >Contact Us</a
-      >
+      <a class="btn ro-btn" routerLink="/contact-us" appAnim="bottom-t-top" [animDelay]="700" [animSpeed]="500">
+        Contact Us
+      </a>
     </div>
   </div>
 </section>
 
-<section
-  class="ro-roles"
-  style="background-image: url('assets/images/resource/Resource-Outsourcing_04.png')"
->
-  <div class="container">
-    <h2 appAnim="left-t-right" [animDelay]="600" [animSpeed]="500">
+<section class="ro-roles" style="background-image: url('assets/images/resource/Resource-Outsourcing_04.png')">
+  <div class="wide">
+    <h2 class="section-title cyan" appAnim="bottom-t-top" [animDelay]="100" [animSpeed]="600">
       Access to Specialized Roles Across the Product Lifecycle
     </h2>
-    <p class="section-lead" appAnim="right-t-left" [animDelay]="1200" [animSpeed]="600">
+    <p class="section-lead" appAnim="bottom-t-top" [animDelay]="250" [animSpeed]="600">
       Our Resource Outsourcing service delivers specialists across every stage of full-stack software
       development, data management, cloud integration, and AI/ML engineering. Whether building an MVP
       or scaling a platform, teams can be assembled to match project complexity, velocity, and industry
@@ -54,187 +45,145 @@
     </p>
     <div class="roles-grid">
       @for (card of roleCards; track card.title; let i = $index) {
+        @let open = expandedRoles().has(card.title);
         <article
           class="role-card"
           style="background-image: url('assets/images/resource/bg-card-access.png')"
           appAnim="bottom-t-top"
-          [animDelay]="i * 150"
-          [animSpeed]="500"
+          [animDelay]="350 + i * 150"
+          [animSpeed]="600"
         >
-          <img class="role-icon" [src]="card.icon" [alt]="card.title" />
+          <img class="role-icon" [src]="card.icon" alt="" />
           <h3>{{ card.title }}</h3>
           <ul>
-            @for (role of card.roles; track role) {
-              <li><span class="check" aria-hidden="true"></span>{{ role }}</li>
+            @for (role of open ? card.roles : card.roles.slice(0, rolePreview); track role) {
+              <li><ng-container *ngTemplateOutlet="circleCheck" />{{ role }}</li>
             }
           </ul>
-          <a class="btn ro-btn sm" routerLink="/contact-us">Contact Us</a>
+          @if (card.roles.length > rolePreview) {
+            <button
+              type="button"
+              class="btn ro-btn sm"
+              [attr.aria-expanded]="open"
+              (click)="toggleRoles(card.title)"
+            >
+              {{ open ? 'Read Less' : 'Read More' }}
+            </button>
+          }
         </article>
       }
     </div>
   </div>
 </section>
 
-<section
-  class="ro-delivery"
-  style="background-image: url('assets/images/resource/Resource-Outsourcing_06.png')"
->
-  <div class="container">
-    <h2 appAnim="left-t-right" [animDelay]="600" [animSpeed]="500">Our Delivery Models</h2>
+<section class="ro-delivery" style="background-image: url('assets/images/resource/Resource-Outsourcing_06.png')">
+  <div class="wide">
+    <h2 class="section-title cyan" appAnim="bottom-t-top" [animDelay]="100" [animSpeed]="600">Our Delivery Models</h2>
     <ul class="delivery-intro">
       @for (item of deliveryIntro; track item; let i = $index) {
-        <li appAnim="right-t-left" [animDelay]="i * 150" [animSpeed]="600">
-          <span class="check light" aria-hidden="true"></span>{{ item }}
+        <li appAnim="left-t-right" [animDelay]="100 + i * 150" [animSpeed]="600">
+          <ng-container *ngTemplateOutlet="circleCheck" />{{ item }}
         </li>
       }
     </ul>
     <div class="delivery-grid">
       @for (model of deliveryModels; track model.title; let i = $index) {
-        <figure
-          class="delivery-card"
-          appAnim="bottom-t-top"
-          [animDelay]="i * 150"
-          [animSpeed]="500"
-        >
-          <img [src]="model.image" [alt]="model.title" />
-          <figcaption>{{ model.title }}</figcaption>
+        <figure class="delivery-card" appAnim="bottom-t-top" [animDelay]="400 + i * 150" [animSpeed]="600">
+          <div class="delivery-tile">
+            <img [src]="model.image" alt="" />
+            <figcaption>{{ model.title }}</figcaption>
+          </div>
         </figure>
       }
     </div>
   </div>
 </section>
 
-<section
-  class="ro-gains"
-  style="background-image: url('assets/images/resource/Resource-Outsourcing_08.png')"
->
-  <div class="container gains-grid">
-    <article
-      class="gain-card"
-      style="background-image: url('assets/images/resource/short-term-gain.png')"
-      appAnim="bottom-t-top"
-      [animSpeed]="500"
-    >
-      <div class="gain-inner">
-        <h3 appAnim="zoom-in" [animDelay]="200">Short-Term Gains</h3>
-        @for (item of shortTerm; track item.title; let i = $index) {
-          <div class="gain-item" appAnim="right-t-left" [animDelay]="400 + i * 150" [animSpeed]="600">
-            <h4>{{ item.title }}</h4>
-            <p>{{ item.text }}</p>
-          </div>
-        }
-      </div>
-    </article>
-    <article
-      class="gain-card"
-      style="background-image: url('assets/images/resource/modern-businessman-using-tablet.png')"
-      appAnim="bottom-t-top"
-      [animDelay]="150"
-      [animSpeed]="500"
-    >
-      <div class="gain-inner dark">
-        <h3 appAnim="zoom-in" [animDelay]="350">Long-Term Benefits</h3>
-        @for (item of longTerm; track item.title; let i = $index) {
-          <div class="gain-item" appAnim="right-t-left" [animDelay]="550 + i * 150" [animSpeed]="600">
-            <h4>{{ item.title }}</h4>
-            <p>{{ item.text }}</p>
-          </div>
-        }
-      </div>
-    </article>
+<section class="ro-gains" style="background-image: url('assets/images/resource/Resource-Outsourcing_08.png')">
+  <div class="wide gains-list">
+    @for (gain of gains; track gain.title; let gi = $index) {
+      <article class="gain-card" appAnim="bottom-t-top" [animDelay]="100 + gi * 200" [animSpeed]="600">
+        <div class="gain-copy">
+          <h3>{{ gain.title }}</h3>
+          @for (item of gain.items; track item.title; let i = $index) {
+            <div class="gain-item" appAnim="left-t-right" [animDelay]="300 + gi * 200 + i * 150" [animSpeed]="600">
+              <h4>{{ item.title }}</h4>
+              <p>{{ item.text }}</p>
+            </div>
+          }
+        </div>
+        <div class="gain-media" appAnim="right-t-left" [animDelay]="300 + gi * 200" [animSpeed]="800">
+          <img [src]="gain.image" alt="" />
+        </div>
+      </article>
+    }
   </div>
 </section>
 
-<section
-  class="ro-teams"
-  style="background-image: url('assets/images/resource/Resource-Outsourcing_12.png')"
->
-  <div class="container">
-    <h2 appAnim="left-t-right" [animDelay]="600" [animSpeed]="500">Dedicated vs Augmented Teams</h2>
-    <div class="teams-grid">
-      <article class="team-card" appAnim="bottom-t-top" [animSpeed]="500">
-        <img src="assets/images/resource/dedicated-teams.png" alt="Dedicated Teams" />
+<section class="ro-teams" style="background-image: url('assets/images/resource/Resource-Outsourcing_10.png')">
+  <h2 class="section-title cyan" appAnim="bottom-t-top" [animDelay]="100" [animSpeed]="600">Dedicated vs Augmented Teams</h2>
+  <div class="teams-grid">
+    @for (team of teams; track team.title; let i = $index) {
+      <article class="team-card" [appAnim]="i === 0 ? 'left-t-right' : 'right-t-left'" [animDelay]="150" [animSpeed]="700">
+        <img [src]="team.image" [alt]="team.title" />
         <div class="team-body">
-          <h3>Dedicated Teams</h3>
+          <h3>{{ team.title }}</h3>
           <ul>
-            @for (item of dedicated; track item) {
-              <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
+            @for (item of team.items; track item) {
+              <li><ng-container *ngTemplateOutlet="circleCheck" />{{ item }}</li>
             }
           </ul>
         </div>
       </article>
-      <article class="team-card" appAnim="bottom-t-top" [animDelay]="150" [animSpeed]="500">
-        <img src="assets/images/resource/resource-outsource.png" alt="Augmented Teams" />
-        <div class="team-body">
-          <h3>Augmented Teams</h3>
-          <ul>
-            @for (item of augmented; track item) {
-              <li><span class="check" aria-hidden="true"></span>{{ item }}</li>
-            }
-          </ul>
-        </div>
-      </article>
-    </div>
-    <p class="teams-note" appAnim="right-t-left" [animDelay]="600" [animSpeed]="600">
-      Our resource outsourcing services reshape how teams scale.
-    </p>
+    }
   </div>
+  <p class="teams-note" appAnim="bottom-t-top" [animDelay]="300" [animSpeed]="600">
+    Our <span>Resource Outsourcing</span> services reshape how teams scale.
+  </p>
 </section>
 
-<section
-  class="ro-process"
-  style="background-image: url('assets/images/resource/Resource-Outsourcing_10.png')"
->
-  <div class="container">
-    <h2 appAnim="left-t-right" [animDelay]="600" [animSpeed]="500">Our Super-Fast Integration Process</h2>
-    <p class="section-lead light" appAnim="right-t-left" [animDelay]="1200" [animSpeed]="600">
+<section class="ro-process" style="background-image: url('assets/images/resource/Resource-Outsourcing_12.png')">
+  <div class="wide">
+    <h2 class="section-title cyan" appAnim="bottom-t-top" [animDelay]="100" [animSpeed]="600">Our Super-Fast Integration Process</h2>
+    <p class="section-lead" appAnim="bottom-t-top" [animDelay]="250" [animSpeed]="600">
       Fast access doesn’t mean low standards. Our onboarding workflow balances speed with precision.
     </p>
     <img
       class="process-diagram"
       src="assets/images/resource/Resource-Outsourcing_03.png"
-      alt="Integration process steps"
+      alt="Integration process: role discovery, candidate presentation, technical evaluation, kickoff and onboarding, ongoing support"
       appAnim="zoom-in"
-      [animSpeed]="500"
+      [animDelay]="250"
+      [animSpeed]="700"
     />
-    <div class="process-cta">
-      <p appAnim="right-t-left" [animDelay]="400" [animSpeed]="600">
+    <div class="process-cta" appAnim="bottom-t-top" [animDelay]="200" [animSpeed]="600">
+      <p>
         Teams can scale up or down monthly. No rigid contracts. No loss in momentum. When resource
         constraints delay product launches or innovation, outsourcing adds agility without compromise.
         It connects business intent with immediate technical execution.
       </p>
-      <h3 appAnim="right-t-left" [animDelay]="600" [animSpeed]="600">
-        Ready to integrate on-demand talent into your roadmap? Let’s assemble your next team.
-      </h3>
+      <h3>Ready to integrate on-demand talent into your roadmap?<br />Let’s assemble your next team.</h3>
     </div>
   </div>
-</section>
 
-<section class="ro-stack">
-  <div class="container">
-    <h2 appAnim="left-t-right" [animDelay]="600" [animSpeed]="500">Technology Stack</h2>
-    <div class="stack-grid">
-      @for (logo of techLogos; track logo; let i = $index) {
-        <img
-          [src]="'assets/images/resource/' + logo"
-          [alt]="logo.replace('.png', '')"
-          appAnim="bottom-t-top"
-          [animDelay]="i * 100"
-          [animSpeed]="500"
-        />
+  <!-- Technology stack: continuous marquee (list is doubled so the loop is seamless) -->
+  <div class="wide stack-head">
+    <h2 class="section-title cyan" appAnim="bottom-t-top" [animDelay]="100" [animSpeed]="600">Technology Stack</h2>
+  </div>
+  <div class="stack-marquee" aria-label="Technology stack">
+    <div class="stack-track">
+      @for (logo of marqueeLogos; track $index; let i = $index) {
+        <div class="stack-logo" [attr.aria-hidden]="i >= techLogos.length ? 'true' : null">
+          <img [src]="'assets/images/resource/' + logo" [alt]="logo.replace('.png', '')" />
+        </div>
       }
     </div>
   </div>
 </section>
 
 <section class="ro-cta">
-  <p appAnim="left-t-right" [animDelay]="600" [animSpeed]="500">Get in touch with us any time</p>
-  <a
-    class="btn ro-btn"
-    routerLink="/contact-us"
-    appAnim="bottom-t-top"
-    [animDelay]="750"
-    [animSpeed]="500"
-    >Contact Us</a
-  >
+  <p class="cta-title" appTypewriter="Get in touch with us any time"></p>
+  <a class="btn ro-btn" routerLink="/contact-us" appAnim="bottom-t-top" [animDelay]="400" [animSpeed]="500">
+    Contact Us
+  </a>
 </section>

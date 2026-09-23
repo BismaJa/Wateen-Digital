@@ -140,3 +140,55 @@
     padding: 16px;
   }
 }
+
+/* Compact cards: the grid spans the navbar's width (wider cards wrap the copy into
+   fewer lines) and icon, type and padding are trimmed, so the row stays short.
+   Hero follows the other service pages. Sizes scale with the viewport. */
+.wcw-hero {
+  min-height: 61vh;
+}
+
+.hero-content {
+  padding: calc(var(--nav-offset) + 24px) var(--nav-gutter) 48px;
+}
+
+.hero-content h1 {
+  font-size: clamp(32px, 3.65vw, 70px);
+}
+
+.wcw-cards {
+  padding: clamp(56px, 5.5vw, 108px) 0;
+}
+
+.container.cards-grid {
+  max-width: none;
+  padding-left: max(var(--nav-gutter), 16px);
+  padding-right: max(var(--nav-gutter), 16px);
+  gap: clamp(18px, 2vw, 38px);
+}
+
+.card {
+  padding: clamp(22px, 1.8vw, 34px) clamp(18px, 1.6vw, 30px);
+}
+
+.card-icon {
+  min-height: 0;
+  margin-bottom: 0;
+}
+
+.card-icon img {
+  width: clamp(56px, 4.2vw, 80px);
+  max-height: clamp(56px, 4.2vw, 80px);
+}
+
+.card h3 {
+  margin-top: clamp(14px, 1.2vw, 22px);
+  font-size: clamp(18px, 1.2vw, 23px);
+  line-height: 1.3;
+}
+
+.card p {
+  margin-top: clamp(8px, 0.7vw, 12px);
+  font-size: clamp(14px, 0.88vw, 17px);
+  line-height: 1.6;
+}

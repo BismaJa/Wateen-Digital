@@ -1,4 +1,5 @@
 import { Directive, ElementRef, OnDestroy, OnInit, effect, inject, input } from '@angular/core';
+import { PageLoaderState } from './page-loader-state.service';
 
 export type UncodeAnimType =
   | 'top-t-bottom'
@@ -24,8 +25,11 @@ export class UncodeAnimDirective implements OnInit, OnDestroy {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private observer?: IntersectionObserver;
   private timer?: ReturnType<typeof setTimeout>;
+  private readonly loader = inject(PageLoaderState);
   private started = false;
   private initialized = false;
+  /** Start was requested while the page loader still covered the page. */
+  private waitingForLoader = false;
 
   readonly type = input.required<UncodeAnimType>({ alias: 'appAnim' });
   /** Milliseconds before the animation is allowed to start. */
@@ -39,6 +43,14 @@ export class UncodeAnimDirective implements OnInit, OnDestroy {
     this.host.nativeElement.classList.add('animate_when_almost_visible');
     effect(() => {
       if (this.active() === true) this.start();
+    });
+    // The page loader covers the page for ~1.2s on load/navigation; hold the
+    // animation (and its delay) until it has cleared so it is actually seen.
+    effect(() => {
+      if (!this.loader.visible() && this.waitingForLoader) {
+        this.waitingForLoader = false;
+        this.schedule();
+      }
     });
   }
 
@@ -73,6 +85,14 @@ export class UncodeAnimDirective implements OnInit, OnDestroy {
     this.observer?.disconnect();
     this.observer = undefined;
 
+    if (this.loader.visible()) {
+      this.waitingForLoader = true;
+      return;
+    }
+    this.schedule();
+  }
+
+  private schedule(): void {
     // The theme never sets animation-delay; it adds the trigger class after a
     // timeout so the element keeps its hidden from-state until the delay elapses.
     if (this.delay() > 0) {

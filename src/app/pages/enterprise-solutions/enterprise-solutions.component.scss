@@ -122,26 +122,15 @@
   line-height: 1.4;
 }
 
-.check {
+.tick {
   flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  margin-top: 2px;
-  border-radius: 50%;
-  background: #00adef;
-  position: relative;
-}
-
-.check::after {
-  content: '';
-  position: absolute;
-  left: 5px;
-  top: 2px;
-  width: 5px;
-  height: 9px;
-  border: solid #fff;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  width: 1.05em;
+  height: 1.05em;
+  fill: none;
+  stroke: #00adef;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .two-cols {
@@ -241,5 +230,139 @@
 @media (max-width: 400px) {
   .section-copy h2 {
     font-size: 24px;
+  }
+}
+
+/* Page-wide alignment and sizing, matching Telecom Expertise / Managed Cyber
+   Security: content edges follow the floating navbar (tokens in styles.scss) and
+   sizes follow the live pages at 1920px (70px title, 24px banner, 40px section
+   titles, 19px lists, ~615px images) as a share of viewport width. */
+.ent-hero {
+  min-height: 61vh;
+}
+
+.hero-content {
+  padding: calc(var(--nav-offset) + 24px) var(--nav-gutter) 48px;
+}
+
+.hero-content h1 {
+  font-size: clamp(32px, 3.65vw, 70px);
+}
+
+.ent-banner {
+  padding: clamp(20px, 2.3vw, 44px) var(--nav-gutter);
+}
+
+.ent-banner p {
+  max-width: 68em;
+  font-size: clamp(16px, 1.25vw, 24px);
+  line-height: 1.35;
+}
+
+.container {
+  max-width: none;
+  padding-left: max(var(--nav-gutter), 16px);
+  padding-right: max(var(--nav-gutter), 16px);
+}
+
+.ent-section {
+  padding: clamp(64px, 7vw, 136px) 0;
+}
+
+.ent-section.alt {
+  padding-top: 0;
+}
+
+.section-grid {
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(36px, 5vw, 110px);
+}
+
+.section-grid.reverse {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.section-grid .section-media {
+  justify-content: flex-end;
+}
+
+.section-grid.reverse .section-media {
+  justify-content: flex-start;
+}
+
+.section-media img,
+.section-grid.reverse .section-media img {
+  width: clamp(260px, 32vw, 615px);
+  max-width: 100%;
+}
+
+.section-copy h2,
+.ent-section.alt .section-copy h2 {
+  margin-bottom: clamp(16px, 1.6vw, 30px);
+  font-size: clamp(26px, 2.1vw, 40px);
+  font-weight: 500;
+  color: #2a2e3f;
+}
+
+.section-copy p {
+  margin-bottom: clamp(18px, 1.6vw, 30px);
+  font-size: clamp(14px, 0.95vw, 18px);
+  line-height: 1.7;
+  color: #555a63;
+}
+
+.section-copy ul {
+  gap: clamp(10px, 0.85vw, 16px);
+}
+
+.section-copy li {
+  align-items: center;
+  gap: 10px;
+  font-size: clamp(15px, 1vw, 19px);
+  font-weight: 400;
+  color: #3d424b;
+}
+
+.two-cols {
+  max-width: 720px;
+  gap: clamp(10px, 0.85vw, 16px) 36px;
+}
+
+/* Phones/tablets: image first in both sections, centred, copy below. */
+@media (max-width: 959px) {
+  .section-grid,
+  .section-grid.reverse {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .section-grid .section-media,
+  .section-grid.reverse .section-media {
+    order: -1;
+    justify-content: center;
+  }
+
+  .section-media img,
+  .section-grid.reverse .section-media img {
+    width: min(70vw, 360px);
+  }
+
+  .ent-section.alt {
+    padding-top: 16px;
+  }
+}
+
+/* Advanced Technical Services sits on a light grey band; the IT Infrastructure
+   section below is white with its own full top spacing (as on the live page). */
+.ent-section:not(.alt) {
+  background: #f7f7f7;
+}
+
+.ent-section.alt {
+  padding-top: clamp(64px, 7vw, 136px);
+}
+
+@media (max-width: 959px) {
+  .ent-section.alt {
+    padding-top: 64px;
   }
 }

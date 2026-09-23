@@ -209,59 +209,122 @@
   transform: rotate(-45deg);
 }
 
+/* Off-canvas menu sheet (small screens) — slides in from the right edge. */
+.mobile-backdrop,
 .mobile-panel {
-  pointer-events: auto;
   display: none;
-  margin: 10px 24px 0;
-  padding: 16px 20px 24px;
-  border-radius: 16px;
-  background: rgba(12, 18, 34, 0.94);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: #fff;
+}
+
+.mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.mobile-backdrop.open {
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  width: min(406px, 88vw);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 76px 0 40px;
+  background: #1e1f21;
+  color: #ffffff;
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.35);
+  transform: translate3d(100%, 0, 0);
+  visibility: hidden;
+  transition: transform 0.4s cubic-bezier(0.645, 0.045, 0.355, 1), visibility 0.4s;
 }
 
 .mobile-panel.open {
+  pointer-events: auto;
+  transform: translate3d(0, 0, 0);
+  visibility: visible;
+}
+
+.mobile-close {
+  position: absolute;
+  top: 22px;
+  right: 30px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  border: 0;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.mobile-close svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+.mobile-close:hover {
+  color: #00adef;
+}
+
+.mobile-links li {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mobile-links a {
   display: block;
-  animation: nav-slide-in 0.3s ease both;
+  padding: 13px 42px;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.25;
+  color: #ffffff;
+  transition: color 0.2s ease;
+}
+
+.mobile-links a:hover {
+  color: #00adef;
+}
+
+.mobile-links a.active {
+  color: #8c8f94;
 }
 
 .mobile-contact {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 16px;
+  gap: 10px;
+  margin-top: 46px;
+  padding: 0 44px;
+}
+
+.mobile-contact a {
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+  transition: color 0.2s ease;
+}
+
+.mobile-contact .mobile-talk {
+  margin-bottom: 18px;
   font-weight: 600;
-  color: #fff;
 }
 
 .mobile-contact a:hover {
   color: #00adef;
-}
-
-.mobile-panel > ul > li > a {
-  display: block;
-  padding: 12px 0;
-  font-weight: 600;
-  color: #fff;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.mobile-panel > ul > li > a:hover {
-  color: #00adef;
-}
-
-.mobile-sub a {
-  display: block;
-  padding: 8px 0 8px 12px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.75);
-}
-
-.mobile-panel .btn {
-  margin-top: 16px;
-  width: 100%;
-  background: #00adef;
 }
 
 @media (max-width: 1180px) {
@@ -284,7 +347,8 @@
     display: block;
   }
 
+  .mobile-backdrop,
   .mobile-panel {
-    margin-inline: var(--nav-gutter);
+    display: block;
   }
 }

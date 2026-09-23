@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, HostListener, effect, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { filter, map, startWith } from 'rxjs/operators';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -80,6 +80,11 @@ export class HeaderComponent {
       document.body.classList.toggle('menu-open-lock', this.mobileOpen());
       document.body.classList.toggle('nav-non-sticky', this.nonSticky());
     });
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape(): void {
+    if (this.mobileOpen()) this.closeMobile();
   }
 
   toggleMobile(): void {

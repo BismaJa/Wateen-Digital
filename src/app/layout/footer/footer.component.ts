@@ -49,9 +49,9 @@ export class FooterComponent {
   ];
 
   readonly socials = [
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
-    { label: 'X', href: 'https://twitter.com/' },
-    { label: 'Facebook', href: 'https://www.facebook.com/' },
-    { label: 'Instagram', href: 'https://www.instagram.com/' }
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/wateen-digital-solutions/' },
+    { label: 'X', href: 'https://x.com/WateenDigital' },
+    { label: 'Facebook', href: 'https://www.facebook.com/people/Wateen-Digital-Solutions/61556133538270/' },
+    { label: 'Instagram', href: 'https://www.instagram.com/wateendigitalsolutions/' }
   ];
 }

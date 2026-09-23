@@ -3,9 +3,12 @@
   background: #fff;
 }
 
+/* Sizes follow the live page at 1920px (70px title, 24px banner copy, 19px list,
+   ~615px image) as a share of viewport width; content edges line up with the
+   floating navbar via --nav-gutter (styles.scss). */
 .telecom-hero {
   position: relative;
-  min-height: 52vh;
+  min-height: 61vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,13 +37,13 @@
   position: relative;
   z-index: 1;
   text-align: center;
-  padding: 120px 24px 64px;
+  padding: calc(var(--nav-offset) + 24px) var(--nav-gutter) 48px;
 }
 
 .hero-content h1 {
   margin: 0;
   color: #ffffff;
-  font-size: 60px;
+  font-size: clamp(32px, 3.65vw, 70px);
   font-weight: 400;
   line-height: 1.3;
 }
@@ -53,67 +56,76 @@
   background: #00adef;
   color: #fff;
   text-align: center;
-  padding: 22px 28px;
+  padding: clamp(20px, 2.3vw, 44px) var(--nav-gutter);
 }
 
 .telecom-banner p {
   margin: 0 auto;
-  max-width: 980px;
-  font-size: 22px;
-  line-height: 1.3;
+  max-width: 68em;
+  font-size: clamp(16px, 1.25vw, 24px);
+  line-height: 1.35;
   font-weight: 400;
 }
 
 .telecom-body {
   background: #fff;
-  padding: 144px 0;
+  padding: clamp(72px, 8vw, 150px) 0;
+  overflow: hidden; /* keep the slide-in offsets from causing horizontal scroll */
+}
+
+.body-grid.container {
+  max-width: none;
+  padding-left: max(var(--nav-gutter), 16px);
+  padding-right: max(var(--nav-gutter), 16px);
 }
 
 .body-grid {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 36px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(36px, 4vw, 80px);
   align-items: center;
 }
 
 .service-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px 36px;
+  grid-template-rows: auto auto;
+  grid-auto-flow: column;
+  gap: clamp(10px, 0.85vw, 16px) 36px;
+  max-width: 720px;
 }
 
 .service-item {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  font-weight: 600;
-  color: #2a2e3f;
+  align-items: center;
+  gap: 10px;
+  font-size: clamp(15px, 1vw, 19px);
+  font-weight: 400;
+  color: #62666f;
   line-height: 1.4;
 }
 
-.service-item img {
-  width: 18px;
-  height: 18px;
-  margin-top: 3px;
+.service-item .tick {
+  width: 1.05em;
+  height: 1.05em;
   flex-shrink: 0;
-  object-fit: contain;
+  fill: none;
+  stroke: #00adef;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .feature-media {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .feature-media img {
-  width: min(100%, 420px);
+  width: clamp(280px, 32vw, 615px);
+  max-width: 100%;
   height: auto;
   display: block;
-}
-
-@media (max-width: 1600px) {
-  .telecom-body {
-    padding: 108px 0;
-  }
 }
 
 @media (max-width: 959px) {
@@ -128,6 +140,7 @@
 
   .feature-media {
     order: 1;
+    justify-content: center;
   }
 
   .telecom-body {
@@ -146,6 +159,8 @@
 
   .service-list {
     grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-flow: row;
     gap: 16px;
   }
 
@@ -158,108 +173,4 @@
 .telecom-banner,
 .telecom-body {
   scroll-margin-top: 80px;
-}
-
-.fp-dots {
-  position: fixed;
-  right: 22px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1200;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  align-items: center;
-}
-
-.fp-dot {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.fp-dot button {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(200, 205, 215, 0.55);
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
-  padding: 0;
-  cursor: pointer;
-  display: block;
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.fp-dot.active button {
-  background: #ffffff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
-  transform: scale(1.15);
-}
-
-.fp-dot:hover button {
-  background: rgba(255, 255, 255, 0.9);
-}
-
-.fp-tooltip {
-  position: absolute;
-  right: calc(100% + 14px);
-  top: 50%;
-  transform: translateY(-50%) translateX(6px);
-  white-space: nowrap;
-  background: #00adef;
-  color: #fff;
-  font-family: var(--font, "Cairo", sans-serif);
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.2;
-  padding: 8px 14px;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity 0.2s ease,
-    visibility 0.2s ease,
-    transform 0.2s ease;
-}
-
-.fp-tooltip::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -6px;
-  transform: translateY(-50%);
-  border-style: solid;
-  border-width: 6px 0 6px 6px;
-  border-color: transparent transparent transparent #00adef;
-}
-
-.fp-dot:hover .fp-tooltip {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(-50%) translateX(0);
-}
-
-.fp-dots.on-light .fp-dot button {
-  background: rgba(120, 128, 145, 0.45);
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
-}
-
-.fp-dots.on-light .fp-dot.active button {
-  background: #00adef;
-  box-shadow: none;
-}
-
-.fp-dots.on-light .fp-dot:hover button {
-  background: rgba(0, 173, 239, 0.75);
-}
-
-@media (max-width: 980px) {
-  .fp-dots {
-    right: 12px;
-  }
 }

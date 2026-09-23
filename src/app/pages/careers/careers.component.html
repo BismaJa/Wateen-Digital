@@ -1,0 +1,20 @@
+<section class="careers-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content" appAnim="left-t-right" [animDelay]="200" [animSpeed]="600">
+    <h1><span>Career</span> Opportunities</h1>
+  </div>
+</section>
+
+<section class="careers-list">
+  <div class="openings-grid">
+    @for (opening of openings; track opening.title; let i = $index) {
+      <article class="opening-card" appAnim="bottom-t-top" [animDelay]="200 + i * 150" [animSpeed]="600">
+        <h2>{{ opening.title }}</h2>
+        <div class="opening-body">
+          <a class="btn details-btn" [routerLink]="['/careers', opening.slug]">More Details</a>
+        </div>
+      </article>
+    }
+  </div>
+</section>

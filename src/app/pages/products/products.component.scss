@@ -415,3 +415,135 @@
     padding: 100px 16px 36px;
   }
 }
+
+/* Desktop: content lines up with the floating navbar's inner edge (gutter + bar
+   padding, tokens in styles.scss), clears the navbar's height, and every size
+   takes the smaller of a width- and height-based value so a slide always fits one
+   screen (no clipped descriptions). Images ~600px at 1920px wide, like the AI page. */
+@media (min-width: 960px) {
+  .product-inner {
+    --prod-gutter: calc(var(--nav-gutter) + clamp(14px, 2.1vw, 40px));
+    max-width: none;
+    gap: clamp(36px, 5vw, 110px);
+    padding: calc(var(--nav-offset) + clamp(12px, 2.4vh, 26px)) var(--prod-gutter) clamp(20px, 3vh, 40px);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  }
+
+  .product-inner.media-right {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  }
+
+  .product-inner.media-left .product-media {
+    justify-content: flex-start;
+  }
+
+  .product-inner.media-right .product-media {
+    justify-content: flex-end;
+  }
+
+  .product-media img {
+    width: min(100%, clamp(300px, 31vw, 600px));
+    max-height: calc(100vh - var(--nav-offset) - 80px);
+  }
+
+  .product-copy {
+    max-width: 760px;
+  }
+
+  .product-copy h2 {
+    margin-bottom: clamp(8px, 1.6vh, 16px);
+    font-size: clamp(24px, min(2.2vw, 4.4vh), 42px);
+    line-height: 1.2;
+  }
+
+  .product-copy h4 {
+    margin-bottom: clamp(6px, 1.2vh, 12px);
+    font-size: clamp(16px, min(1.2vw, 2.5vh), 23px);
+    line-height: 1.25;
+  }
+
+  .product-copy .desc,
+  .product-copy .outcome,
+  .product-copy li {
+    font-size: clamp(14px, min(0.95vw, 2vh), 18px);
+    line-height: 1.55;
+  }
+
+  .product-copy .desc,
+  .product-copy .outcome {
+    margin-bottom: clamp(10px, 2.2vh, 22px);
+    /* Sizes above keep the text on screen, so show it all. */
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+
+  .product-copy ul {
+    gap: clamp(3px, 0.8vh, 8px);
+    margin-bottom: clamp(10px, 2.2vh, 22px);
+  }
+
+  .btn.demo-btn {
+    padding: clamp(9px, 1.5vh, 14px) clamp(24px, 1.8vw, 34px);
+    font-size: clamp(13px, 0.85vw, 16px);
+  }
+}
+
+/* Phones/tablets: image on top, full copy below at natural height; the slide
+   scrolls inside itself (component wheel/touch handlers scroll the content first,
+   then move to the next slide) instead of squeezing into one screen. */
+@media (max-width: 959px) {
+  .product-inner {
+    height: 100%;
+    max-height: 100vh;
+    max-height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    align-content: start;
+    grid-template-rows: none;
+    grid-auto-rows: max-content; /* rows never shrink below content, so media cannot overlap copy */
+    gap: 28px;
+    padding-top: calc(var(--nav-offset) + 20px);
+    padding-bottom: 48px;
+  }
+
+  .product-inner::-webkit-scrollbar {
+    display: none;
+  }
+
+  .product-media {
+    min-height: auto;
+  }
+
+  .product-media img {
+    width: min(64vw, 280px);
+    max-height: none;
+  }
+
+  .product-copy {
+    max-width: none;
+  }
+
+  .product-copy .desc {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+}
+
+/* Phones/tablets: one column for every product slide. Must match the specificity
+   of the desktop .media-left/.media-right column rules, which otherwise kept two
+   squeezed columns (image beside copy) on small screens. */
+@media (max-width: 959px) {
+  .product-inner.media-left,
+  .product-inner.media-right {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .product-inner.media-left .product-media,
+  .product-inner.media-right .product-media {
+    justify-content: center;
+  }
+}

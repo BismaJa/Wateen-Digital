@@ -917,21 +917,14 @@
   background: rgba(255, 255, 255, 0.22);
 }
 
-.tech-track {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  gap: 36px;
+.tech-carousel {
   width: 100%;
-  animation: expertise-fade 0.35s ease;
 }
 
 .tech-img {
-  flex: 1 1 0;
-  width: auto;
+  width: 100%;
   max-width: 120px;
-  min-width: 0;
+  margin: 0 auto;
   height: auto;
   object-fit: contain;
   display: block;
@@ -964,17 +957,6 @@
 .tech-dots button.active {
   background: #00adef;
   transform: scale(1.15);
-}
-
-@keyframes expertise-fade {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .ai-dots {
@@ -1139,7 +1121,7 @@
   }
 
   .chatbot-media img {
-    width: min(100%, 380px);
+    width: min(64vw, 280px);
     max-height: 42vh;
   }
 
@@ -1421,9 +1403,8 @@
     height: 40px;
   }
 
-  .tech-track {
-    flex-wrap: wrap;
-    gap: 16px;
+  .tech-img {
+    max-width: 150px;
   }
 
   .ai-dots {
@@ -1480,5 +1461,340 @@
   .chatbot-media img {
     width: min(100%, 400px);
     max-height: 58vh;
+  }
+}
+
+/* Desktop: slide content lines up with the floating navbar's inner edge (gutter +
+   bar padding, tokens in styles.scss) — copy starts under the logo, the image ends
+   under the last menu item — and clears the navbar's height. Images follow the
+   live page (~600px at 1920px wide), scaled with the viewport. */
+@media (min-width: 960px) {
+  .vision-inner,
+  .object-inner,
+  .care-inner,
+  .tryon-inner,
+  .health-inner,
+  .biomech-inner,
+  .gesture-inner,
+  .chatbot-inner,
+  .infra-inner,
+  .building-inner {
+    --ai-gutter: calc(var(--nav-gutter) + clamp(14px, 2.1vw, 40px));
+    max-width: none;
+    gap: clamp(36px, 5vw, 110px);
+    padding: calc(var(--nav-offset) + clamp(16px, 3vh, 32px)) var(--ai-gutter) clamp(24px, 4vh, 48px);
+  }
+
+  /* Image column on the right: pin to the right edge. */
+  .vision-media,
+  .object-media,
+  .care-media,
+  .tryon-media,
+  .health-media {
+    justify-content: flex-end;
+  }
+
+  /* Image column on the left: pin to the left edge. */
+  .biomech-media,
+  .gesture-media,
+  .chatbot-media,
+  .infra-media,
+  .building-media {
+    justify-content: flex-start;
+  }
+
+  .vision-media img,
+  .object-media img,
+  .care-media img,
+  .tryon-media img,
+  .health-media img,
+  .biomech-media img,
+  .gesture-media img,
+  .chatbot-media img,
+  .infra-media img,
+  .building-media img {
+    width: min(100%, clamp(300px, 31vw, 600px));
+    max-height: calc(100vh - var(--nav-offset) - 80px);
+  }
+}
+
+/* Phones/tablets: each product slide stacks image over copy at natural height and
+   scrolls inside itself (wheel/swipe handled in the component: the slide's content
+   scrolls first, then the next slide comes in) instead of squeezing into 100vh. */
+@media (max-width: 959px) {
+  .vision-inner,
+  .object-inner,
+  .care-inner,
+  .tryon-inner,
+  .health-inner,
+  .chatbot-inner,
+  .biomech-inner,
+  .gesture-inner,
+  .infra-inner,
+  .building-inner {
+    height: 100%;
+    max-height: 100vh;
+    max-height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    align-content: start;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-auto-rows: max-content; /* rows never shrink below content, so media cannot overlap copy */
+    gap: 28px;
+    padding-top: calc(var(--nav-offset) + 20px);
+    padding-bottom: 48px;
+  }
+
+  .vision-inner::-webkit-scrollbar,
+  .object-inner::-webkit-scrollbar,
+  .care-inner::-webkit-scrollbar,
+  .tryon-inner::-webkit-scrollbar,
+  .health-inner::-webkit-scrollbar,
+  .chatbot-inner::-webkit-scrollbar,
+  .biomech-inner::-webkit-scrollbar,
+  .gesture-inner::-webkit-scrollbar,
+  .infra-inner::-webkit-scrollbar,
+  .building-inner::-webkit-scrollbar {
+    display: none;
+  }
+
+  .vision-media,
+  .object-media,
+  .care-media,
+  .tryon-media,
+  .health-media,
+  .chatbot-media,
+  .biomech-media,
+  .gesture-media,
+  .infra-media,
+  .building-media {
+    order: -1;
+    justify-content: center;
+  }
+
+  .vision-media img,
+  .object-media img,
+  .care-media img,
+  .tryon-media img,
+  .health-media img,
+  .biomech-media img,
+  .gesture-media img,
+  .chatbot-media img,
+  .infra-media img,
+  .building-media img {
+    width: min(64vw, 280px);
+    max-height: none;
+  }
+}
+
+@media (max-width: 959px) {
+  .vision-media,
+  .object-media,
+  .care-media,
+  .tryon-media,
+  .health-media,
+  .chatbot-media,
+  .biomech-media,
+  .gesture-media,
+  .infra-media,
+  .building-media {
+    min-height: auto;
+  }
+}
+
+/* Phones/tablets: the expertise cards stack taller than the screen, so the slide
+   scrolls its card list first (component touch handler), then the page continues
+   down to the technology logos carousel and the footer. */
+@media (max-width: 959px) {
+  .expertise-cards {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    justify-content: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-top: calc(var(--nav-offset) + 20px);
+    padding-bottom: 48px;
+  }
+
+  .expertise-cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  .expertise-grid,
+  .expertise-card {
+    flex-shrink: 0;
+  }
+}
+
+/* Desktop "Our Expertise in AI Solutions": anchored under the navbar (not centered,
+   which pushed the title under it when content outgrew the screen), spanning the
+   navbar's width, sized like the live page at 1920x950 (72px title, 3×2 cards
+   ~243px tall with 90px icons and 19px labels). Every size takes the smaller of a
+   width- and height-based value so the slide always fits one screen — no inner
+   scrolling, so the title can never be scrolled under the navbar. The page then
+   scrolls on to the technology logos and footer. */
+@media (min-width: 960px) {
+  .expertise-cards {
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    min-height: 0;
+    justify-content: flex-start;
+    gap: clamp(20px, min(4.6vw, 8vh), 86px);
+    overflow: hidden;
+    padding: calc(var(--nav-offset) + clamp(12px, 2.4vh, 26px)) var(--nav-gutter) clamp(12px, 2vh, 24px);
+  }
+
+  .expertise-heading {
+    font-size: clamp(32px, min(3.8vw, 7.4vh), 72px);
+    font-weight: 500;
+  }
+
+  .expertise-grid {
+    flex-shrink: 0;
+    gap: clamp(18px, min(4.3vw, 7.6vh), 82px) clamp(18px, 2.2vw, 42px);
+  }
+
+  .expertise-card {
+    min-height: clamp(130px, min(12.8vw, 24vh), 243px);
+    padding: clamp(20px, 2.1vw, 40px);
+    gap: clamp(14px, min(2.6vw, 5vh), 50px);
+    background: #f5f5f5;
+    border-radius: 2px;
+  }
+
+  .expertise-card img {
+    width: clamp(44px, min(4.75vw, 9vh), 90px);
+    height: clamp(44px, min(4.75vw, 9vh), 90px);
+  }
+
+  .expertise-card h3 {
+    font-size: clamp(15px, 1vw, 19px);
+    font-weight: 400;
+    color: #333333;
+  }
+}
+
+  /* Technology logos band: follows the cards closely (~80px to the divider at
+     1920px), spans the navbar's width, logos fill their slots like the live page
+     (~175px shields, 7 across). */
+@media (min-width: 960px) {
+  .expertise-tech {
+    padding: clamp(24px, 3vw, 60px) 0 clamp(48px, 5vw, 96px);
+  }
+
+  .expertise-tech-inner {
+    width: 100%;
+    max-width: none;
+    padding: 0 var(--nav-gutter);
+  }
+
+  .expertise-rule {
+    margin-bottom: clamp(40px, 4.3vw, 82px);
+  }
+
+  .tech-img {
+    width: 100%;
+    max-width: 180px;
+  }
+
+  .tech-dots {
+    margin-top: clamp(24px, 2.4vw, 46px);
+  }
+}
+
+/* Desktop product slides: copy scales with the smaller of viewport width/height
+   so long slides (e.g. Enterprise Analytics Chatbot's 11-item list) fit one
+   screen; if a slide still overflows, it scrolls its own content (hidden bar)
+   before the wheel moves on to the next slide. */
+@media (min-width: 960px) {
+  .vision-inner,
+  .object-inner,
+  .care-inner,
+  .tryon-inner,
+  .health-inner,
+  .biomech-inner,
+  .gesture-inner,
+  .chatbot-inner,
+  .infra-inner,
+  .building-inner {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+  }
+
+  .vision-inner::-webkit-scrollbar,
+  .object-inner::-webkit-scrollbar,
+  .care-inner::-webkit-scrollbar,
+  .tryon-inner::-webkit-scrollbar,
+  .health-inner::-webkit-scrollbar,
+  .biomech-inner::-webkit-scrollbar,
+  .gesture-inner::-webkit-scrollbar,
+  .chatbot-inner::-webkit-scrollbar,
+  .infra-inner::-webkit-scrollbar,
+  .building-inner::-webkit-scrollbar {
+    display: none;
+  }
+
+  .vision-copy h2,
+  .chatbot-copy h2,
+  .object-copy h2,
+  .biomech-copy h2,
+  .care-copy h2,
+  .gesture-copy h2,
+  .tryon-copy h2,
+  .infra-copy h2,
+  .health-copy h2,
+  .building-copy h2 {
+    margin-bottom: clamp(8px, 1.8vh, 18px);
+    font-size: clamp(24px, min(2.3vw, 4.6vh), 44px);
+  }
+
+  .vision-copy p,
+  .chatbot-copy p,
+  .object-copy p,
+  .biomech-copy p,
+  .care-copy p,
+  .gesture-copy p,
+  .tryon-copy p,
+  .infra-copy p,
+  .health-copy p,
+  .building-copy p {
+    margin-bottom: clamp(10px, 2vh, 22px);
+    font-size: clamp(14px, min(1.05vw, 2.1vh), 20px);
+    line-height: 1.5;
+  }
+
+  .vision-copy ul,
+  .chatbot-copy ul,
+  .object-copy ul,
+  .biomech-copy ul,
+  .care-copy ul,
+  .gesture-copy ul,
+  .tryon-copy ul,
+  .infra-copy ul,
+  .health-copy ul,
+  .building-copy ul {
+    gap: clamp(2px, 0.6vh, 8px);
+    margin-bottom: clamp(12px, 2.4vh, 28px);
+  }
+
+  .vision-copy li,
+  .chatbot-copy li,
+  .object-copy li,
+  .biomech-copy li,
+  .care-copy li,
+  .gesture-copy li,
+  .tryon-copy li,
+  .infra-copy li,
+  .health-copy li,
+  .building-copy li {
+    font-size: clamp(13px, min(0.95vw, 1.9vh), 18px);
+    line-height: 1.45;
   }
 }

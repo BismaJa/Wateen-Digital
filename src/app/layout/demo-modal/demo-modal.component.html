@@ -4,28 +4,76 @@
       class="demo-dialog"
       role="dialog"
       aria-modal="true"
-      aria-label="Request a Demo"
+      aria-labelledby="demo-title"
       (click)="$event.stopPropagation()"
     >
-      <button type="button" class="demo-close" (click)="close()" aria-label="Close">
-        ×
-      </button>
-
-      <form class="demo-form" [formGroup]="form" (ngSubmit)="submit()">
-        <input formControlName="fullName" placeholder="Full Name" autocomplete="name" />
-        <input formControlName="email" type="email" placeholder="Email" autocomplete="email" />
-        <input formControlName="phone" type="tel" placeholder="Phone Number" autocomplete="tel" />
-        <div class="select-wrap">
-          <select formControlName="product">
-            <option value="" disabled>Select Product</option>
-            @for (product of products; track product) {
-              <option [value]="product">{{ product }}</option>
-            }
-          </select>
+      <header class="demo-head">
+        <div>
+          <h2 id="demo-title">Request a Demo</h2>
+          <p>Tell us a little about you and we'll get back to you shortly.</p>
         </div>
-        <textarea formControlName="message" rows="4" placeholder="Your Message"></textarea>
-        <button class="btn demo-submit" type="submit">Submit</button>
-      </form>
+        <button type="button" class="demo-close" (click)="close()" aria-label="Close">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" /></svg>
+        </button>
+      </header>
+
+      @if (sent()) {
+        <div class="demo-sent" role="status">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <circle cx="24" cy="24" r="21" />
+            <path d="M14.5 24.5l6.5 6.2 12.5-13.2" />
+          </svg>
+          <h3>Thank you!</h3>
+          <p>Your demo request has been received. Our team will contact you soon.</p>
+          <button type="button" class="btn demo-submit" (click)="close()">Close</button>
+        </div>
+      } @else {
+        <form class="demo-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+          <label class="field">
+            <span class="sr-only">Full Name</span>
+            <input formControlName="fullName" placeholder="Full Name" autocomplete="name" [class.invalid]="invalid('fullName')" />
+            @if (invalid('fullName')) {
+              <small>Please enter your name.</small>
+            }
+          </label>
+          <label class="field">
+            <span class="sr-only">Email</span>
+            <input formControlName="email" type="email" placeholder="Email" autocomplete="email" [class.invalid]="invalid('email')" />
+            @if (invalid('email')) {
+              <small>Please enter a valid email address.</small>
+            }
+          </label>
+          <label class="field">
+            <span class="sr-only">Phone Number</span>
+            <input formControlName="phone" type="tel" placeholder="Phone Number" autocomplete="tel" [class.invalid]="invalid('phone')" />
+            @if (invalid('phone')) {
+              <small>Please enter your phone number.</small>
+            }
+          </label>
+          <label class="field">
+            <span class="sr-only">Product</span>
+            <div class="select-wrap">
+              <select formControlName="product" [class.placeholder]="!form.controls.product.value" [class.invalid]="invalid('product')">
+                <option value="" disabled>Select Product</option>
+                @for (product of products; track product) {
+                  <option [value]="product">{{ product }}</option>
+                }
+              </select>
+            </div>
+            @if (invalid('product')) {
+              <small>Please choose a product.</small>
+            }
+          </label>
+          <label class="field">
+            <span class="sr-only">Message</span>
+            <textarea formControlName="message" rows="4" placeholder="Your Message" [class.invalid]="invalid('message')"></textarea>
+            @if (invalid('message')) {
+              <small>Please add a short message.</small>
+            }
+          </label>
+          <button class="btn demo-submit" type="submit">Submit</button>
+        </form>
+      }
     </div>
   </div>
 }

@@ -14,6 +14,8 @@ import { WhyChooseWateenComponent } from './pages/why-choose-wateen/why-choose-w
 import { CertifiedResourcesComponent } from './pages/certified-resources/certified-resources.component';
 import { AnnouncementsComponent } from './pages/announcements/announcements.component';
 import { MediaComponent } from './pages/media/media.component';
+import { CareersComponent } from './pages/careers/careers.component';
+import { CareerDetailComponent } from './pages/careers/career-detail.component';
 
 function page(data: PageData) {
   return { page: data };
@@ -73,18 +75,13 @@ export const routes: Routes = [
   },
   {
     path: 'careers',
-    component: ContentPageComponent,
-    title: 'Careers - Wateen Digital Solutions',
-    data: page({
-      title: 'Careers',
-      subtitle: 'Build your career with Wateen Digital Solutions.',
-      paragraphs: [
-        'Join a Dhabi Group company focused on transforming the UAE digital landscape.',
-        'We look for certified, curious professionals ready to deliver enterprise technology outcomes.'
-      ],
-      ctaLabel: 'Contact Us',
-      ctaLink: '/contact-us'
-    })
+    component: CareersComponent,
+    title: 'Careers - Wateen Digital Solutions'
+  },
+  {
+    path: 'careers/:slug',
+    component: CareerDetailComponent,
+    title: 'Careers - Wateen Digital Solutions'
   },
   {
     path: 'media',

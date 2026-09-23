@@ -150,10 +150,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   ];
 
   readonly socials = [
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/', delay: 0 },
-    { label: 'X', href: 'https://twitter.com/', delay: 50 },
-    { label: 'Facebook', href: 'https://www.facebook.com/', delay: 100 },
-    { label: 'Instagram', href: 'https://www.instagram.com/', delay: 150 }
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/wateen-digital-solutions/', delay: 0 },
+    { label: 'X', href: 'https://x.com/WateenDigital', delay: 50 },
+    { label: 'Facebook', href: 'https://www.facebook.com/people/Wateen-Digital-Solutions/61556133538270/', delay: 100 },
+    { label: 'Instagram', href: 'https://www.instagram.com/wateendigitalsolutions/', delay: 150 }
   ];
 
   readonly announcements = [
@@ -283,6 +283,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @HostListener('window:keydown', ['$event'])
   onKey(event: KeyboardEvent): void {
+    if (this.overlayOpen()) return;
     if (event.key === 'ArrowDown' || event.key === 'PageDown') {
       event.preventDefault();
       this.next();
@@ -293,7 +294,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private handleWheel(event: WheelEvent): void {
-    if (this.document.body.classList.contains('menu-open-lock')) return;
+    if (this.overlayOpen()) return;
 
     if (this.showingFooter()) {
       if (event.deltaY < -30 && window.scrollY <= 8) {
@@ -385,6 +386,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @HostListener('window:touchend', ['$event'])
   onTouchEnd(event: TouchEvent): void {
+    if (this.overlayOpen()) return;
     const endY = event.changedTouches[0]?.clientY ?? 0;
     const diff = this.touchStartY - endY;
     if (Math.abs(diff) < 50) return;
@@ -413,6 +415,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private canScrollInner(inner: HTMLElement | null, down: boolean, scrollTop = inner?.scrollTop ?? 0): boolean {
     if (!inner || inner.scrollHeight <= inner.clientHeight + 2) return false;
+    // Only a real scroll container counts: content merely overflowing a
+    // non-scrolling slide must not block moving on to the next slide.
+    const overflowY = getComputedStyle(inner).overflowY;
+    if (overflowY !== 'auto' && overflowY !== 'scroll') return false;
     return down ? scrollTop + inner.clientHeight < inner.scrollHeight - 2 : scrollTop > 2;
   }
 
@@ -434,5 +440,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     const light = index === 1 || index === 3 || index === 7;
     this.fullpageState.lightSlide.set(light);
     this.document.body.classList.toggle('nav-on-light', light);
+  }
+
+  /** The mobile menu or the demo modal is covering the page: slides stay put. */
+  private overlayOpen(): boolean {
+    const body = this.document.body.classList;
+    return body.contains('menu-open-lock') || body.contains('demo-modal-open');
   }
 }

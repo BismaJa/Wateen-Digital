@@ -47,6 +47,11 @@ body {
   color: var(--text-body);
   background: var(--white);
   -webkit-font-smoothing: antialiased;
+  /* Slide-in entrance animations start up to 100px off to the side; clip that so
+     they never flash a horizontal scrollbar. `clip` (unlike `hidden`) doesn't make
+     body a scroll container, so sticky/fixed positioning is unaffected. */
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img {
@@ -437,7 +442,7 @@ body.showing-home-footer {
 /* Home: after the last slide the footer slides up like one more slide — the page
    and footer move up together by the footer's height (set in home.component.ts),
    with the same easing/duration as the slide track, while scrolling stays locked. */
-body.home-fullpage .site-main.is-home,
+body.home-fullpage .site-main,
 body.home-fullpage app-footer {
   display: block;
   transition: transform 0.9s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -446,6 +451,13 @@ body.home-fullpage app-footer {
 body.home-footer-reveal .site-main.is-home,
 body.home-footer-reveal app-footer {
   transform: translate3d(0, calc(-1 * var(--home-footer-shift, 0px)), 0);
+}
+
+/* Fullpage inner pages (e.g. Artificial Intelligence): past the last slide the
+   locked page slides up in steps (logo band, then footer) by --page-shift. */
+body.page-shift .site-main,
+body.page-shift app-footer {
+  transform: translate3d(0, calc(-1 * var(--page-shift, 0px)), 0);
 }
 
 /* The page is shifted up while the footer shows; the fixed back-to-top button
@@ -465,4 +477,123 @@ body.showing-home-footer .prod-dots {
 
 body.demo-modal-open {
   overflow: hidden;
+}
+
+/* Logo carousels (home certifications/partners, AI technologies): the track slides
+   one item per step (shared/badge-carousel.ts); items leaving on the left are clipped by the viewport while the
+   next one enters from the right. */
+.badge-viewport {
+  --badge-visible: 7;
+  --badge-gap: 36px;
+  overflow: hidden;
+  padding: 6px 0 20px; /* room for the drop shadow and hover lift inside the clip */
+}
+
+.badge-track {
+  --badge-width: calc((100% - (var(--badge-visible) - 1) * var(--badge-gap)) / var(--badge-visible));
+  display: flex;
+  align-items: center;
+  gap: var(--badge-gap);
+  transform: translate3d(calc(-1 * var(--badge-index, 0) * (var(--badge-width) + var(--badge-gap))), 0, 0);
+  transition: transform 0.9s cubic-bezier(0.45, 0, 0.2, 1);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.badge-track.no-transition {
+  transition: none;
+}
+
+.badge-slide {
+  flex: 0 0 var(--badge-width);
+  min-width: 0;
+}
+
+.badge-carousel {
+  position: relative;
+}
+
+/* Prev/next arrows — only on phones, where the carousel shows one logo at a time. */
+.badge-arrow {
+  display: none;
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 44px;
+  height: 52px;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  background: rgba(40, 52, 84, 0.85);
+  color: #ffffff;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  transition: background 0.2s ease;
+}
+
+.badge-arrow:hover,
+.badge-arrow:focus-visible {
+  background: #00adef;
+}
+
+.badge-arrow svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.badge-prev {
+  left: 0;
+}
+
+.badge-next {
+  right: 0;
+}
+
+@media (max-width: 980px) {
+  .badge-viewport {
+    --badge-visible: 4;
+  }
+}
+
+@media (max-width: 640px) {
+  .badge-viewport {
+    --badge-visible: 3;
+  }
+}
+
+@media (max-width: 576px) {
+  .badge-viewport {
+    --badge-visible: 1;
+    --badge-gap: 16px;
+    margin-inline: 60px; /* leave room for the arrows either side */
+  }
+
+  .badge-arrow {
+    display: inline-flex;
+  }
+}
+
+/* Typewriter text (shared/typewriter.directive.ts): blinking caret after the text. */
+.typewriter::after {
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 1.15em;
+  margin-left: 2px;
+  vertical-align: -0.2em;
+  background: currentColor;
+  animation: typewriter-caret 0.9s steps(1) infinite;
+}
+
+@keyframes typewriter-caret {
+  50% {
+    opacity: 0;
+  }
 }

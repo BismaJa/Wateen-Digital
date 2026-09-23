@@ -1,0 +1,120 @@
+@if (opening(); as job) {
+  <section class="careers-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content" appAnim="left-t-right" [animDelay]="200" [animSpeed]="600">
+      <h1 class="job-title" [class.cyan]="job.cyanTitle">{{ job.title }}</h1>
+    </div>
+  </section>
+
+  <section class="job-body">
+    <div class="job-grid">
+      <div class="job-copy">
+        <h2 appAnim="left-t-right" [animDelay]="150" [animSpeed]="600">{{ job.summaryTitle }}</h2>
+        @for (p of job.summary; track $index) {
+          <p appAnim="left-t-right" [animDelay]="250" [animSpeed]="600">{{ p }}</p>
+        }
+        @for (section of job.sections; track section.title) {
+          <h2 appAnim="left-t-right" [animDelay]="150" [animSpeed]="600">{{ section.title }}</h2>
+          <ul appAnim="left-t-right" [animDelay]="250" [animSpeed]="600">
+            @for (item of section.items; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        }
+      </div>
+
+      <aside class="apply-card" appAnim="right-t-left" [animDelay]="200" [animSpeed]="700">
+        <h2>Apply for this position</h2>
+
+        @if (sent()) {
+          <div class="apply-sent" role="status">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <circle cx="24" cy="24" r="21" />
+              <path d="M14.5 24.5l6.5 6.2 12.5-13.2" />
+            </svg>
+            <h3>Thank you for applying!</h3>
+            <p>We've received your application for {{ job.title }}. Our team will review it and contact you.</p>
+          </div>
+        } @else {
+          <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+            <label class="field">
+              <span>Full Name <b aria-hidden="true">*</b></span>
+              <input formControlName="fullName" autocomplete="name" [class.invalid]="invalid('fullName')" />
+              @if (invalid('fullName')) {
+                <small>Please enter your full name.</small>
+              }
+            </label>
+
+            <label class="field">
+              <span>Email <b aria-hidden="true">*</b></span>
+              <input formControlName="email" type="email" autocomplete="email" [class.invalid]="invalid('email')" />
+              @if (invalid('email')) {
+                <small>Please enter a valid email address.</small>
+              }
+            </label>
+
+            <label class="field">
+              <span>Phone <b aria-hidden="true">*</b></span>
+              <input formControlName="phone" type="tel" autocomplete="tel" [class.invalid]="invalid('phone')" />
+              @if (invalid('phone')) {
+                <small>Please enter your phone number.</small>
+              }
+            </label>
+
+            <label class="field">
+              <span>Bio</span>
+              <textarea formControlName="bio" rows="5"></textarea>
+            </label>
+
+            <div class="field">
+              <label for="cv-upload">Upload CV/Resume <b aria-hidden="true">*</b></label>
+              <input id="cv-upload" class="file-input" type="file" [accept]="cvAccept" (change)="onCvChange($event)" />
+              <small class="hint">Allowed Type(s): {{ cvTypes }}</small>
+              @if (cvError()) {
+                <small>{{ cvError() }}</small>
+              } @else if (cvMissing()) {
+                <small>Please upload your CV.</small>
+              }
+            </div>
+
+            <label class="consent" [class.invalid]="invalid('consent')">
+              <input type="checkbox" formControlName="consent" />
+              <span>By using this form you agree with the storage and handling of your data by this website. <b aria-hidden="true">*</b></span>
+            </label>
+            @if (invalid('consent')) {
+              <small class="consent-error">Please accept to continue.</small>
+            }
+
+            <button class="btn apply-btn" type="submit">Submit</button>
+          </form>
+        }
+      </aside>
+    </div>
+  </section>
+
+  <nav class="job-nav" aria-label="Other openings">
+    @if (prev(); as p) {
+      <a [routerLink]="['/careers', p.slug]" class="job-nav-link">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" /></svg>
+        Prev
+      </a>
+    } @else {
+      <span class="job-nav-link disabled" aria-disabled="true">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" /></svg>
+        Prev
+      </span>
+    }
+    @if (next(); as n) {
+      <a [routerLink]="['/careers', n.slug]" class="job-nav-link">
+        Next
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" /></svg>
+      </a>
+    } @else {
+      <span class="job-nav-link disabled" aria-disabled="true">
+        Next
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3l5 5-5 5" /></svg>
+      </span>
+    }
+  </nav>
+}

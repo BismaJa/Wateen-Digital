@@ -1,15 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { NgTemplateOutlet } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { UncodeAnimDirective } from '../../shared/uncode-anim.directive';
+import { TypewriterDirective } from '../../shared/typewriter.directive';
 
 @Component({
   selector: 'app-resource-outsourcing',
   standalone: true,
-  imports: [RouterLink, UncodeAnimDirective],
+  imports: [RouterLink, NgTemplateOutlet, UncodeAnimDirective, TypewriterDirective],
   templateUrl: './resource-outsourcing.component.html',
   styleUrl: './resource-outsourcing.component.scss'
 })
 export class ResourceOutsourcingComponent {
+  /** Role cards show this many roles until READ MORE expands them. */
+  readonly rolePreview = 4;
+  readonly expandedRoles = signal(new Set<string>());
+
+  toggleRoles(title: string): void {
+    this.expandedRoles.update((open) => {
+      const next = new Set(open);
+      if (!next.delete(title)) next.add(title);
+      return next;
+    });
+  }
+
   readonly introParagraphs = [
     'Receive the best Resource Outsourcing services at transparent pricing and no hidden costs. Our Resource Outsourcing service enables businesses to accelerate their MVP development with rapid deployment and proven enterprise-grade expertise.',
     'Gain immediate access to credible professionals who deliver results without the overhead of traditional hiring. Aligned with business objectives, our teams are highly flexible, ensuring your MVP is not only launched quickly but also built on a foundation ready for growth.'
@@ -171,4 +185,21 @@ export class ResourceOutsourcingComponent {
     'Tableau.png',
     'TensorFlow.png'
   ];
+
+  readonly gains = [
+    { title: 'Short-Term Gains', image: 'assets/images/resource/short-term-gain.png', items: this.shortTerm },
+    {
+      title: 'Long-Term Benefits',
+      image: 'assets/images/resource/modern-businessman-using-tablet.png',
+      items: this.longTerm
+    }
+  ];
+
+  readonly teams = [
+    { title: 'Dedicated Teams', image: 'assets/images/resource/dedicated-teams.png', items: this.dedicated },
+    { title: 'Augmented Teams', image: 'assets/images/resource/resource-outsource.png', items: this.augmented }
+  ];
+
+  /** Logos twice over, so the marquee can loop without a visible jump. */
+  readonly marqueeLogos = [...this.techLogos, ...this.techLogos];
 }

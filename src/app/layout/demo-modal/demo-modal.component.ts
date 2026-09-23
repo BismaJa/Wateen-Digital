@@ -1,4 +1,4 @@
-import { Component, HostListener, effect, inject } from '@angular/core';
+import { Component, HostListener, effect, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DemoModalService } from '../../shared/demo-modal.service';
 
@@ -12,6 +12,8 @@ import { DemoModalService } from '../../shared/demo-modal.service';
 export class DemoModalComponent {
   private readonly fb = inject(FormBuilder);
   readonly demoModal = inject(DemoModalService);
+  /** Shows the thank-you state after a valid submit. */
+  readonly sent = signal(false);
 
   readonly products = [
     'Ai Vision Analytics',
@@ -45,6 +47,7 @@ export class DemoModalComponent {
   constructor() {
     effect(() => {
       if (this.demoModal.open()) {
+        this.sent.set(false);
         const product = this.demoModal.preselectedProduct();
         this.form.reset({
           fullName: '',
@@ -71,7 +74,12 @@ export class DemoModalComponent {
       return;
     }
     this.form.reset();
-    this.close();
+    this.sent.set(true);
+  }
+
+  invalid(name: keyof typeof this.form.controls): boolean {
+    const control = this.form.controls[name];
+    return control.invalid && control.touched;
   }
 
   @HostListener('document:keydown.escape')

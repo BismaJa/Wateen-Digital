@@ -179,6 +179,7 @@ export class AnnouncementsComponent implements OnInit, OnDestroy {
 
   @HostListener('window:keydown', ['$event'])
   onKey(event: KeyboardEvent): void {
+    if (this.overlayOpen()) return;
     if (event.key === 'ArrowDown' || event.key === 'PageDown') {
       event.preventDefault();
       this.next();
@@ -189,7 +190,7 @@ export class AnnouncementsComponent implements OnInit, OnDestroy {
   }
 
   private handleWheel(event: WheelEvent): void {
-    if (this.document.body.classList.contains('menu-open-lock')) return;
+    if (this.overlayOpen()) return;
 
     if (this.isLast) {
       if (!this.lastSlideScrollReady) {
@@ -217,6 +218,7 @@ export class AnnouncementsComponent implements OnInit, OnDestroy {
 
   @HostListener('window:touchend', ['$event'])
   onTouchEnd(event: TouchEvent): void {
+    if (this.overlayOpen()) return;
     const endY = event.changedTouches[0]?.clientY ?? 0;
     const diff = this.touchStartY - endY;
     if (Math.abs(diff) < 50) return;
@@ -227,5 +229,11 @@ export class AnnouncementsComponent implements OnInit, OnDestroy {
     }
     if (diff > 0) this.next();
     else this.prev();
+  }
+
+  /** The mobile menu or the demo modal is covering the page: slides stay put. */
+  private overlayOpen(): boolean {
+    const body = this.document.body.classList;
+    return body.contains('menu-open-lock') || body.contains('demo-modal-open');
   }
 }

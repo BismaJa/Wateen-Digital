@@ -1,4 +1,4 @@
-import { Component, OnDestroy, inject, signal } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import {
   NavigationCancel,
   NavigationEnd,
@@ -7,6 +7,7 @@ import {
   Router
 } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { PageLoaderState } from '../../shared/page-loader-state.service';
 
 @Component({
   selector: 'app-page-loader',
@@ -24,7 +25,8 @@ export class PageLoaderComponent implements OnDestroy {
   private hideTimer: ReturnType<typeof setTimeout> | null = null;
   private shownAt = Date.now();
 
-  readonly visible = signal(true);
+  /** Shared so entrance animations can wait until the loader has cleared. */
+  readonly visible = inject(PageLoaderState).visible;
 
   constructor() {
     this.sub = this.router.events.subscribe((event) => {

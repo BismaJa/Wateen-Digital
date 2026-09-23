@@ -62,27 +62,36 @@
     </div>
   </div>
 
-  <div class="mobile-panel" [class.open]="mobileOpen()">
-    <div class="mobile-contact">
-      <a href="mailto:info@wateendigital.ae">info&#64;wateendigital.ae</a>
-      <a href="tel:+971588149964">+971 58 814 9964</a>
-    </div>
-    <ul>
+  <!-- Small screens: off-canvas sheet sliding in from the right -->
+  <div class="mobile-backdrop" [class.open]="mobileOpen()" (click)="closeMobile()" aria-hidden="true"></div>
+  <aside
+    class="mobile-panel"
+    [class.open]="mobileOpen()"
+    [attr.aria-hidden]="!mobileOpen()"
+    [attr.inert]="mobileOpen() ? null : ''"
+    aria-label="Menu"
+  >
+    <button type="button" class="mobile-close" aria-label="Close menu" (click)="closeMobile()">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19" /></svg>
+    </button>
+    <ul class="mobile-links">
       @for (item of nav; track item.path) {
         <li>
-          <a [routerLink]="item.path" (click)="closeMobile()">{{ item.label }}</a>
-          @if (item.children) {
-            <ul class="mobile-sub">
-              @for (child of item.children; track child.path) {
-                <li>
-                  <a [routerLink]="child.path" (click)="closeMobile()">{{ child.label }}</a>
-                </li>
-              }
-            </ul>
-          }
+          <a
+            [routerLink]="item.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+            (click)="closeMobile()"
+          >
+            {{ item.label }}
+          </a>
         </li>
       }
     </ul>
-    <a routerLink="/contact-us" class="btn" (click)="closeMobile()">Let's talk</a>
-  </div>
+    <div class="mobile-contact">
+      <a routerLink="/contact-us" class="mobile-talk" (click)="closeMobile()">Let's talk</a>
+      <a href="mailto:info@wateendigital.ae">info&#64;wateendigital.ae</a>
+      <a href="tel:+971588149964">+971 58 814 9964</a>
+    </div>
+  </aside>
 </header>

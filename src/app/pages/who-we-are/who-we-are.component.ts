@@ -9,8 +9,11 @@ import { UncodeAnimDirective } from '../../shared/uncode-anim.directive';
   styleUrl: './who-we-are.component.scss'
 })
 export class WhoWeAreComponent {
+  /** First paragraph follows the cyan "Wateen Digital Solutions LLC.," lead-in. */
+  readonly introRest =
+    'is a Dhabi Group Company with the objective of transforming the digital landscape of UAE through innovative solutions and services.';
+
   readonly paragraphs = [
-    'Wateen Digital Solutions LLC., is a Dhabi Group Company with the objective of transforming the digital landscape of UAE through innovative solutions and services.',
     'The Company and its affiliated entities are part of the Dhabi Group, and have been in this business for the past two decades. Our extensive expertise has led to productive partnerships with Global OEMs, delivering significant value to enterprises in Pakistan and international ICT landscape.',
     'Wateen Digital Solutions is offering a comprehensive range of services including Professional Services, Managed Cyber Security, Enterprise Solutions and services, Telecom Expertise, and more.',
     "Choosing Wateen Digital Solutions means more than just selecting a service; it's securing a partnership with industry-leading, skillful resources dedicated to meeting your business needs and steer your vision towards unprecedented heights."

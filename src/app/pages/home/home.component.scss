@@ -945,83 +945,6 @@
   background: rgba(255, 255, 255, 0.35);
 }
 
-/* Logo carousels (certifications, partners): the track slides one item per step
-   (BadgeCarousel); items leaving on the left are clipped by the viewport while the
-   next one enters from the right. */
-.badge-viewport {
-  --badge-visible: 7;
-  --badge-gap: 36px;
-  overflow: hidden;
-  padding: 6px 0 20px; /* room for the drop shadow and hover lift inside the clip */
-}
-
-.badge-track {
-  --badge-width: calc((100% - (var(--badge-visible) - 1) * var(--badge-gap)) / var(--badge-visible));
-  display: flex;
-  align-items: center;
-  gap: var(--badge-gap);
-  transform: translate3d(calc(-1 * var(--badge-index, 0) * (var(--badge-width) + var(--badge-gap))), 0, 0);
-  transition: transform 0.9s cubic-bezier(0.45, 0, 0.2, 1);
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-.badge-track.no-transition {
-  transition: none;
-}
-
-.badge-slide {
-  flex: 0 0 var(--badge-width);
-  min-width: 0;
-}
-
-.badge-carousel {
-  position: relative;
-}
-
-/* Prev/next arrows — only on phones, where the carousel shows one logo at a time. */
-.badge-arrow {
-  display: none;
-  position: absolute;
-  top: 50%;
-  z-index: 2;
-  width: 44px;
-  height: 52px;
-  padding: 0;
-  border: 0;
-  border-radius: 2px;
-  background: rgba(40, 52, 84, 0.85);
-  color: #ffffff;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  transform: translateY(-50%);
-  transition: background 0.2s ease;
-}
-
-.badge-arrow:hover,
-.badge-arrow:focus-visible {
-  background: #00adef;
-}
-
-.badge-arrow svg {
-  width: 18px;
-  height: 18px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.badge-prev {
-  left: 0;
-}
-
-.badge-next {
-  right: 0;
-}
-
 /* Original PNGs already include the shield — do not restyle the shape */
 .cert-img,
 .partner-img {
@@ -1522,10 +1445,6 @@
     text-align: center;
   }
 
-  .badge-viewport {
-    --badge-visible: 4;
-  }
-
   .announce-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -1545,10 +1464,6 @@
     grid-template-columns: 1fr;
   }
 
-  .badge-viewport {
-    --badge-visible: 3;
-  }
-
   .announce-grid,
   .form-row {
     grid-template-columns: 1fr;
@@ -1562,16 +1477,6 @@
   .why-grid,
   .announce-grid {
     gap: 16px;
-  }
-
-  .badge-viewport {
-    --badge-visible: 1;
-    --badge-gap: 16px;
-    margin-inline: 60px; /* leave room for the arrows either side */
-  }
-
-  .badge-arrow {
-    display: inline-flex;
   }
 
   .focus-track {
