@@ -14,8 +14,7 @@ import { BLOG_POSTS, BlogPost } from './blogs-data';
 export class BlogsComponent {
   readonly posts = BLOG_POSTS;
 
-  /** Post image, with the fallback layered underneath until the real image is added. */
   imageStyle(post: BlogPost): string {
-    return `url('${post.image}'), url('${post.fallback}')`;
+    return `url('${post.image}')`;
   }
 }

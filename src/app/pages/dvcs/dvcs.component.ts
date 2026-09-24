@@ -18,8 +18,17 @@ interface DvcsVideo {
 })
 export class DvcsComponent {
   readonly videos: DvcsVideo[] = [
-    { title: 'And transforming the world into a digital realm', src: 'assets/videos/dvcs/dvcs-1.mp4' },
-    { title: 'It’s already here', src: 'assets/videos/dvcs/dvcs-2.mp4' }
+    // Local copies of the live DVCS videos and their poster frames.
+    {
+      title: 'And transforming the world into a digital realm',
+      src: 'assets/videos/dvcs/dvcs-1.mp4',
+      poster: 'assets/images/dvcs/the-world.png'
+    },
+    {
+      title: 'It’s already here',
+      src: 'assets/videos/dvcs/dvcs-2.mp4',
+      poster: 'assets/images/dvcs/its-already-here.png'
+    }
   ];
 
   /** Videos whose file failed to load — shown as a placeholder instead of a dead player. */
