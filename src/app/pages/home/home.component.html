@@ -253,7 +253,7 @@
 
     <!-- 5 Certifications (6th slide) -->
     <section class="fp-section certs" id="certifications" [class.active]="active() === 5">
-      <video class="bg-media" autoplay muted loop playsinline>
+      <video #certsVideo class="bg-media" autoplay muted loop playsinline preload="auto" [muted]="true">
         <source src="assets/videos/resources-video-final.mp4" type="video/mp4" />
       </video>
       <div class="certs-overlay"></div>

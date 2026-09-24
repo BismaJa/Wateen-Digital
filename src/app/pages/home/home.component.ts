@@ -25,6 +25,7 @@ import { BadgeCarousel } from '../../shared/badge-carousel';
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('heroVideo') heroVideo?: ElementRef<HTMLVideoElement>;
+  @ViewChild('certsVideo') certsVideo?: ElementRef<HTMLVideoElement>;
 
   private readonly document = inject(DOCUMENT);
   private readonly fullpageState = inject(FullpageStateService);
@@ -216,9 +217,19 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    const video = this.heroVideo?.nativeElement;
+    this.autoplayMuted(this.heroVideo?.nativeElement);
+    this.autoplayMuted(this.certsVideo?.nativeElement);
+  }
+
+  /**
+   * Background videos must be *property*-muted for browsers to allow autoplay —
+   * Angular doesn't reflect the `muted` template attribute onto the element, so
+   * without this the video sits on its first frame looking paused.
+   */
+  private autoplayMuted(video: HTMLVideoElement | undefined): void {
     if (!video) return;
     video.muted = true;
+    video.defaultMuted = true;
     video.playsInline = true;
     const play = () => {
       video.play().catch(() => {
@@ -259,6 +270,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     if (inner) inner.scrollTop = index > this.active() ? 0 : inner.scrollHeight;
     this.active.set(index);
     this.syncNavTheme(index);
+    if (index === 5) this.certsVideo?.nativeElement.play().catch(() => undefined);
     window.setTimeout(() => {
       this.animating = false;
     }, 900);
